@@ -1,9 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+TDK:
+  name: Todaka
+  address: Kobayashi
 
-one:
-  name: MyString
-  address: MyString
-
-two:
-  name: MyString
-  address: MyString
+OHK:
+  name: Ohkawara
+  address: Takizawa
