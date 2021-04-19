@@ -1,53 +1,53 @@
-# satoshi:
-#   company: TDK
-#   # department_id: 
-#   name: satoshitodaka
-#   email: satoshitodaka@rhohi.com
-#   birthday: 1993-07-05
-#   approver: true
-#   system_admin: true
+satoshi:
+  company: TDK
+  # department_id: 
+  name: satoshitodaka
+  email: satoshitodaka@rhohi.com
+  birthday: 1993-07-05
+  approver: true
+  system_admin: true
 
-# megumi:
-#   company: TDK
-#   # department_id: 
-#   name: megumitodaka
-#   email: megumitodaka@rhohi.com
-#   birthday: 1995-06-17
-#   approver: true
-#   system_admin: false
+megumi:
+  company: TDK
+  # department_id: 
+  name: megumitodaka
+  email: megumitodaka@rhohi.com
+  birthday: 1995-06-17
+  approver: true
+  system_admin: false
 
-# hikaru:
-#   company: TDK
-#   # department_id: 
-#   name: hikarutodaka
-#   email: hikarutodaka@rhohi.com
-#   birthday: 1997-07-25
-#   approver: false
-#   system_admin: false
+hikaru:
+  company: TDK
+  # department_id: 
+  name: hikarutodaka
+  email: hikarutodaka@rhohi.com
+  birthday: 1997-07-25
+  approver: false
+  system_admin: false
 
-# masumi:
-#   company: OHK
-#   # department_id: 
-#   name: masumiohkawara
-#   email: masumiohkawara@ohk.com
-#   birthday: 1994-12-16
-#   approver: true
-#   system_admin: true
+masumi:
+  company: OHK
+  # department_id: 
+  name: masumiohkawara
+  email: masumiohkawara@ohk.com
+  birthday: 1994-12-16
+  approver: true
+  system_admin: true
 
-# yoshiko:
-#   company: OHK
-#   # department_id: 
-#   name: yoshikoohkawara
-#   email: yoshikoohkawara@ohk.com
-#   birthday: 1994-12-16
-#   approver: true
-#   system_admin: false
+yoshiko:
+  company: OHK
+  # department_id: 
+  name: yoshikoohkawara
+  email: yoshikoohkawara@ohk.com
+  birthday: 1994-12-16
+  approver: true
+  system_admin: false
 
-# akane:
-#   company: OHK
-#   # department_id: 
-#   name: akaneohkawara
-#   email: akaneohkawara@ohk.com
-#   birthday: 1994-12-16
-#   approver: false
-#   system_admin: false
+akane:
+  company: OHK
+  # department_id: 
+  name: akaneohkawara
+  email: akaneohkawara@ohk.com
+  birthday: 1994-12-16
+  approver: false
+  system_admin: false
