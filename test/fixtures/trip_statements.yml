@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first:
+  distination: tokyo
+  purpose: meetings
+  start: 2021-04-01 08:34:55
+  finish: 2021-04-03 08:34:55
+  work_done: 2021-04-02 08:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: megumi
+
+second:
+  distination: kyoto
+  purpose: recruit
+  start: 2021-04-15 08:34:55
+  finish: 2021-04-15 21:34:55
+  work_done: 2021-04-15 18:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: hikaru
+
+third:
+  distination: tokyo
+  purpose: meetings
+  start: 2021-04-01 08:34:55
+  finish: 2021-04-03 08:34:55
+  work_done: 2021-04-02 08:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: yoshiko
+
+fourth:
+  distination: kyoto
+  purpose: recruit
+  start: 2021-04-15 08:34:55
+  finish: 2021-04-15 21:34:55
+  work_done: 2021-04-15 18:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: akane
