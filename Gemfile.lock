@@ -46,10 +46,17 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ansi (1.5.0)
     arel (9.0.0)
+    autoprefixer-rails (10.2.4.0)
+      execjs
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.3)
       msgpack (~> 1.0)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
+    bootstrap-will_paginate (1.0.0)
+      will_paginate
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.35.3)
@@ -79,8 +86,12 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (2.17.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.0)
     formatador (0.2.5)
+    gimei (1.0.0)
+      romaji
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.16.2)
@@ -172,6 +183,8 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
     ruby-progressbar (1.11.0)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
@@ -186,6 +199,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -225,6 +240,7 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -234,10 +250,14 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
+  bootstrap-sass (= 3.4.1)
+  bootstrap-will_paginate
   byebug
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   devise
+  faker
+  gimei
   guard
   guard-minitest
   jbuilder (~> 2.5)
@@ -256,6 +276,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
   webdrivers
+  will_paginate
 
 RUBY VERSION
    ruby 2.6.6p146

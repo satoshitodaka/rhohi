@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'home#home'
   get 'home/about'
   get 'home/help'
+  resources :trip_statements
 end
