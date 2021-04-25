@@ -12,4 +12,5 @@ class TripStatementsController < ApplicationController
 
   def new
   end
+  
 end
