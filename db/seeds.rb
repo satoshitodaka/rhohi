@@ -15,10 +15,21 @@ User.create!(name: "戸高 仁",
 end
 
 Company.all.each do |company|
-  n = 1
   company.users.create!(
-    user_name = Gimei.kanji,
-    email = "example-#{n+1}@rhohi.com"
+    name: Gimei.kanji,
+    email: Faker::Internet.email,
+    password: "password",
+    approver: false,
+    system_admin: false
+  )
+end
+
+User.all.each do |user|
+  user.trip_statements.create!(
+    distination: Gimei.address.kanji,
+    purpose: Faker::Lorem.sentence(word_count: 3),
+    applied: true,
+    approved: false
   )
 end
 
