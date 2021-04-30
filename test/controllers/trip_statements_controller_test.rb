@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class TripStatementsControllerTest < ActionDispatch::IntegrationTest
+
+  def setup
+    @trip_statement = trip_statements(:first)
+  end
+
   test "should redirect index when not logged in" do
     get trip_statements_url
     assert_redirected_to new_user_session_url
@@ -21,15 +26,22 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
     # assert_redirected_to new_user_session_url
   end
 
-  # test "should redirect create when not logged in" do
-  #   assert_no_difference 'TripStatement.count' do
-  #     post trip_statements, params: { trip_statement: { distination: "tokyo",
-  #                                                       purpose: "meeting",
-  #                                                       applied: true,
-  #                                                       approved: false }
-  #     }
-  #   end
-  #   assert_redirected_to new_user_session_url
-  # end
+  test "should redirect create when not logged in" do
+    assert_no_difference 'TripStatement.count' do
+      post trip_statements_path, params: { trip_statement: { distination: "tokyo",
+                                                        purpose: "meeting",
+                                                        applied: true,
+                                                        approved: false }
+      }
+    end
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'TripStatement.count' do
+      delete trip_statement_path(@trip_statement)
+    end
+    assert_redirected_to new_user_session_url
+  end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_233455) do
+ActiveRecord::Schema.define(version: 2021_04_30_003807) do
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 2021_04_19_233455) do
     t.datetime "start"
     t.datetime "finish"
     t.datetime "work_done"
-    t.boolean "applied", null: false
+    t.boolean "applied"
     t.datetime "applied_at"
-    t.boolean "approved", null: false
+    t.boolean "approved"
     t.datetime "approved_at"
     t.bigint "user_id"
     t.datetime "created_at", null: false
