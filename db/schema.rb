@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_003807) do
+ActiveRecord::Schema.define(version: 2021_04_30_005641) do
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 2021_04_30_003807) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_departments_on_company_id"
+  end
+
+  create_table "expences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "date"
+    t.string "transportation"
+    t.string "bording"
+    t.string "get_off"
+    t.integer "fare"
+    t.integer "mileage"
+    t.integer "allowance"
+    t.bigint "trip_statement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_statement_id"], name: "index_expences_on_trip_statement_id"
   end
 
   create_table "trip_statements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -76,5 +90,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_003807) do
   end
 
   add_foreign_key "departments", "companies"
+  add_foreign_key "expences", "trip_statements"
   add_foreign_key "trip_statements", "users"
 end

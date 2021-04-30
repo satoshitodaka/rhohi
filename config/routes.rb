@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/help'
   # get 'trip_statements/new', to: 'trip_statements#create'
-  resources :trip_statements
+  resources :trip_statements, shallow: true do
+    resources :expences
+  end
 end
