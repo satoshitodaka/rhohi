@@ -3,7 +3,7 @@ require 'test_helper'
 class ExpenceTest < ActiveSupport::TestCase
   
   def setup
-    @trip_statement = trip_statements(:first)
+    @trip_statement = trip_statements(:one)
     @expence = @trip_statement.expences.build(date:2021-04-01, transportation: "train", bording: "totsuka", get_off: "tokyo", fare: 800)
   end
 

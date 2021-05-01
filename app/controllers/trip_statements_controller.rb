@@ -3,8 +3,9 @@ before_action :authenticate_user!
 
 
   def show
-    # @user = current_user
-    # @trip_statements = @user.trip_statements.paginate(page: params[:page])
+    @user = current_user
+    @trip_statement = TripStatement.find(params[:id])
+    @expences = @trip_statement.expences.all
   end
 
   def index

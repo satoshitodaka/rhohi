@@ -26,6 +26,11 @@ class TripStatementTest < ActiveSupport::TestCase
     assert_not @trip_statement.valid?
   end
 
-  
-
+  test "associated expences should be destroyed" do
+    @trip_statement.save
+    @trip_statement.expences.create!(date: '2021-04-15', transportation: "Train", bording: "Tokyo", get_off: "Shimbash")
+    assert_difference 'Expence.count', -1 do
+      @trip_statement.destroy
+    end
+  end
 end

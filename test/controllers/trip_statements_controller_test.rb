@@ -3,7 +3,7 @@ require 'test_helper'
 class TripStatementsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @trip_statement = trip_statements(:first)
+    @trip_statement = trip_statements(:one)
   end
 
   test "should redirect index when not logged in" do

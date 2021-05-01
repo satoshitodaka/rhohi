@@ -1,0 +1,13 @@
+<h1>手当画面</h1>
+<%= form_with(model: @expence, local: true) do |f| %>
+  <div>
+    <%= f.date_select :date, placeholder: "出張先を入力してください" %>
+    <%= f.text_area :transportation, placeholder: "出張理由を入力してください" %>
+    <%= f.text_area :bording, placeholder: "乗車駅・出発地" %>
+    <%= f.text_area :get_off, placeholder: "降車駅・到着地" %>
+    <%= f.text_area :fare, placeholder: "運賃・料金" %>
+    <%= f.text_area :mileage, placeholder: "移動距離※車の場合" %>
+    <%= f.text_area :allowance, placeholder: "手当" %>
+  </div>
+  <%= f.submit "手当情報登録" %>
+<% end %>

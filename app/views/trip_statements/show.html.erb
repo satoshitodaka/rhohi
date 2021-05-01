@@ -1,7 +1,16 @@
-<%# <h1><%= @user.name %>が申請した旅 費</h1>
-<% if @user.trip_statements.any? %>
-  <h3>旅費申請<%= @user.trip_statements.count %>件</h3>
-  <ol class="trip_statements">
-    <%= render @trip_statements %>
-  </ol>
-<% end %> %>
+<h1><%= @user.name %>が申請した旅費</h1>
+<h3>旅費申請情報</h3>
+<span><%= @trip_statement.distination %></span>
+<span><%= @trip_statement.purpose %></span>
+<span><%= @trip_statement.start %></span>
+<span><%= @trip_statement.finish %></span>
+<span><%= @trip_statement.work_done %></span>
+<span><%= @trip_statement.applied %></span>
+<span><%= @trip_statement.approved %></span>
+
+
+
+<h3>手当情報</h3>
+<% if @trip_statement.expences.any? %>
+  <%= render @expences %>
+<% end %>

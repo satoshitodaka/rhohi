@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-first:
+one:
   distination: tokyo
   purpose: meetings
   start: 2021-04-01 08:34:55
@@ -12,7 +12,7 @@ first:
   approved_at: 2021-04-20 08:34:55
   user: megumi
 
-second:
+two:
   distination: kyoto
   purpose: recruit
   start: 2021-04-15 08:34:55
@@ -24,7 +24,7 @@ second:
   approved_at: 2021-04-20 08:34:55
   user: hikaru
 
-third:
+three:
   distination: tokyo
   purpose: meetings
   start: 2021-04-01 08:34:55
@@ -36,7 +36,7 @@ third:
   approved_at: 2021-04-20 08:34:55
   user: yoshiko
 
-fourth:
+four:
   distination: kyoto
   purpose: recruit
   start: 2021-04-15 08:34:55

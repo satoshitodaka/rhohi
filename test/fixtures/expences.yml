@@ -1,21 +1,41 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  date: 2021-04-30
-  transportation: MyString
-  bording: MyString
-  get_off: MyString
-  fare: 1
-  mileage: 1
-  allowance: 1
-  trip_statement: one
+one-1:
+  date: 2021-04-01
+  transportation: Train
+  bording: Totsuka
+  get_off: Tokyo
+  fare: 726
+  mileage: 
+  allowance: 0
+  trip_statement: first
 
-two:
-  date: 2021-04-30
-  transportation: MyString
-  bording: MyString
-  get_off: MyString
-  fare: 1
+one-2:
+  date: 2021-04-01
+  transportation: Train
+  bording: Tokyo
+  get_off: Totsuka
+  fare: 726
+  mileage: 
+  allowance: 0
+  trip_statement: first
+
+two-1:
+  date: 2021-04-15
+  transportation: Shinkansen
+  bording: Tokyo
+  get_off: Kyoto
+  fare: 13,320
   mileage: 1
-  allowance: 1
+  allowance: 3,200
+  trip_statement: two
+
+two-2:
+  date: 2021-04-15
+  transportation: Shinkansen
+  bording: Tokyo
+  get_off: Kyoto
+  fare: 13,320
+  mileage: 1
+  allowance: 3,200
   trip_statement: two
