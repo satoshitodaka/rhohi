@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one-1:
+one_1:
   date: 2021-04-01
   transportation: Train
   bording: Totsuka
@@ -10,7 +10,7 @@ one-1:
   allowance: 0
   trip_statement: first
 
-one-2:
+one_2:
   date: 2021-04-01
   transportation: Train
   bording: Tokyo
@@ -20,7 +20,7 @@ one-2:
   allowance: 0
   trip_statement: first
 
-two-1:
+two_1:
   date: 2021-04-15
   transportation: Shinkansen
   bording: Tokyo
@@ -30,7 +30,7 @@ two-1:
   allowance: 3,200
   trip_statement: two
 
-two-2:
+two_2:
   date: 2021-04-15
   transportation: Shinkansen
   bording: Tokyo

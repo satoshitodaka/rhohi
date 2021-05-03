@@ -1,5 +1,6 @@
 <h1><%= @user.name %>が申請した旅費</h1>
 <h3>旅費申請情報</h3>
+<span><%= @trip_statement.user.name %></span>
 <span><%= @trip_statement.distination %></span>
 <span><%= @trip_statement.purpose %></span>
 <span><%= @trip_statement.start %></span>
@@ -11,6 +12,7 @@
 
 
 <h3>手当情報</h3>
+<%# <%= link_to "手当情報を追加する", 'new_trip_statement_exepence_path' %> %>
 <% if @trip_statement.expences.any? %>
   <%= render @expences %>
 <% end %>
