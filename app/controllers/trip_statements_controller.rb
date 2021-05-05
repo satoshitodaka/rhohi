@@ -1,5 +1,5 @@
 class TripStatementsController < ApplicationController
-before_action :authenticate_user!
+
 
   def show
     @user = current_user
@@ -10,12 +10,12 @@ before_action :authenticate_user!
     else
       render 'index'
     end
-
+    
   end
 
   def index
     @user = current_user
-    @trip_statements = @user.trip_statements.all
+    @trip_statements = @user.trip_statements.all#paginate(page: params[:page])
 
   end
 
