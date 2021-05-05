@@ -4,7 +4,7 @@ satoshi:
   name: satoshitodaka
   email: satoshitodaka@rhohi.com
   birthday: 1993-07-05
-  admin: true
+  approver: true
   system_admin: true
 
 megumi:
@@ -13,7 +13,7 @@ megumi:
   name: megumitodaka
   email: megumitodaka@rhohi.com
   birthday: 1995-06-17
-  admin: true
+  approver: true
   system_admin: false
 
 hikaru:
@@ -22,7 +22,7 @@ hikaru:
   name: hikarutodaka
   email: hikarutodaka@rhohi.com
   birthday: 1997-07-25
-  admin: false
+  approver: false
   system_admin: false
 
 masumi:
@@ -31,7 +31,7 @@ masumi:
   name: masumiohkawara
   email: masumiohkawara@ohk.com
   birthday: 1994-12-16
-  admin: true
+  approver: true
   system_admin: true
 
 yoshiko:
@@ -40,7 +40,7 @@ yoshiko:
   name: yoshikoohkawara
   email: yoshikoohkawara@ohk.com
   birthday: 1994-12-16
-  admin: true
+  approver: true
   system_admin: false
 
 akane:
@@ -49,5 +49,5 @@ akane:
   name: akaneohkawara
   email: akaneohkawara@ohk.com
   birthday: 1994-12-16
-  admin: false
+  approver: false
   system_admin: false

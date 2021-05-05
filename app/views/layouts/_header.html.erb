@@ -2,11 +2,8 @@
       <nav>
         <% if user_signed_in? %>
           <strong><%= link_to current_user.name, home_about_path %>でログイン中</strong>
-          <%= link_to '申請する', new_trip_statement_path %>          
+          <%= link_to '新規申請', new_trip_statement_path %>          
           <%= link_to '申請一覧', trip_statements_path %>
-          <% if current_user.admin %>
-            <%= link_to '承認する', approval_index_path %>
-          <% end %>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'ログイン', new_user_session_path %>
