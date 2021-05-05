@@ -1,0 +1,21 @@
+<h1>承認待ちの出張旅費申請</h1>
+<% if @not_approved.any? %>
+  <h3>承認待ちは<%= @not_approved.count %>件</h3>
+  <% @not_approved.each do |not_approval| %>
+    <span class="content"><%= not_approval.user.name %></span> 
+    <span class="content"><%= not_approval.purpose %></span>
+    <span class="content"><%= not_approval.distination %></span>
+    <p><%=link_to "承認", 'new_trip_statement_approval_path(trip_statement.id)' %></p>
+  <% end %>
+<% end %>
+
+<h1>承認済の出張旅費申請</h1>
+<% if @approved.any? %>
+  <h3>承認済は<%= @approved.count %>件</h3>
+  <% @approved.each do |approval| %>
+    <span class="content"><%= approval.user.name %></span> 
+    <span class="content"><%= approval.purpose %></span>
+    <span class="content"><%= approval.distination %></span>
+    <p><%=link_to "詳細", 'new_trip_statement_approval_path(trip_statement.id)' %></p>
+  <% end %>
+<% end %>
