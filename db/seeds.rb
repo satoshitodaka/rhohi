@@ -19,7 +19,7 @@ Company.all.each do |company|
     name: Gimei.kanji,
     email: Faker::Internet.email,
     password: "password",
-    approver: false,
+    admin: false,
     system_admin: false
   )
 end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_005641) do
+ActiveRecord::Schema.define(version: 2021_05_04_090326) do
+
+  create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "trip_statement_id"
+    t.integer "approval_user_id"
+    t.boolean "approval"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -80,8 +89,8 @@ ActiveRecord::Schema.define(version: 2021_04_30_005641) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.date "birthday"
-    t.boolean "approver", default: false, null: false
     t.boolean "system_admin", default: false, null: false
+    t.boolean "admin", default: false
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
