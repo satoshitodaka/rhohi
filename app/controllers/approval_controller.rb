@@ -8,7 +8,7 @@ before_action :admin_user?
   end
 
   def new
-    @approval = current_user.approval.build(trip_statement_id: [:trip_statement_id])
+    # @approval = current_user.approval.build(trip_statement_id: [:trip_statement_id])
   end
 
   def show
