@@ -1,6 +1,7 @@
     <header>
       <nav>
         <% if user_signed_in? %>
+          <p><%= current_user.company.name %></p>
           <strong><%= link_to current_user.name, home_about_path %>でログイン中</strong>
           <%= link_to '申請する', new_trip_statement_path %>          
           <%= link_to '申請一覧', trip_statements_path %>

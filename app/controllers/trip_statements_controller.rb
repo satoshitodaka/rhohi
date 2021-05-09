@@ -2,15 +2,14 @@ class TripStatementsController < ApplicationController
 before_action :authenticate_user!
 
   def show
-    @user = current_user
     @trip_statement = TripStatement.find(params[:id])
+    @user = @trip_statement.user
     @expences = @trip_statement.expences.all
-    if @trip_statement.user = current_user
-      render 'show'
-    else
-      render 'index'
-    end
-
+    # if @trip_statement.user = current_user
+    #   render 'show'
+    # else
+    #   render 'index'
+    # end
   end
 
   def index

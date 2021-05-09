@@ -1,6 +1,6 @@
 <li id="trip_statement-<%= trip_statement.id %>">
   <%# <span class="user"><%= link_to trip_statement.user.name, trip_statement.user %></span>
   <%# <span class="content"><%= link_to trip_statement.distination, trip_statement_path(@trip_statement)  %></span>
-  <span class="content"><%= trip_statement.purpose %></span>
+  <%= link_to trip_statement.purpose, trip_statement_path(trip_statement.id) %>
   <span class="content"><%= trip_statement.distination %></span>
 </li>

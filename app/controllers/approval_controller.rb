@@ -3,8 +3,8 @@ before_action :authenticate_user!
 before_action :admin_user?
 
   def index
-    @not_approved = TripStatement.where(approved: false)
-    @approved = TripStatement.where(approved: true)
+    @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
+    @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
   end
 
   # def new
@@ -18,14 +18,18 @@ before_action :admin_user?
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @approval = current_user.approval.build(trip_statement_id: params[:trip_statement_id])
-    @approval.approval = true
-    if @approval.save
+    if params[:approval] = true
       @trip_statement.approved = true
-      @trip_statement.save
-      redirect_to trip_statement_approval_index_path
+      @approval.approval = true
+    elsif params[:approval] = false
+      @trip_statement.approved = false
+      @approval.approval = false
+
     else
-      redirect_to root_url #何するか要検討
+      redirect_to root_url #上手くいっていないための確認用
     end
+    @trip_statement.save
+    redirect_to trip_statement_approval_index_path
   end
 
   def edit
@@ -40,6 +44,10 @@ before_action :admin_user?
   private
     def admin_user?
       redirect_to root_url unless current_user.admin
+    end
+
+    def own_statement?
+
     end
 
     # def approval_params
