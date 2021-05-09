@@ -12,7 +12,23 @@
 
 
 <h3>手当情報</h3>
-<%# <%= link_to "手当情報を追加する", 'new_trip_statement_exepence_path' %> %>
+<%# <%= link_to "手当情報を追加する", 'new_trip_statement_exepence_path' %>
 <% if @trip_statement.expences.any? %>
   <%= render @expences %>
+<% else %>
+  <p>旅費手当が登録されていません。</p>
+<% end %>
+
+<% if current_user.admin %>
+<h3>承認</h3>
+<%= link_to "承認", trip_statement_approval_index_path(@trip_statement.id), method: :post %>
+<%= link_to "否認", trip_statement_approval_index_path(@trip_statement.id), method: :delete %>
+  <%# <%= form_with(model: @approval, local: true) do |f| %>
+    <%# <div> %>
+      <%# <%= f.label :comment %>
+      <%# <%= f.text_area :comment, placeholder: "差し戻す場合、コメントを入力してください。" %>
+    <%# </div> %>
+    <%# <%= f.submit "承認" %>
+    <%# <%= f.submit "否認" %>
+  <%# <% end %>
 <% end %>

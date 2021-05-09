@@ -1,11 +1,16 @@
 <h1>新規申請画面</h1>
 <%= form_with(model: @trip_statement, local: true) do |f| %>
   <div>
+    <%= f.label :distination %>
     <%= f.text_area :distination, placeholder: "出張先を入力してください" %>
+    <%= f.label :purpose %>
     <%= f.text_area :purpose, placeholder: "出張理由を入力してください" %>
+    <%= f.label :start %>
     <%= f.datetime_select :start, placeholder: "出発日時を選択してください" %>
+    <%= f.label :finish %>
     <%= f.datetime_select :finish, placeholder: "帰着日時を選択してください" %>
-    <%= f.datetime_select :work_done_time, placeholder: "作業完了した日時を選択してください" %>
+    <%= f.label :work_done %>
+    <%= f.datetime_select :work_done, placeholder: "作業完了した日時を選択してください" %>
   </div>
   <%= f.submit "新規申請" %>
 <% end %>

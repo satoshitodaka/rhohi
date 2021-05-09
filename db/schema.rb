@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_090326) do
+ActiveRecord::Schema.define(version: 2021_05_09_071307) do
 
   create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "trip_statement_id"
-    t.integer "approval_user_id"
     t.boolean "approval"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_approvals_on_user_id"
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_090326) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "approvals", "users"
   add_foreign_key "departments", "companies"
   add_foreign_key "expences", "trip_statements"
   add_foreign_key "trip_statements", "users"

@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   # get 'trip_statements/new', to: 'trip_statements#create'
   resources :trip_statements, shallow: true do
     resources :expences
-    resources :approval, only: [:new, :index, :show, :create, :edit, :update, :destroy]
+    resources :approval, only: [:index, :create, :edit, :update, :destroy]
   end
 end

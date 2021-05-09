@@ -6,7 +6,7 @@
       <li><span class="content"><%= not_approval.user.name %></span></li>
       <li><span class="content"><%= not_approval.purpose %></span></li>
       <li><span class="content"><%= not_approval.distination %></span></li>
-      <p><%=link_to "承認", new_trip_statement_approval_path(not_approval.id), method: :post %></p>
+      <p><%=link_to "承認", trip_statement_path(not_approval.id) %></p>
     </ul>
   <% end %>
 <% end %>
@@ -15,9 +15,11 @@
 <% if @approved.any? %>
   <h3>承認済は<%= @approved.count %>件</h3>
   <% @approved.each do |approval| %>
-    <span class="content"><%= approval.user.name %></span> 
-    <span class="content"><%= approval.purpose %></span>
-    <span class="content"><%= approval.distination %></span>
-    <p><%=link_to "詳細", approval_path(approval.id) %></p>
+    <ul>
+      <li><span class="content"><%= approval.user.name %></span></li>
+      <li><span class="content"><%= approval.purpose %></span></li>
+      <li><span class="content"><%= approval.distination %></span></li>
+    <p><%=link_to "詳細", trip_statement_path(approval.id) %></p>
+    </ul>
   <% end %>
 <% end %>
