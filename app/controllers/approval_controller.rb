@@ -5,6 +5,7 @@ before_action :admin_user?
   def index
     @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
     @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
+    @denial = TripStatement.where(approved: true)
   end
 
   # def new
