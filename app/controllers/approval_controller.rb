@@ -18,17 +18,18 @@ before_action :admin_user?
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @approval = current_user.approval.build(trip_statement_id: params[:trip_statement_id])
-    if params[:approval] = true
+    if params[:approval] == "true"
       @trip_statement.approved = true
       @approval.approval = true
-    elsif params[:approval] = false
+    elsif params[:approval] == "false"
       @trip_statement.approved = false
       @approval.approval = false
-
     else
+      render 'home/help'
       redirect_to root_url #上手くいっていないための確認用
     end
     @trip_statement.save
+    @approval.save
     redirect_to trip_statement_approval_index_path
   end
 

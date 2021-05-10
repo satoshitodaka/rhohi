@@ -21,6 +21,6 @@
 
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>
   <h3>承認</h3>
-  <%= link_to "承認する", trip_statement_approval_index_path(@trip_statement.id), approval: true, method: :post %>
-  <%= link_to "否認する", trip_statement_approval_index_path(@trip_statement.id), approval: false, method: :post %>
+  <%= link_to "承認する", trip_statement_approval_index_path(@trip_statement.id, approval: "true"), method: :post %>
+  <%= link_to "否認する", trip_statement_approval_index_path(@trip_statement.id, :approval => "false"), method: :post %>
 <% end %>

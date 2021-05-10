@@ -8,7 +8,7 @@ User.create!(name: "戸高 仁",
   company_id: 1
 )
 
-5.times do |n|
+50.times do |n|
   name = Faker::Company.name
   address = Gimei.address.kanji
   Company.create!(name: name, address: address)

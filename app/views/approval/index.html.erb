@@ -23,3 +23,16 @@
     </ul>
   <% end %>
 <% end %>
+
+<h1>否認した出張旅費申請</h1>
+<% if @approved.any? %>
+  <h3>承認済は<%= @approved.count %>件</h3>
+  <% @approved.each do |approval| %>
+    <ul>
+      <li><span class="content"><%= approval.user.name %></span></li>
+      <li><span class="content"><%= approval.purpose %></span></li>
+      <li><span class="content"><%= approval.distination %></span></li>
+    <p><%=link_to "詳細", trip_statement_path(approval.id) %></p>
+    </ul>
+  <% end %>
+<% end %>
