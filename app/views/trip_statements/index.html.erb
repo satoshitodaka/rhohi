@@ -1,3 +1,4 @@
+<% provide(:title, "出張旅費申請一覧") %>
 <h1><%= @user.name %>が申請した旅費</h1>
 <% if @user.trip_statements.any? %>
   <h3>旅費申請<%= @user.trip_statements.count %>件</h3>
