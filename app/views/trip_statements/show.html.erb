@@ -11,13 +11,14 @@
 <span><%= @trip_statement.approved %></span>
 
 <h3>手当情報</h3>
-<% if @trip_statement.user_id == current_user.id %>
-  <%= link_to "手当情報を追加する", new_trip_statement_exepence_path(@trip_statement.id), method: :get %>
-<% end %>
 <% if @trip_statement.expences.any? %>
   <%= render @expences %>
 <% else %>
   <p>旅費手当が登録されていません。</p>
+<% end %>
+
+<% if @trip_statement.user_id == current_user.id %>
+  <%= link_to "手当情報を追加する", new_trip_statement_expence_path(@trip_statement.id) %>
 <% end %>
 
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>
