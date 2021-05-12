@@ -7,7 +7,7 @@
       <p><span class="content">申請者：</span><%= not_approval.user.name %></p>
       <p><span class="content">出張理由：</span><%= not_approval.purpose %></p>
       <p><span class="content">出張先：</span><%= not_approval.distination %></p>
-      <p><%=link_to "承認画面", trip_statement_path(not_approval.id) %></p>
+      <p><%=link_to "承認画面", trip_statement_path(not_approval.id), class:"btn btn-primary" %></p>
     </ol>
   <% end %>
 <% end %>
@@ -20,7 +20,7 @@
       <p><span class="content">申請者：</span><%= approval.user.name %></span></p>
       <p><span class="content">出張理由：</span><%= approval.purpose %></span></p>
       <p><span class="content">出張先：</span><%= approval.distination %></span></p>
-      <p><%=link_to "詳細画面", trip_statement_path(approval.id) %></p>
+      <p><%=link_to "詳細画面", trip_statement_path(approval.id), class:"btn btn-primary" %></p>
     </ol>
   <% end %>
 <% end %>
@@ -33,7 +33,7 @@
       <p><span class="content">申請者：</span><%= approval.user.name %></span></p>
       <p><span class="content">出張理由：</span><%= approval.purpose %></span></p>
       <p><span class="content">出張先：</span><%= approval.distination %></span></p>
-      <p><%=link_to "詳細画面", trip_statement_path(approval.id) %></p>
+      <p><%=link_to "詳細画面", trip_statement_path(approval.id), class:"btn btn-primary" %></p>
     </ol>
   <% end %>
 <% end %>

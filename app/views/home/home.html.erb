@@ -2,7 +2,7 @@
   <h1>RhoHiへようこそ</h1>
   <p>利用した旅費を申請してみましょう</p>
   <% if user_signed_in? %>
-    <%= link_to '申請しましょう', new_trip_statement_path, class:"btn" %>
+    <%= link_to '申請しましょう', new_trip_statement_path, class:"btn btn-lg btn-primary" %>
   <% else %>
     <%= link_to 'ログイン', new_user_session_path %>
   <% end %>

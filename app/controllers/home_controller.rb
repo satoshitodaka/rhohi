@@ -10,4 +10,7 @@ class HomeController < ApplicationController
   def help
     @user = current_user
   end
+
+  def contact
+  end
 end
