@@ -1,14 +1,14 @@
 <% provide(:title, "申請閲覧") %>
 <h1><%= @user.name %>が申請した旅費</h1>
 <h3>旅費申請情報</h3>
-<span><%= @trip_statement.user.name %></span>
-<span><%= @trip_statement.distination %></span>
-<span><%= @trip_statement.purpose %></span>
-<span><%= @trip_statement.start %></span>
-<span><%= @trip_statement.finish %></span>
-<span><%= @trip_statement.work_done %></span>
-<span><%= @trip_statement.applied %></span>
-<span><%= @trip_statement.approved %></span>
+<p><span>申請者：</span><%= @user.name %></p>
+<p><span>出張先：</span><%= @trip_statement.distination %></p>
+<p><span>出張理由：</span><%= @trip_statement.purpose %></p>
+<p><span>出発日時：</span><%= @trip_statement.start %></p>
+<p><span>帰着日時：</span><%= @trip_statement.finish %></p>
+<p><span>作業完了時刻：</span><%= @trip_statement.work_done %></p>
+<p><span>申請ステータス：</span><%= @trip_statement.applied %></p>
+<p><span>承認ステータス：</span><%= @trip_statement.approved %></p>
 
 <h3>手当情報</h3>
 <% if @trip_statement.expences.any? %>

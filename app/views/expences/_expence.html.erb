@@ -1,11 +1,15 @@
 <li id="expence-<%= expence.id %>">
-  <span class="content"><%= link_to expence.date, '#' %></span>
-  <span class="content"><%= expence.transportation %></span>
-  <span class="content"><%= expence.bording %></span>
-  <span class="content"><%= expence.get_off %></span>
-  <span class="content"><%= expence.fare %></span>
-  <span class="content"><%= expence.mileage %></span>
-  <span class="content"><%= expence.allowance %></span>
+  <div>
+    <p><span class="content">移動日：</span><%= link_to expence.date, '#' %></p>
+    <p><span class="content">公共交通機関：</span><%= expence.transportation %></p>
+    <p><span class="content">乗車駅・出発地：</span><%= expence.bording %></p>
+    <p><span class="content">降車駅・到着地：</span><%= expence.get_off %></p>
+  </div>
+  <div>
+    <p><span class="content">運賃・料金：</span><%= expence.fare %>円</p>
+    <p><span class="content">移動距離：</span><%= expence.mileage %>km</p>
+    <p><span class="content">手当：</span><%= expence.allowance %>円</p>
+  </div>
   <%= link_to "詳細", expence_path() %>
   <%= link_to "編集", edit_expence_path() %>
 </li>

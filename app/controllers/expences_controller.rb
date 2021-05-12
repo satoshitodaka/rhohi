@@ -10,10 +10,10 @@ before_action :authenticate_user!
   end
 
   def show
-    @user = current_user
-    @expence = TripStatement.find(params[:id])
-    @trip_statement = @expence.trip_statements.
-    
+    @expence = Expence.find(params[:id])
+    @trip_statement = @expence.trip_statement
+    @user = @trip_statement.user
+    # @expence = Expence.find(params[:id])
   end
 
   def create
@@ -34,6 +34,4 @@ before_action :authenticate_user!
     def expence_params
       params.require(:expence).permit(:date, :transportation, :bording, :get_off, :fare, :mileage, :allowance)
     end
-  end
-
 end

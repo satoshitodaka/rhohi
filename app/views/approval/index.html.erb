@@ -3,12 +3,12 @@
 <% if @not_approved.any? %>
   <h3>承認待ちは<%= @not_approved.count %>件</h3>
   <% @not_approved.each do |not_approval| %>
-    <ul>
-      <li><span class="content"><%= not_approval.user.name %></span></li>
-      <li><span class="content"><%= not_approval.purpose %></span></li>
-      <li><span class="content"><%= not_approval.distination %></span></li>
-      <p><%=link_to "承認", trip_statement_path(not_approval.id) %></p>
-    </ul>
+    <ol>
+      <p><span class="content">申請者：</span><%= not_approval.user.name %></p>
+      <p><span class="content">出張理由：</span><%= not_approval.purpose %></p>
+      <p><span class="content">出張先：</span><%= not_approval.distination %></p>
+      <p><%=link_to "承認画面", trip_statement_path(not_approval.id) %></p>
+    </ol>
   <% end %>
 <% end %>
 
@@ -16,24 +16,24 @@
 <% if @approved.any? %>
   <h3>承認済は<%= @approved.count %>件</h3>
   <% @approved.each do |approval| %>
-    <ul>
-      <li><span class="content"><%= approval.user.name %></span></li>
-      <li><span class="content"><%= approval.purpose %></span></li>
-      <li><span class="content"><%= approval.distination %></span></li>
-    <p><%=link_to "詳細", trip_statement_path(approval.id) %></p>
-    </ul>
+    <ol>
+      <p><span class="content">申請者：</span><%= approval.user.name %></span></p>
+      <p><span class="content">出張理由：</span><%= approval.purpose %></span></p>
+      <p><span class="content">出張先：</span><%= approval.distination %></span></p>
+      <p><%=link_to "詳細画面", trip_statement_path(approval.id) %></p>
+    </ol>
   <% end %>
 <% end %>
 
 <h1>否認した出張旅費申請</h1>
 <% if @approved.any? %>
-  <h3>承認済は<%= @approved.count %>件</h3>
+  <h3>否認済は<%= @approved.count %>件</h3>
   <% @approved.each do |approval| %>
-    <ul>
-      <li><span class="content"><%= approval.user.name %></span></li>
-      <li><span class="content"><%= approval.purpose %></span></li>
-      <li><span class="content"><%= approval.distination %></span></li>
-    <p><%=link_to "詳細", trip_statement_path(approval.id) %></p>
-    </ul>
+    <ol>
+      <p><span class="content">申請者：</span><%= approval.user.name %></span></p>
+      <p><span class="content">出張理由：</span><%= approval.purpose %></span></p>
+      <p><span class="content">出張先：</span><%= approval.distination %></span></p>
+      <p><%=link_to "詳細画面", trip_statement_path(approval.id) %></p>
+    </ol>
   <% end %>
 <% end %>

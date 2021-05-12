@@ -4,7 +4,7 @@ before_action :authenticate_user!
   def show
     @trip_statement = TripStatement.find(params[:id])
     @user = @trip_statement.user
-    @expences = @trip_statement.expences.all
+    @expences = @trip_statement.expences.all #申請書のshow画面にて、経費を全て表示する。
     # if @trip_statement.user = current_user
     #   render 'show'
     # else

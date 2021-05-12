@@ -1,8 +1,8 @@
 <h1><%= @user.name %>が申請した出張旅費の詳細</h1>
 <h3>旅費申請の情報</h3>
-<span><%= @trip_statement.user.name %></span>
-<span><%= @trip_statement.distination %></span>
-<span><%= @trip_statement.purpose %></span>
+<p><span>申請者：</span><%= @trip_statement.user.name %></p>
+<p><span>出張先：</span><%= @trip_statement.distination %></p>
+<p><span>出張理由：</span><%= @trip_statement.purpose %></p>
 
 <h3>手当情報</h3>
 <% if @trip_statement.expences.any? %>

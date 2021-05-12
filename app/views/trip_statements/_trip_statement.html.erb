@@ -1,6 +1,5 @@
 <li id="trip_statement-<%= trip_statement.id %>">
-  <%# <span class="user"><%= link_to trip_statement.user.name, trip_statement.user %></span>
-  <%# <span class="content"><%= link_to trip_statement.distination, trip_statement_path(@trip_statement)  %></span>
-  <%= link_to trip_statement.purpose, trip_statement_path(trip_statement.id) %>
-  <span class="content"><%= trip_statement.distination %></span>
+  <p><span>出張日：</span><%= link_to trip_statement.start, trip_statement_path(trip_statement.id) %></p>
+  <p><span>出張理由：</span><%= trip_statement.purpose %></p>
+  <p><span>出張先：</span><span class="content"><%= trip_statement.distination %></span></p>
 </li>
