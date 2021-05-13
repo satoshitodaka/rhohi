@@ -1,9 +1,22 @@
 <div class="jumbotoron">
-  <h1>RhoHiへようこそ</h1>
-  <p>利用した旅費を申請してみましょう</p>
   <% if user_signed_in? %>
-    <%= link_to '申請しましょう', new_trip_statement_path, class:"btn btn-lg btn-primary" %>
+    <div class="row">
+    <aside class="col-md-4">
+      <div class="status-info">
+        <h3>新規申請</h3>
+        <p>未承認件数を表示する。</p>
+        <%= link_to '申請する', new_trip_statement_path, class:"btn btn-lg btn-primary" %>
+      </div>
+    </aside>
+  </div>
   <% else %>
+    <h1>RhoHiへようこそ</h1>
+    <p>利用した旅費を申請してみましょう</p>
     <%= link_to 'ログイン', new_user_session_path %>
+  <% end %>
+  <% if current_user.admin %>
+    <h3>申請承認</h3>
+    <p>承認待ちは<%= @not_approved.count %>件</p>
+    <%= link_to '承認画面へ', approval_index_path, class:"btn btn-lg btn-primary" %>
   <% end %>
 </div>
