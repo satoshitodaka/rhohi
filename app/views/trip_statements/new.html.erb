@@ -1,5 +1,6 @@
 <% provide(:title, "新規申請") %>
 <h1>新規申請画面</h1>
+
 <%= form_with(model: @trip_statement, local: true) do |f| %>
   <div>
     <%= f.label :distination %>
@@ -13,5 +14,5 @@
     <%= f.label :work_done %>
     <%= f.datetime_select :work_done, placeholder: "作業完了した日時を選択してください" %>
   </div>
-  <%= f.submit "新規申請" %>
+  <%= f.submit "新規申請", class:"btn btn-primary" %>
 <% end %>

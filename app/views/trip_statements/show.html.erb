@@ -1,28 +1,59 @@
 <% provide(:title, "申請閲覧") %>
-<h1><%= @user.name %>が申請した旅費</h1>
-<h3>旅費申請情報</h3>
-<p><span>申請者：</span><%= @user.name %></p>
-<p><span>出張先：</span><%= @trip_statement.distination %></p>
-<p><span>出張理由：</span><%= @trip_statement.purpose %></p>
-<p><span>出発日時：</span><%= @trip_statement.start %></p>
-<p><span>帰着日時：</span><%= @trip_statement.finish %></p>
-<p><span>作業完了時刻：</span><%= @trip_statement.work_done %></p>
-<p><span>申請ステータス：</span><%= @trip_statement.applied %></p>
-<p><span>承認ステータス：</span><%= @trip_statement.approved %></p>
+<h1>出張旅費情報</h1>
+<h3>出張情報</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>申請者</th>
+      <th>出張先</th>
+      <th>出張理由</th>
+      <th>出発日時</th>
+      <th>帰着日時</th>
+      <th>作業完了日時</th>
+      <th>申請ステータス</th>
+      <th>承認ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @user.name %></td>
+      <td><%= @trip_statement.distination %></td>
+      <td><%= @trip_statement.purpose %></td>
+      <td><%= @trip_statement.start %></td>
+      <td><%= @trip_statement.finish %></td>
+      <td><%= @trip_statement.work_done %></td>
+      <td><%= @trip_statement.applied %></td>
+      <td><%= @trip_statement.approved %></td>
+    <tr>
+  </tbody>
+</table>
 
-<h3>手当情報</h3>
+<h3>旅費情報</h3>
 <% if @trip_statement.expences.any? %>
-  <%= render @expences %>
+  <table class="table table-striped">
+    <thead>
+  <tr>
+    <th>移動日</th>
+    <th>利用交通機関</th>
+    <th>乗車駅・出発地</th>
+    <th>降車駅・到着地</th>
+    <th>運賃・料金</th>
+    <th>移動距離</th>
+    <th>手当</th>
+  </tr>
+</thead>
+    <%= render @expences %>
+  </table>
 <% else %>
   <p>旅費手当が登録されていません。</p>
 <% end %>
 
 <% if @trip_statement.user_id == current_user.id %>
-  <%= link_to "手当情報を追加する", new_trip_statement_expence_path(@trip_statement.id) %>
+  <%= link_to "手当情報を追加する", new_trip_statement_expence_path(@trip_statement.id), class:"btn btn-primary btn-lg" %>
 <% end %>
 
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>
   <h3>承認</h3>
-  <%= link_to "承認する", trip_statement_approval_index_path(@trip_statement.id, approval: "true"), method: :post %>
-  <%= link_to "否認する", trip_statement_approval_index_path(@trip_statement.id, :approval => "false"), method: :post %>
+  <%= link_to "承認する", trip_statement_approval_index_path(@trip_statement.id, approval: "true"), method: :post, class:"btn btn-primary btn-block btn-block" %>
+  <%= link_to "否認する", trip_statement_approval_index_path(@trip_statement.id, :approval => "false"), method: :post, class:"btn btn-primary btn-block btn-block" %>
 <% end %>

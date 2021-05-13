@@ -1,39 +1,75 @@
 <% provide(:title, "承認一覧") %>
 <h1>承認待ちの出張旅費申請</h1>
-<% if @not_approved.any? %>
-  <h3>承認待ちは<%= @not_approved.count %>件</h3>
-  <% @not_approved.each do |not_approval| %>
-    <ol>
-      <p><span class="content">申請者：</span><%= not_approval.user.name %></p>
-      <p><span class="content">出張理由：</span><%= not_approval.purpose %></p>
-      <p><span class="content">出張先：</span><%= not_approval.distination %></p>
-      <p><%=link_to "承認画面", trip_statement_path(not_approval.id), class:"btn btn-primary" %></p>
-    </ol>
-  <% end %>
-<% end %>
+<h3>承認待ちは<%= @not_approved.count %>件</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>申請者</th>
+      <th>出張理由</th>
+      <th>出張先</th>
+      <th>承認</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @not_approved.any? %>
+      <% @not_approved.each do |not_approval| %>
+        <tr>
+          <td><%= not_approval.user.name %></td>
+          <td><%= not_approval.purpose %></td>
+          <td><%= not_approval.distination %></td>
+          <td><%= link_to "承認画面", trip_statement_path(not_approval.id), class:"btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody> 
+</table>
 
 <h1>承認済の出張旅費申請</h1>
-<% if @approved.any? %>
-  <h3>承認済は<%= @approved.count %>件</h3>
-  <% @approved.each do |approval| %>
-    <ol>
-      <p><span class="content">申請者：</span><%= approval.user.name %></span></p>
-      <p><span class="content">出張理由：</span><%= approval.purpose %></span></p>
-      <p><span class="content">出張先：</span><%= approval.distination %></span></p>
-      <p><%=link_to "詳細画面", trip_statement_path(approval.id), class:"btn btn-primary" %></p>
-    </ol>
-  <% end %>
-<% end %>
+<h3>承認済は<%= @approved.count %>件</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>申請者</th>
+      <th>出張理由</th>
+      <th>出張先</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <body>
+    <% if @approved.any? %>
+      <% @approved.each do |approval| %>
+        <tr>
+          <td><%= approval.user.name %></td>
+          <td></span><%= approval.purpose %></td>
+          <td><%= approval.distination %></td>
+          <td><%=link_to "詳細画面", trip_statement_path(approval.id), class:"btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </body>
+</table>
 
 <h1>否認した出張旅費申請</h1>
-<% if @approved.any? %>
-  <h3>否認済は<%= @approved.count %>件</h3>
-  <% @approved.each do |approval| %>
-    <ol>
-      <p><span class="content">申請者：</span><%= approval.user.name %></span></p>
-      <p><span class="content">出張理由：</span><%= approval.purpose %></span></p>
-      <p><span class="content">出張先：</span><%= approval.distination %></span></p>
-      <p><%=link_to "詳細画面", trip_statement_path(approval.id), class:"btn btn-primary" %></p>
-    </ol>
-  <% end %>
-<% end %>
+<h3>否認済は<%= @approved.count %>件</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>申請者</th>
+      <th>出張理由</th>
+      <th>出張先</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @approved.any? %>
+      <% @approved.each do |approval| %>
+        <tr>
+          <td><%= approval.user.name %></td>
+          <td><%= approval.purpose %></td>
+          <td></span><%= approval.distination %></td>
+          <td><%=link_to "詳細画面", trip_statement_path(approval.id), class:"btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+<table>
