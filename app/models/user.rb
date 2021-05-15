@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   belongs_to :company
   # belongs_to :department
-  has_many :trip_statements, dependent: :destroy
-  has_many :approval
+  has_many :trip_statements, dependent: :nullify
+  has_many :approval, dependent: :nullify
   validates :name, presence: true
   validates :email, presence: true #このバリデーションがあってもなくても、テストが通ってしまう？
   devise :database_authenticatable, :registerable,

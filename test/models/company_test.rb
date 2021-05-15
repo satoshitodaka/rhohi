@@ -7,16 +7,16 @@ class CompanyTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @company.valid?  
+    assert @company.valid?
   end
 
   test "department_name should be presence" do
     @company.name = ""
-    assert_not @company.valid?  
+    assert_not @company.valid?
   end
 
   test "company_id should be presence" do
     @company.address = ""
-    assert_not @company.valid?  
+    assert_not @company.valid?
   end
 end

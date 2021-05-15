@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  trip_statement_id: 1
+  trip_statement_id: 43
   user_id: 1
-  approval: false
-  comment: MyString
+  approval: true
+  comment: 
 
-two:
-  trip_statement_id: 1
+false:
+  trip_statement_id: 2
   user_id: 1
   approval: false
-  comment: MyString
+  comment: 出張先が違います。

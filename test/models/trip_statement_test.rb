@@ -3,8 +3,8 @@ require 'test_helper'
 class TripStatementTest < ActiveSupport::TestCase
   
   def setup
-    @user = users(:megumi)
-    @trip_statement = @user.trip_statements.build(distination: "kamakura", purpose: "conference", user_id: @user.id)
+    # @user = users(:megumi)
+    @trip_statement = trip_statements(:one)#@user.trip_statements.build(distination: "kamakura", purpose: "conference", user_id: @user.id)
   end
 
   test "should be valid" do
