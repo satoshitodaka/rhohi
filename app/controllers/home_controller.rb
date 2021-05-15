@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def home
-    @user = current_user
-    @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
+    # @user = current_user
+    # @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
   end
 
   def about

@@ -3,6 +3,8 @@ require 'test_helper'
 class ApprovalControllerTest < ActionDispatch::IntegrationTest
 
   def setup
+    @approver_user = users(:megumi)
+    @approved_statement = trip_statements(:approved)
   end
 
   # test "should get index" do
@@ -33,6 +35,11 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
   # test "should get destroy" do
   #   get approval_destroy_url
   #   assert_response :success
+  # end
+
+  # test "approved trip_statement should not approved again" do
+  #   log_in_as(users(:megumi))
+
   # end
 
 end

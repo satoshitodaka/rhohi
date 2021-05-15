@@ -1,6 +1,7 @@
 class ApprovalController < ApplicationController
 before_action :authenticate_user!
 before_action :admin_user?
+before_action :approve?, only: [:create]
 
   def index
     @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
@@ -31,6 +32,11 @@ before_action :admin_user?
     end
     @trip_statement.save
     @approval.save
+    if params[:approval] == "true"
+      flash[:success] = "承認しました！"
+    elsif
+      flash[:warning] = "否認しました。"
+    end
     redirect_to trip_statement_approval_index_path
   end
 
@@ -55,4 +61,12 @@ before_action :admin_user?
     # def approval_params
     #   params.permit(:comment).merge(approval_user_id: current_user.id, trip_statement_id: params[:id])
     # end
+
+    def approve?
+      @trip_statement = TripStatement.find(params[:trip_statement_id])
+      if @trip_statement.approved
+        redirect_to trip_statement_approval_index_url
+        flash[:danger] = "承認済の申請です。"
+      end
+    end
 end
