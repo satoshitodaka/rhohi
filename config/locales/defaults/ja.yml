@@ -1,0 +1,8 @@
+# ja:
+#   time:
+#     formats:
+#       default: "%Y年%m月%d日 %H:%M"
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"

@@ -1,0 +1,7 @@
+ja:
+  activeecord:
+    models:
+      user: ユーザー
+      trip_statements: 出張申請
+      expences: 旅費
+      approval: 承認

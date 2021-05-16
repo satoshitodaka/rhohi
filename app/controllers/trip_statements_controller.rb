@@ -38,6 +38,12 @@ before_action :authenticate_user!
   end
 
   def update
+    @trip_statement = TripStatement.find(params[:id])
+    @trip_statement.applied = true
+    @trip_statement.applied_at = Time.zone.now
+    @trip_statement.save
+    redirect_to trip_statements_url
+    flash[:success] = "出張を申請しました。"
   end
 
   def destroy
@@ -46,7 +52,7 @@ before_action :authenticate_user!
 
   private
     def trip_statement_params
-      params.require(:trip_statement).permit(:distination, :purpose)
+      params.require(:trip_statement).permit(:distination, :purpose, :start, :finish, :work_done)
     end
   
 end

@@ -1,20 +1,20 @@
-<h1>手当画面</h1>
+<h1>旅費・手当 新規登録</h1>
 <%= form_with(model: [@trip_statement, @expence], local: true) do |f| %>
-  <div>
-    <%= f.label :date %>
-    <%= f.date_select :date, placeholder: "移動日を入力してください" %>
-    <%= f.label :transportation %>
-    <%= f.text_area :transportation, placeholder: "使用した交通機関を入力してください" %>
-    <%= f.label :bording %>
-    <%= f.text_area :bording, placeholder: "乗車駅・出発地" %>
-    <%= f.label :get_off %>
-    <%= f.text_area :get_off, placeholder: "降車駅・到着地" %>
-    <%= f.label :fare %>
-    <%= f.text_area :fare, placeholder: "運賃・料金" %>
-    <%= f.label :mileage %>
-    <%= f.text_area :mileage, placeholder: "移動距離※車の場合" %>
-    <%= f.label :allowance %>
-    <%= f.text_area :allowance, placeholder: "手当" %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= f.label :date, "移動日" %>
+    <%= f.date_field :date %>
+    <%= f.label :transportation, "利用交通機関" %>
+    <%= f.text_area :transportation, placeholder: "電車" %>
+    <%= f.label :bording, "乗車駅・出発地" %>
+    <%= f.text_area :bording, placeholder: "上野駅" %>
+    <%= f.label :get_off, "降車駅・到着地" %>
+    <%= f.text_area :get_off, placeholder: "東京駅" %>
+    <%= f.label :fare, "運賃・料金" %>
+    <%= f.text_area :fare %>
+    <%= f.label :mileage, "移動距離※車の場合" %>
+    <%= f.text_area :mileage %>
+    <%= f.label :allowance, "手当" %>
+    <%= f.text_area :allowance %>
   </div>
-  <%= f.submit "手当情報登録", class: "btn btn-primary" %>
+  <%= f.submit "手当情報登録", class: "btn btn-primary col-md-6 col-md-offset-3" %>
 <% end %>
