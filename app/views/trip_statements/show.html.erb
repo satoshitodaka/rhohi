@@ -50,6 +50,7 @@
 
 <% if @trip_statement.user_id == current_user.id %>
   <%= link_to "手当情報を追加する", new_trip_statement_expence_path(@trip_statement.id), class:"btn btn-primary btn-lg" %>
+  <%= link_to "申請する", trip_statement_path(@trip_statement.id),method: :patch, class:"btn btn-primary btn-block" %>
 <% end %>
 
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>
