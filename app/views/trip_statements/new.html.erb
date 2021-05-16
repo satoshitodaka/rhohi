@@ -2,17 +2,57 @@
 <h1>新規申請画面</h1>
 
 <%= form_with(model: @trip_statement, local: true) do |f| %>
-  <div>
-    <%= f.label :distination %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= f.label :distination, "出張先" %>
     <%= f.text_area :distination, placeholder: "出張先を入力してください" %>
-    <%= f.label :purpose %>
+    <%= f.label :purpose, "出張理由" %>
     <%= f.text_area :purpose, placeholder: "出張理由を入力してください" %>
-    <%= f.label :start %>
-    <%= f.datetime_select :start, placeholder: "出発日時を選択してください" %>
-    <%= f.label :finish %>
-    <%= f.datetime_select :finish, placeholder: "帰着日時を選択してください" %>
-    <%= f.label :work_done %>
-    <%= f.datetime_select :work_done, placeholder: "作業完了した日時を選択してください" %>
+    <%= f.label :start, "出発日時" %>
+    <%= raw sprintf(
+      f.datetime_select(
+        :start,
+        {
+          use_month_numbers: true,
+          # :default: Time.zone.now,
+          start_year: Time.zone.now.ago(2.years).year,
+          end_year: Time.zone.now.next_year.year,
+          date_separator: '%s',# 年, 月
+          datetime_separator: '%s',# 日
+          time_separator: '%s'# 時
+        },
+      # { class: "form-control", id: 'ymd-date' },
+      ),
+      '年 ', '月 ', '日 ', '時 ') %>
+    <%= f.label :finish, "帰着日時" %>
+    <%= raw sprintf(
+      f.datetime_select(
+        :finish,
+        {
+          use_month_numbers: true,
+          start_year: Time.zone.now.ago(2.years).year,
+          end_year: Time.zone.now.next_year.year,
+          date_separator: '%s',# 年, 月
+          datetime_separator: '%s',# 日
+          time_separator: '%s'# 時
+        },
+      # { class: "form-control", id: 'ymd-date' },
+      ),
+      '年 ', '月 ', '日 ', '時 ') %>
+    <%= f.label :work_done, "作業終了日時" %>
+    <%= raw sprintf(
+      f.datetime_select(
+        :work_done,
+        {
+          use_month_numbers: true,
+          start_year: Time.zone.now.ago(2.years).year,
+          end_year: Time.zone.now.next_year.year,
+          date_separator: '%s',# 年, 月
+          datetime_separator: '%s',# 日
+          time_separator: '%s'# 時
+        },
+      # { class: "form-control", id: 'ymd-date' },
+      ),
+      '年 ', '月 ', '日 ', '時 ') %>
   </div>
   <%= f.submit "新規申請", class:"btn btn-primary" %>
 <% end %>

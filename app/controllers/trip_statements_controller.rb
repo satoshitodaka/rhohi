@@ -33,7 +33,15 @@ before_action :authenticate_user!
     end
   end
 
+  def edit
+    @trip_statement = TripStatement.find(params[:id])
+  end
+
+  def update
+  end
+
   def destroy
+
   end
 
   private
