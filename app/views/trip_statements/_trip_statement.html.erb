@@ -3,6 +3,6 @@
   <td><%= trip_statement.purpose %></td>
   <td><%= trip_statement.distination %></td>
   <td><%= trip_statement.approved %></td>
-  <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
-  <td><%= link_to "編集・削除", edit_trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+  <td><%= link_to "詳細・編集", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+  <td><%= link_to "削除", trip_statement_path(trip_statement.id), method: :delete, class:"btn btn-primary", data: {confirm: "削除しますか？" } %></td>
 </tr>
