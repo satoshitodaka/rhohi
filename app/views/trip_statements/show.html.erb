@@ -12,6 +12,7 @@
       <th>作業完了日時</th>
       <th>申請ステータス</th>
       <th>承認ステータス</th>
+      <th>編集</th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,7 @@
       <td><%= @trip_statement.work_done %></td>
       <td><%= @trip_statement.applied %></td>
       <td><%= @trip_statement.approved %></td>
+      <td><%= link_to "編集", edit_trip_statement_path(@trip_statement.id), class:"btn btn-primary" %></td>
     <tr>
   </tbody>
 </table>
@@ -32,15 +34,17 @@
 <% if @trip_statement.expences.any? %>
   <table class="table table-striped">
     <thead>
-  <tr>
-    <th>移動日</th>
-    <th>利用交通機関</th>
-    <th>乗車駅・出発地</th>
-    <th>降車駅・到着地</th>
-    <th>運賃・料金</th>
-    <th>移動距離</th>
-    <th>手当</th>
-  </tr>
+      <tr>
+        <th>移動日</th>
+        <th>利用交通機関</th>
+        <th>乗車駅・出発地</th>
+        <th>降車駅・到着地</th>
+        <th>運賃・料金</th>
+        <th>移動距離</th>
+        <th>手当</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
 </thead>
     <%= render @expences %>
   </table>
@@ -49,8 +53,8 @@
 <% end %>
 
 <% if @trip_statement.user_id == current_user.id %>
-  <%= link_to "手当情報を追加する", new_trip_statement_expence_path(@trip_statement.id), class:"btn btn-primary btn-lg" %>
-  <%= link_to "申請する", trip_statement_path(@trip_statement.id),method: :patch, class:"btn btn-primary btn-block" %>
+  <%= link_to "旅費情報を追加する", new_trip_statement_expence_path(@trip_statement.id), class:"btn btn-primary btn-block" %>
+  <%= link_to "申請する", trip_statement_path(@trip_statement.id, process: "apply"),method: :get, class:"btn btn-primary btn-block" %>
 <% end %>
 
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>

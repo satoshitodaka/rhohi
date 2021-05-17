@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'approval/index' => 'approval#index'
+  
   devise_for :users
   root 'home#home'
   get 'home/about'
@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :expences
     resources :approval, only: [:index, :create, :edit, :update, :destroy]
   end
+  get 'approval/index' => 'approval#index'
+  # get 'trip_statements/:id/update' => 'trip_statement#update'
 end

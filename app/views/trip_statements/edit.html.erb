@@ -1,20 +1,18 @@
 <% provide(:title, "編集") %>
-
 <h1>編集（出張情報）</h1>
 
 <%= form_with(model: @trip_statement, local: true) do |f| %>
   <div class="col-md-6 col-md-offset-3">
-    <%= f.label :distination %>
+    <%= f.label :distination, "出張先" %>
     <%= f.text_area :distination, placeholder: "出張先を入力してください" %>
-    <%= f.label :purpose %>
+    <%= f.label :purpose, "出張理由" %>
     <%= f.text_area :purpose, placeholder: "出張理由を入力してください" %>
-    <%= f.label :start %>
-    <%= f.datetime_select :start, placeholder: "出発日時を選択してください" %>
-    <%= f.label :finish %>
-    <%= f.datetime_select :finish, placeholder: "帰着日時を選択してください" %>
-    <%= f.label :work_done %>
-    <%= f.datetime_select :work_done, placeholder: "作業完了した日時を選択してください" %>
+    <%= f.label :start, "出発日時" %>
+    <%= f.datetime_field :start %>
+    <%= f.label :finish, "帰着日時" %>
+    <%= f.datetime_field :finish %>
+    <%= f.label :work_done, "作業完了時刻" %>
+    <%= f.datetime_field :work_done %>
   </div>
-  <p><%= f.submit "更新する", class:"btn btn-primary" %></p>
-  <p><%= f.submit "削除する", class:"btn btn-primary" %></p>
+  <p><%= f.submit "更新する", class:"btn btn-primary col-md-6 col-md-offset-3" %></p>
 <% end %>

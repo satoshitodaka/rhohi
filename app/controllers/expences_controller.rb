@@ -27,6 +27,24 @@ before_action :authenticate_user!
   end
 
   def destroy
+    @expence = Expence.find(params[:id])
+    @expence.destroy
+    redirect_to trip_statement_url(@expence.trip_statement.id)
+    flash[:info] = "旅費を削除しました"
+  end
+
+  def edit
+    @expence = Expence.find(params[:id])
+  end
+
+  def update
+    @expence = Expence.find(params[:id])
+      if @expence.update(expence_params)
+        redirect_to trip_statement_path(@expence.trip_statement.id)
+        flash[:success] = "旅費情報を更新しました。"
+      else
+        render 'edit'
+      end
   end
 
 
