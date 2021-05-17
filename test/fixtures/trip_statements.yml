@@ -3,9 +3,9 @@
 one:
   distination: tokyo
   purpose: meetings
-  start: 2021-04-01 08:34:55
-  finish: 2021-04-03 08:34:55
-  work_done: 2021-04-02 08:34:55
+  start_at: 2021-04-01 08:34:55
+  finish_at: 2021-04-03 08:34:55
+  work_done_at: 2021-04-02 08:34:55
   applied: false
   applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
@@ -15,9 +15,9 @@ one:
 two:
   distination: kyoto
   purpose: recruit
-  start: 2021-04-15 08:34:55
-  finish: 2021-04-15 21:34:55
-  work_done: 2021-04-15 18:34:55
+  start_at: 2021-04-15 08:34:55
+  finish_at: 2021-04-15 21:34:55
+  work_done_at: 2021-04-15 18:34:55
   applied: false
   applied_at: 2021-04-20 08:34:55
   approved: false
@@ -27,9 +27,9 @@ two:
 three:
   distination: tokyo
   purpose: meetings
-  start: 2021-04-01 08:34:55
-  finish: 2021-04-03 08:34:55
-  work_done: 2021-04-02 08:34:55
+  start_at: 2021-04-01 08:34:55
+  finish_at: 2021-04-03 08:34:55
+  work_done_at: 2021-04-02 08:34:55
   applied: false
   applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
@@ -39,9 +39,9 @@ three:
 four:
   distination: kyoto
   purpose: recruit
-  start: 2021-04-15 08:34:55
-  finish: 2021-04-15 21:34:55
-  work_done: 2021-04-15 18:34:55
+  start_at: 2021-04-15 08:34:55
+  finish_at: 2021-04-15 21:34:55
+  work_done_at: 2021-04-15 18:34:55
   applied: false
   applied_at: 2021-04-20 08:34:55
   approved: false
@@ -51,9 +51,9 @@ four:
 approved:
   distination: Sapporo
   purpose: recruit
-  start: 2021-05-15 08:34:55
-  finish: 2021-05-21 21:34:55
-  work_done: 2021-05-20 18:34:55
+  start_at: 2021-05-15 08:34:55
+  finish_at: 2021-05-21 21:34:55
+  work_done_at: 2021-05-20 18:34:55
   applied: true
   applied_at: 2021-05-22 08:34:55
   approved: true

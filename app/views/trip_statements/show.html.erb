@@ -20,9 +20,9 @@
       <td><%= @user.name %></td>
       <td><%= @trip_statement.distination %></td>
       <td><%= @trip_statement.purpose %></td>
-      <td><%= @trip_statement.start %></td>
-      <td><%= @trip_statement.finish %></td>
-      <td><%= @trip_statement.work_done %></td>
+      <td><%= @trip_statement.start_at %></td>
+      <td><%= @trip_statement.finish_at %></td>
+      <td><%= @trip_statement.work_done_at %></td>
       <td><%= @trip_statement.applied %></td>
       <td><%= @trip_statement.approved %></td>
       <td><%= link_to "編集", edit_trip_statement_path(@trip_statement.id), class:"btn btn-primary" %></td>

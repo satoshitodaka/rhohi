@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_071307) do
+ActiveRecord::Schema.define(version: 2021_05_17_221116) do
 
   create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "trip_statement_id"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 2021_05_09_071307) do
   create_table "trip_statements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "distination"
     t.string "purpose"
-    t.datetime "start"
-    t.datetime "finish"
-    t.datetime "work_done"
+    t.datetime "start_at"
+    t.datetime "finish_at"
+    t.datetime "work_done_at"
     t.boolean "applied"
     t.datetime "applied_at"
     t.boolean "approved"
