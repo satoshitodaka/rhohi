@@ -61,11 +61,12 @@ class TripStatementsController < ApplicationController
 
   private
     def trip_statement_params
-      params.require(:trip_statement).permit(:distination, :purpose, :start, :finish, :work_done)
+      params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at)
     end
 
     def approved?
       if @trip_statement.approved == true
+        # ここに処理を記述する。
       end 
     end
-  end
+end
