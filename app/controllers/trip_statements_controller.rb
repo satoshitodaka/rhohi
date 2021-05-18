@@ -1,5 +1,7 @@
 class TripStatementsController < ApplicationController
   before_action :authenticate_user!
+  before_action :currect_user, only: [:destroy, :edit, :update]
+  before_action :admin_user?, only: :show
 
   def show
     @trip_statement = TripStatement.find(params[:id])
@@ -9,10 +11,8 @@ class TripStatementsController < ApplicationController
   end
 
   def index
-    if current_user
-      @user = current_user
-      @trip_statements = @user.trip_statements.all
-    end
+    @user = current_user
+    @trip_statements = @user.trip_statements.all
   end
 
   def new
@@ -69,5 +69,14 @@ class TripStatementsController < ApplicationController
       if @trip_statement.approved == true
         # ここに処理を記述する。
       end 
+    end
+
+    def currect_user
+      @trip_statement = current_user.trip_statements.find_by(id: params[:id])
+      redirect_to root_url if @trip_statement.nil?
+    end
+
+    def admin_user?
+      redirect_to root_url if current_user.admin != true
     end
 end
