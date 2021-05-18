@@ -6,6 +6,7 @@ satoshi:
   birthday: 1993-07-05
   admin: true
   system_admin: true
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 megumi:
   company: TDK
@@ -15,6 +16,7 @@ megumi:
   birthday: 1995-06-17
   admin: true
   system_admin: false
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 hikaru:
   company: TDK
@@ -24,6 +26,7 @@ hikaru:
   birthday: 1997-07-25
   admin: false
   system_admin: false
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 masumi:
   company: OHK
@@ -33,6 +36,7 @@ masumi:
   birthday: 1994-12-16
   admin: true
   system_admin: true
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 yoshiko:
   company: OHK
@@ -42,6 +46,7 @@ yoshiko:
   birthday: 1994-12-16
   admin: true
   system_admin: false
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 akane:
   company: OHK
@@ -51,3 +56,4 @@ akane:
   birthday: 1994-12-16
   admin: false
   system_admin: false
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
