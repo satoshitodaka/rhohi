@@ -7,7 +7,9 @@
     <td><%= expence.fare %>円</td>
     <td><%= expence.mileage %>km</td>
     <td><%= expence.allowance %>円</td>
-    <td><%= link_to "編集", edit_expence_path(expence.id), class:"btn btn-primary" %></td>
-    <td><%= link_to "削除", expence_path(expence.id), method: :delete, class:"btn btn-primary", data: { confirm: "旅費を削除しますか？" } %></td>
+    <% if current_user == @trip_statement.user %>
+      <td><%= link_to "編集", edit_expence_path(expence.id), class:"btn btn-primary" %></td>
+      <td><%= link_to "削除", expence_path(expence.id), method: :delete, class:"btn btn-primary", data: { confirm: "旅費を削除しますか？" } %></td>
+    <% end %>
   </tr>
 </tbody>
