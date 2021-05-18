@@ -9,9 +9,10 @@ class TripStatementsController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @trip_statements = @user.trip_statements.all
-
+    if current_user
+      @user = current_user
+      @trip_statements = @user.trip_statements.all
+    end
   end
 
   def new

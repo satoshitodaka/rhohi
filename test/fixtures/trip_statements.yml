@@ -10,7 +10,7 @@ one:
   applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: megumi
+  user: satoshi
 
 two:
   distination: kyoto
@@ -22,7 +22,7 @@ two:
   applied_at: 2021-04-20 08:34:55
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: hikaru
+  user: megumi
 
 three:
   distination: tokyo
@@ -34,9 +34,33 @@ three:
   applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: yoshiko
+  user: hikaru
 
 four:
+  distination: kyoto
+  purpose: recruit
+  start_at: 2021-04-15 08:34:55
+  finish_at: 2021-04-15 21:34:55
+  work_done_at: 2021-04-15 18:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: masumi
+
+five:
+  distination: kyoto
+  purpose: recruit
+  start_at: 2021-04-15 08:34:55
+  finish_at: 2021-04-15 21:34:55
+  work_done_at: 2021-04-15 18:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: yoshiko
+
+six:
   distination: kyoto
   purpose: recruit
   start_at: 2021-04-15 08:34:55
@@ -58,4 +82,4 @@ approved:
   applied_at: 2021-05-22 08:34:55
   approved: true
   approved_at: 2021-05-23 08:34:55
-  user: hikaru
+  user: megumi
