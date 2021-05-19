@@ -1,6 +1,7 @@
 class ExpencesController < ApplicationController
-before_action :authenticate_user!
-# before_action :currect_user, [:destroy, :edit, :update]
+  before_action :authenticate_user!
+  before_action :correct_user, only:[:destroy, :edit, :update]
+  # before_action :admin_user?, only: :show
 
   def new
     @trip_statement = TripStatement.find(params[:trip_statement_id])
@@ -54,8 +55,17 @@ before_action :authenticate_user!
       params.require(:expence).permit(:date, :transportation, :bording, :get_off, :fare, :mileage, :allowance)
     end
 
-    def currect_user
-      # @expence = current_user.expences.find_by(id: params[:id])
-      # redirect_to root_url if @expence.nil?
+    def correct_user
+      @expence = current_user.expences.find_by(id: params[:id])
+      redirect_to root_url if @expences.nil?
     end
+
+    # def admin_user?
+    #   @expence = current_user.trip_expences.find_by(id: params[:id])
+    #   if @expence.nil?
+    #     if current_user.admin != true
+    #       redirect_to root_url
+    #     end
+    #   end
+    # end
 end

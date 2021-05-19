@@ -8,7 +8,7 @@ one_1:
   fare: 726
   mileage: 
   allowance: 0
-  trip_statement: first
+  trip_statement: one
 
 one_2:
   date: 2021-04-01
@@ -18,7 +18,7 @@ one_2:
   fare: 726
   mileage: 
   allowance: 0
-  trip_statement: first
+  trip_statement: one
 
 two_1:
   date: 2021-04-15

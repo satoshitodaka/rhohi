@@ -44,7 +44,7 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
-  # 未ログインユーザーが申請を削除する場合、Rootにリダイレクトするか？
+  # 未ログインユーザーが出張申請を削除する場合、Rootにリダイレクトするか？
   test "should redirect destroy when not logged in" do
     assert_no_difference 'TripStatement.count' do
       delete trip_statement_path(@trip_statement)
@@ -52,7 +52,7 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
-  # ユーザーが他人の申請を削除する場合、Rootにリダイレクトするか？
+  # ユーザーが他人の出張申請を削除する場合、Rootにリダイレクトするか？
   test "shoule redirect destroy for wrong trip_statement" do
     login_as(@user)
     @trip_statement = trip_statements(:two)
@@ -62,7 +62,7 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  # ユーザーが他人の申請を編集(update)する場合、Rootにリダイレクトするか？
+  # ユーザーが他人の出張申請を編集(update)する場合、Rootにリダイレクトするか？
   test "should redirect update for wrong trip_statement" do
     login_as(@user)
     @trip_statement = trip_statements(:two)
@@ -71,7 +71,7 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  # 一般ユーザーが他人の申請を閲覧する場合、Rootにリダイレクトするか？
+  # 一般ユーザーが他人の出張申請を閲覧する場合、Rootにリダイレクトするか？
   test "should redirect show for not_admin user" do
     login_as(@not_admin)
     @others_trip_statement = trip_statements(:one)
@@ -79,7 +79,7 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
   
-   # ユーザーが他人の申請を削除する場合、Rootにリダイレクトするか？
+   # ユーザーが他人の出張申請を削除する場合、Rootにリダイレクトするか？
    test "should redirect destroy for wrong trip_statement" do
     login_as(@user)
     @trip_statement = trip_statements(:two)
