@@ -1,6 +1,6 @@
 class ExpencesController < ApplicationController
 before_action :authenticate_user!
-before_action :currect_user, [:destroy, :edit, :update]
+# before_action :currect_user, [:destroy, :edit, :update]
 
   def new
     @trip_statement = TripStatement.find(params[:trip_statement_id])
@@ -55,7 +55,7 @@ before_action :currect_user, [:destroy, :edit, :update]
     end
 
     def currect_user
-      @expence = current_user.expences.find_by(id: params[:id])
-      redirect_to root_url if @expence.nil?
+      # @expence = current_user.expences.find_by(id: params[:id])
+      # redirect_to root_url if @expence.nil?
     end
 end
