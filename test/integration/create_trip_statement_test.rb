@@ -65,4 +65,19 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
     # assert_not flash.empty?
     # assert_select 'a[href=?]', edit_trip_statement_path(@trip_statement)
   end
+
+  test "edit trip_statement & expence" do
+    login_as(@user)
+    @trip_statement = trip_statements(:one)
+    @expence = expences(:one_1)
+    get trip_statements_path
+    assert_template 'trip_statements/index'
+    get trip_statement_path(@trip_statement)
+    # assertなんちゃら ここで表示の確認をする。
+    get edit_expence_path(@expence)
+    assert_template 'expences/edit'
+    # assertなんちゃら ここで表示の確認をする。
+
+  end
+
 end

@@ -23,8 +23,10 @@ class ExpencesController < ApplicationController
     @expence = @trip_statement.expences.build(expence_params)
     if @expence.save
       redirect_to trip_statement_path(params[:trip_statement_id])
+      flash[:success] = "旅費情報を登録しました！"
     else
       redirect_to new_trip_statement_expence_url(@trip_statement)
+      flash[:danger] = "登録に失敗しました。。。"
     end
   end
 
@@ -49,15 +51,18 @@ class ExpencesController < ApplicationController
       end
   end
 
-
   private
     def expence_params
       params.require(:expence).permit(:date, :transportation, :bording, :get_off, :fare, :mileage, :allowance)
     end
 
     def correct_user
-      @expence = current_user.expences.find_by(id: params[:id])
-      redirect_to root_url if @expences.nil?
+      @expence = Expence.find(params[:id])
+      @own_statement = current_user.trip_statements.find_by(id: @expence.trip_statement_id)
+      if @own_statement.nil?
+        redirect_to root_url
+        flash[:info] = "他ユーザーの申請は操作できません"
+      end
     end
 
     # def admin_user?
