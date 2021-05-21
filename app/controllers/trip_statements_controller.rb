@@ -20,7 +20,7 @@ class TripStatementsController < ApplicationController
   end
 
   def create
-    @trip_statement = current_user.trip_statements.create(trip_statement_params)
+    @trip_statement = current_user.trip_statements.create(new_trip_statement_params)
     if @trip_statement.save
       redirect_to trip_statement_path(@trip_statement)
       flash[:success] = "申請しました"
@@ -36,7 +36,7 @@ class TripStatementsController < ApplicationController
   def update
     @trip_statement = TripStatement.find(params[:id])
     # if params[:process] = "update"
-      if @trip_statement.update(trip_statement_params)
+      if @trip_statement.update(update_trip_statement_params)
         # @trip_statement.save
         redirect_to trip_statement_url(params[:id])
         flash[:success] = "出張情報を更新しました。"
@@ -61,7 +61,11 @@ class TripStatementsController < ApplicationController
   end
 
   private
-    def trip_statement_params
+    def new_trip_statement_params
+      params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at).merge(applied: false, approved: false)
+    end
+
+    def update_trip_statement_params
       params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at)
     end
 
