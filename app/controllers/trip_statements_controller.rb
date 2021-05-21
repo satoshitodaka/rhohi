@@ -22,8 +22,8 @@ class TripStatementsController < ApplicationController
   def create
     @trip_statement = current_user.trip_statements.create(trip_statement_params)
     if @trip_statement.save
-      #flash[:success] = '申請しました'
       redirect_to trip_statement_path(@trip_statement)
+      flash[:success] = "申請しました"
     else
       render 'new'
     end
