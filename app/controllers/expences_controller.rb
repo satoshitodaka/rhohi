@@ -61,7 +61,7 @@ class ExpencesController < ApplicationController
     end
 
     # def admin_user?
-    #   @expence = current_user.trip_expences.find_by(id: params[:id])
+    #   @expence = current_user.expences.find_by(id: params[:id])
     #   if @expence.nil?
     #     if current_user.admin != true
     #       redirect_to root_url
