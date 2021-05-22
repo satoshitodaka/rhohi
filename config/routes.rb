@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'home/contact'
   resources :trip_statements, shallow: true do
     resources :expences
-    resources :approval, only: [:index, :create, :edit, :update, :destroy]
+    resources :approval, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   get 'approval/index' => 'approval#index'
   # get 'trip_statements/:id/update' => 'trip_statement#update'
