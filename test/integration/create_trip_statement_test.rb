@@ -74,10 +74,33 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
     assert_template 'trip_statements/index'
     get trip_statement_path(@trip_statement)
     # assertなんちゃら ここで表示の確認をする。
+    # 出張情報の編集
+    get edit_trip_statement_path(@trip_statement)
+    assert_template 'trip_statements/edit'
+    put trip_statement_path(@trip_statement), params: {
+      trip_statement: {
+        distination: "yokohama"
+      }
+    }
+    @trip_statement.reload
+    assert_equal "yokohama", @trip_statement.distination
+    assert_redirected_to trip_statement_path(@trip_statement)
+    follow_redirect!
+    assert_not flash.empty?
+
+    # 旅費情報の編集
     get edit_expence_path(@expence)
     assert_template 'expences/edit'
-    # assertなんちゃら ここで表示の確認をする。
-
+    put expence_path(@expence), params: {
+      expence: {
+        transportation: "タクシー"
+      }
+    }
+    @expence.reload
+    assert_equal "タクシー", @expence.transportation
+    assert_redirected_to trip_statement_path(@trip_statement)
+    follow_redirect!
+    assert_not flash.empty?
   end
 
 end
