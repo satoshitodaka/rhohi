@@ -37,21 +37,22 @@ class TripStatementsController < ApplicationController
 
   def update
     @trip_statement = TripStatement.find(params[:id])
-    # if params[:process] == "update"
-    #   if @trip_statement.update(update_trip_statement_params)
-    #     # @trip_statement.save
-    #     redirect_to trip_statement_url(params[:id])
-    #     flash[:success] = "出張情報を更新しました。"
-    #   else
-    #     render 'edit'
-    #   end
-    # elsif params[:prosess] == "submit"
-      @trip_statement.applied = true
-      @trip_statement.applied_at = Time.zone.now
+    if @trip_statement.update(update_trip_statement_params)
       @trip_statement.save
-      redirect_to trip_statements_url
-      flash[:success] = "出張を申請しました。"
-    # end
+      redirect_to trip_statement_url(params[:id])
+      flash[:success] = "出張情報を更新しました。"
+    else
+      render 'edit'
+    end
+  end
+
+  def submit
+    @trip_statement = TripStatement.find(params[:id])
+    @trip_statement.applied = true
+    @trip_statement.applied_at = Time.zone.now
+    @trip_statement.save
+    redirect_to trip_statements_url
+    flash[:success] = "出張を申請しました。"
   end
 
   def destroy
