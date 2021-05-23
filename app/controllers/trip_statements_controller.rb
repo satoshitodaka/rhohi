@@ -2,6 +2,8 @@ class TripStatementsController < ApplicationController
   before_action :authenticate_user!
   before_action :currect_user, only: [:destroy, :edit, :update]
   before_action :admin_user?, only: :show
+  before_action :applied?, only: [:destroy, :edit, :update]
+  before_action :approved?, only: [:destroy, :edit, :update]
 
   def show
     @trip_statement = TripStatement.find(params[:id])
@@ -35,21 +37,20 @@ class TripStatementsController < ApplicationController
 
   def update
     @trip_statement = TripStatement.find(params[:id])
-    # if params[:process] = "update"
-      if @trip_statement.update(update_trip_statement_params)
-        # @trip_statement.save
-        redirect_to trip_statement_url(params[:id])
-        flash[:success] = "出張情報を更新しました。"
-      else
-        render 'edit'
-      end
-    # end
-    # if params[:prosess] == "apply"
-    #   @trip_statement.applied = true
-    #   @trip_statement.applied_at = Time.zone.now
-    #   @trip_statement.save
-    #   redirect_to trip_statements_url
-    #   flash[:success] = "出張を申請しました。"
+    # if params[:process] == "update"
+    #   if @trip_statement.update(update_trip_statement_params)
+    #     # @trip_statement.save
+    #     redirect_to trip_statement_url(params[:id])
+    #     flash[:success] = "出張情報を更新しました。"
+    #   else
+    #     render 'edit'
+    #   end
+    # elsif params[:prosess] == "submit"
+      @trip_statement.applied = true
+      @trip_statement.applied_at = Time.zone.now
+      @trip_statement.save
+      redirect_to trip_statements_url
+      flash[:success] = "出張を申請しました。"
     # end
   end
 
@@ -69,9 +70,17 @@ class TripStatementsController < ApplicationController
       params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at)
     end
 
+    def applied?
+      if @trip_statement.applied == true
+        redirect_to trip_statements_url(@trip_statement)
+        flash[:warning] = "申請済みの申請は操作できません"
+      end 
+    end
+
     def approved?
       if @trip_statement.approved == true
-        # ここに処理を記述する。
+        redirect_to trip_statements_url(@trip_statement)
+        flash[:warning] = "承認済みの申請は操作できません"
       end 
     end
 
