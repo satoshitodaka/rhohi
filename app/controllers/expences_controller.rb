@@ -1,6 +1,7 @@
 class ExpencesController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only:[:destroy, :edit, :update]
+  before_action :applied_expence?, only: [:update, :destroy] #editを含めるとエラーが発生する。
   # before_action :admin_user?, only: :show
 
   def new
@@ -15,7 +16,6 @@ class ExpencesController < ApplicationController
     @expence = Expence.find(params[:id])
     @trip_statement = @expence.trip_statement
     @user = @trip_statement.user
-    # @expence = Expence.find(params[:id])
   end
 
   def create
@@ -39,10 +39,12 @@ class ExpencesController < ApplicationController
 
   def edit
     @expence = Expence.find(params[:id])
+    
   end
 
   def update
     @expence = Expence.find(params[:id])
+    @trip_statement = @expence.trip_statement
       if @expence.update(expence_params)
         redirect_to trip_statement_path(@expence.trip_statement.id)
         flash[:success] = "旅費情報を更新しました。"
@@ -63,6 +65,15 @@ class ExpencesController < ApplicationController
       if @own_statement.nil?
         redirect_to root_url
         flash[:info] = "他ユーザーの申請は操作できません"
+      end
+    end
+
+    def applied_expence?
+      @expence = Expence.find(params[:id])
+      @trip_statement = @expence.trip_statement
+      if @trip_statement.applied == true
+        redirect_to trip_statement_path(@trip_statement)
+        flash[:danger] = "申請済みの旅費情報は操作できません。"
       end
     end
 
