@@ -60,9 +60,5 @@
 
 <% if @trip_statement.user_id == current_user.id && @trip_statement.applied == false %>
   <%= link_to "旅費情報を追加する", new_trip_statement_expence_path(@trip_statement.id), class:"btn btn-primary btn-block" %>
-  <%= link_to "申請する", trip_statement_path(@trip_statement), method: :patch, class:"btn btn-primary btn-block" %>
-    <%# <%= link_to "申請する", trip_statement_path(@trip_statement, params: { trip_statement: { applied: true } } ), method: :patch, class:"btn btn-primary btn-block" %> %>
-    <%# <%= link_to "申請する", trip_statement_path(@trip_statement), method: :patch, params: { trip_statement: { applied: true } }, class:"btn btn-primary btn-block" %> %>
-    <%# <%= link_to "申請する", trip_statement_path(@trip_statement.id),method: :put, class:"btn btn-primary btn-block" %> %>
-    <%# <%= link_to "申請する", trip_statement_path(@trip_statement, process: "submit"),method: :put, class:"btn btn-primary btn-block" %> %>
+  <%= link_to "申請する", submit_trip_statement_path(@trip_statement), method: :patch, class:"btn btn-primary btn-block" %>
 <% end %>
