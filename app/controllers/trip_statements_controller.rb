@@ -59,7 +59,6 @@ class TripStatementsController < ApplicationController
     TripStatement.find(params[:id]).destroy
     redirect_to trip_statements_url
     flash[:info] = "出張情報を削除しました。"
-    
   end
 
   private

@@ -103,4 +103,18 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
+  # 申請の提出についてのテスト
+  test "subumit trip_statement" do
+    login_as(@user)
+    @trip_statement = trip_statements(:one)
+    get trip_statements_path
+    get trip_statement_path(@trip_statement)
+    assert_equal false, @trip_statement.applied
+    patch submit_trip_statement_path(@trip_statement)
+    follow_redirect!
+    assert_not flash.empty?
+    @trip_statement.reload
+    assert_equal true, @trip_statement.applied
+  end
+
 end
