@@ -3,5 +3,48 @@ ja:
     models:
       user: ユーザー
       trip_statements: 出張申請
-      expences: 旅費
+      expences: 旅費申請
       approval: 承認
+    
+    attributes:
+      user:
+      trip_statement:
+        distination: 出張先
+        purpose: 出張理由
+        start_at: 出発日時
+        finish_at: 帰着日時
+        work_done_at: 作業完了日時
+        applied: 申請ステータス
+        applied_at: 申請日時
+        approved: 承認ステータス
+        approved_at: 承認日時
+        user_id: 申請者ID
+      
+      expence:
+        date: 利用日
+        transportation: 利用交通機関
+        bourding: 乗車駅・出発地
+        get_off: 降車駅・到着地
+        fare: 運賃・料金
+        mileages: 移動距離
+        allowance: 手当
+        trip_statement_id: 出張申請ID
+      
+      approval:
+        trip_statement_id: 出張申請ID
+        approval: 承認ステータス
+        user_id: 承認者ID
+        comment: コメント
+      
+      company:
+        name: 会社名
+        address: 所在地
+      
+      department:
+        department_name: 所属名
+        company_id: 会社ID
+
+    
+  attributes:
+    created_at: 作成日
+    update_at: 更新日

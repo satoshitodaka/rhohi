@@ -8,7 +8,7 @@ User.create!(name: "戸高 仁",
   company_id: 1
 )
 
-50.times do
+5.times do
   name = Faker::Company.name
   address = Gimei.address.kanji
   Company.create!(name: name, address: address)
@@ -26,10 +26,36 @@ end
 
 User.all.each do |user|
   user.trip_statements.create!(
+    start_at: Time.zone.now,
+    finish_at: Time.zone.now,
+    work_done_at: Time.zone.now,
     distination: Gimei.address.kanji,
     purpose: Faker::Lorem.sentence(word_count: 3),
     applied: true,
     approved: false
+  )
+end
+
+User.all.each do |user|
+  user.trip_statements.create!(
+    start_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    finish_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    work_done_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    distination: Gimei.address.kanji,
+    purpose: Faker::Lorem.sentence(word_count: 3),
+    applied: false,
+    approved: false
+  )
+end
+
+TripStatement.all.each do |trip_statement|
+  trip_statement.expences.create!(
+    date: Faker::Date.between(from: 30.days.ago, to: Date.today),
+    transportation: Faker::Lorem.sentence(word_count: 1),
+    bording: Faker::Lorem.sentence(word_count: 1),
+    get_off: Faker::Lorem.sentence(word_count: 1),
+    fare: Faker::Lorem.sentence(word_count: 3),
+    allowance: true
   )
 end
 

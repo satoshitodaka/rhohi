@@ -22,9 +22,9 @@
       <td><%= @user.name %></td>
       <td><%= @trip_statement.distination %></td>
       <td><%= @trip_statement.purpose %></td>
-      <td><%= @trip_statement.start_at %></td>
-      <td><%= @trip_statement.finish_at %></td>
-      <td><%= @trip_statement.work_done_at %></td>
+      <td><%= l @trip_statement.start_at, format: :short %></td>
+      <td><%= l @trip_statement.finish_at, format: :short %></td>
+      <td><%= l @trip_statement.work_done_at, format: :short %></td>
       <td><%= @trip_statement.applied %></td>
       <td><%= @trip_statement.approved %></td>
       <% if current_user == @trip_statement.user %>
