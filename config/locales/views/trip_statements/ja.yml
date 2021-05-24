@@ -1,0 +1,11 @@
+ja:
+  trip_statements:
+    index:
+      trip_statement: 出張申請
+    show:
+      title: 
+    edit:
+      title: 編集（出張情報）
+    new:
+      title: 出張申請 新規作成
+    
