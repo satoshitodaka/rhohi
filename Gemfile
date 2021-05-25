@@ -10,7 +10,7 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'devise'
-gem 'devise_invitable'
+gem 'devise_invitable', '~> 2.0.0'
 gem 'faker'
 gem 'gimei'
 gem 'will_paginate'
@@ -45,11 +45,12 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'rails-controller-testing'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'guard'
   gem 'guard-minitest'
-  gem 'rails-controller-testing'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

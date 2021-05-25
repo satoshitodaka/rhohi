@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   devise_for :users, controllers: {
-     invitations: 'users/invitations'
+    sessions: 'users/sessions',
+    invitations: 'users/invitations',
+    registrations: 'users/registrations'
   }
   root 'home#home'
   get 'home/about'

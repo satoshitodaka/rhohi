@@ -278,7 +278,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   devise
-  devise_invitable
+  devise_invitable (~> 2.0.0)
   faker
   gimei
   guard
