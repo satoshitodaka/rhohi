@@ -14,8 +14,19 @@ class TripStatementsController < ApplicationController
 
   def index
     @user = current_user
-    @trip_statements = @user.trip_statements.all
+    @created_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っていない。
   end
+
+  def approved
+    @user = current_user
+    @approved_statements = @user.trip_statements.all.where(approved: true)
+    
+  end
+
+  def denied
+    @user = current_user
+    @denied_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っている。
+  end  
 
   def new
     @trip_statement = TripStatement.new

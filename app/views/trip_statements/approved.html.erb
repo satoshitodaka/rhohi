@@ -1,7 +1,7 @@
-<% provide(:title, "出張旅費申請一覧") %>
-<h1><%= @user.name %>が申請した旅費</h1>
-<h3>旅費申請<%= @created_statements.count %>件</h3>
-<% if @created_statements.any? %>
+<% provide(:title, "申請実績") %>
+<h1><%= @user.name %>の申請実績</h1>
+<h3>旅費申請<%= @approved_statements.count %>件</h3>
+<% if @approved_statements.any? %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,8 +13,8 @@
         <th>削除</th>
       </tr>
     </thead>
-    <tbody>
-      <% @created_statements.each do |trip_statement| %>
+    <tbody>  
+      <% @approved_statements.each do |trip_statement| %>
         <%= render trip_statement %>
       <% end %>
     </tbody>

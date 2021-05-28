@@ -10,8 +10,12 @@
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to '申請する', new_trip_statement_path %></li>         
           <li><%= link_to '申請一覧', trip_statements_path %></li>
+          <li><%= link_to '申請実績', approved_trip_statements_path %></li>
+          <li><%= link_to '返戻一覧', denied_trip_statements_path %></li>
           <% if current_user.admin %>
             <li><%= link_to '承認する', approval_index_path %></li>
+            <li><%= link_to '承認実績', approval_approved_path %></li>
+            <li><%= link_to '否認一覧', approval_denied_path %></li>
           <% end %>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       <% else %>
