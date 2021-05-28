@@ -1,0 +1,27 @@
+<% provide(:title, "否認申請一覧") %>
+<h1>否認した出張旅費申請</h1>
+<h3>否認した申請は<%= @denied.count %>件</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>出張日</th>
+      <th>申請者</th>
+      <th>出張理由</th>
+      <th>出張先</th>
+      <th>再承認</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @denied.any? %>
+      <% @denied.each do |denied| %>
+        <tr>
+          <td><%= denied.start_at %></td>
+          <td><%= denied.user.name %></td>
+          <td><%= denied.purpose %></td>
+          <td></span><%= denied.distination %></td>
+          <td><%=link_to "再承認する", edit_approval_path(denied.id), class:"btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+<table>

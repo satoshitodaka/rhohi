@@ -5,8 +5,14 @@ class ApprovalController < ApplicationController
 
   def index
     @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
+  end
+
+  def approved
     @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
-    @denial = TripStatement.where(approved: true)
+  end
+
+  def denied
+    @denied = TripStatement.where(approved: true)
   end
 
   def new
@@ -47,7 +53,9 @@ class ApprovalController < ApplicationController
   # end
 
   def edit
-    # @approval = Approval.find()
+    @approval = Approval.find(params[:id])
+    @trip_statement = @approval.trip_statement
+    @user = @trip_statement.user
   end
 
   def update
