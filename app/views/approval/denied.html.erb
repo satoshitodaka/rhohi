@@ -8,6 +8,7 @@
       <th>申請者</th>
       <th>出張理由</th>
       <th>出張先</th>
+      <th>コメント</th>
       <th>再承認</th>
     </tr>
   </thead>
@@ -18,7 +19,8 @@
           <td><%= denied.start_at %></td>
           <td><%= denied.user.name %></td>
           <td><%= denied.purpose %></td>
-          <td></span><%= denied.distination %></td>
+          <td><%= denied.distination %></td>
+          <td><%= denied.approval.comment%></td>
           <td><%=link_to "再承認する", edit_approval_path(denied.id), class:"btn btn-primary" %></td>
         </tr>
       <% end %>

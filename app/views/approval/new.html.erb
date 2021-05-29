@@ -51,5 +51,18 @@
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>
   <h3>承認</h3>
   <%= link_to "承認する", trip_statement_approval_index_path(@trip_statement.id, approval: "true"), method: :post, class:"btn btn-primary btn-block btn-block" %>
+  <%= link_to "承認する", trip_statement_approval_index_path(@trip_statement.id, approval: "false"), method: :post, class:"btn btn-primary btn-block btn-block" %>
   <%= link_to "否認する", trip_statement_approval_index_path(@trip_statement.id, :approval => "false"), method: :post, class:"btn btn-primary btn-block btn-block" %>
+  
+  <h3>新　承認</h3>
+  <%= form_with(model: [@trip_statement, @approval], url:trip_statement_approval_index_path(@trip_statement.id, approval: "true"),  local: true) do |f| %>
+  <%= f.submit "承認する", class: "btn btn-primary col-md-6 col-md-offset-3" %>
+  <% end %>
+  <%= form_with(model: [@trip_statement, @approval], url:trip_statement_approval_index_path(@trip_statement.id, :approval => "false"), local: true) do |f| %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= f.label :comment, "コメント" %>
+    <%= f.text_area :comment %>
+  </div>
+  <%= f.submit "否認する", class: "btn btn-primary col-md-6 col-md-offset-3" %>
+<% end %>
 <% end %>

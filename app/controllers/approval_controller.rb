@@ -4,7 +4,8 @@ class ApprovalController < ApplicationController
   # before_action :approve?, only: :create
 
   def index
-    @not_approved = TripStatement.where(approved: false).where.not(user_id: current_user.id)
+    @not_approved = TripStatement.where(applied: true, approved: false).where.not(user_id: current_user.id)
+    # @not_approved = TripStatement.left_joins(:approval).select("trip_statements.*").where("approval.id is null")
   end
 
   def approved
@@ -13,6 +14,7 @@ class ApprovalController < ApplicationController
 
   def denied
     @denied = TripStatement.where(approved: true)
+    # @denied_approval = @denied.approvals
   end
 
   def new
@@ -28,13 +30,12 @@ class ApprovalController < ApplicationController
 
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    @approval = current_user.approval.create(trip_statement_id: @trip_statement.id)
     if params[:approval] == "true"
+      @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: true)
       @trip_statement.approved = true
-      @approval.approval = true
     elsif params[:approval] == "false"
+      @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: false)
       @trip_statement.approved = false
-      @approval.approval = false
     else
       redirect_to trip_statement_approval_index_path
       flash[:warning] = "問題が発生しました。再度お試しください。"
@@ -73,7 +74,8 @@ class ApprovalController < ApplicationController
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.approved
         redirect_to trip_statement_approval_index_url
-        flash[:danger] = "承認済の申請です。"
+        # flash[:danger] = "承認済の申請です。"
+        flash[:success] = "出張を申請しました。"
       end
     end
 
