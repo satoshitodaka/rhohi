@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   
+  get 'users/show'
   devise_for :users
   root 'home#home'
   get 'home/about'
   get 'home/help'
   get 'home/contact'
+  resources :users, only: :show
   resources :trip_statements, shallow: true do
     patch 'submit', on: :member
     collection do
