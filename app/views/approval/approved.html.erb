@@ -15,7 +15,7 @@
     <% if @approved.any? %>
       <% @approved.each do |approval| %>
         <tr>
-          <td><%= approval.start_at %></td>
+          <td><%= l approval.start_at, format: :short %></td>
           <td><%= approval.user.name %></td>
           <td></span><%= approval.purpose %></td>
           <td><%= approval.distination %></td>

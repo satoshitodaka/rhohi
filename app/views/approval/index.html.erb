@@ -15,7 +15,7 @@
     <% if @not_approved.any? %>
       <% @not_approved.each do |not_approval| %>
         <tr>
-          <td><%= not_approval.start_at %></td>
+          <td><%= l not_approval.start_at, format: :short %></td>
           <td><%= not_approval.user.name %></td>
           <td><%= not_approval.purpose %></td>
           <td><%= not_approval.distination %></td>

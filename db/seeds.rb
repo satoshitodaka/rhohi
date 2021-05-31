@@ -5,10 +5,12 @@ Company.create!(name: "日立物流ファインネクスト株式会社", addres
 User.create!(name: "戸高 仁",
   email: "gkjojo0507@yahoo.co.jp",
   password: "password",
-  company_id: 1
+  company_id: 1,
+  birthday: "1993-07-05",
+  admin: true
 )
 
-50.times do
+5.times do
   name = Faker::Company.name
   address = Gimei.address.kanji
   Company.create!(name: name, address: address)
@@ -19,6 +21,7 @@ Company.all.each do |company|
     name: Gimei.kanji,
     email: Faker::Internet.email,
     password: "password",
+    birthday: Faker::Date.between(from: '1973-01-01', to: '2003-12-31'),
     admin: false,
     system_admin: false
   )
@@ -28,8 +31,34 @@ User.all.each do |user|
   user.trip_statements.create!(
     distination: Gimei.address.kanji,
     purpose: Faker::Lorem.sentence(word_count: 3),
+    start_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    finish_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    work_done_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now - 1),
     applied: true,
     approved: false
+  )
+end
+
+User.all.each do |user|
+  user.trip_statements.create!(
+    distination: Gimei.address.kanji,
+    purpose: Faker::Lorem.sentence(word_count: 3),
+    start_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    finish_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    work_done_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now - 1),
+    applied: false,
+    approved: false
+  )
+end
+
+TripStatement.all.each do |trip_statement|
+  trip_statement.expences.create!(
+    date: Faker::Date.between(from: 30.days.ago, to: Date.today),
+    transportation: Faker::Lorem.sentence(word_count: 1),
+    bording: Faker::Lorem.sentence(word_count: 1),
+    get_off: Faker::Lorem.sentence(word_count: 1),
+    fare: Faker::Lorem.sentence(word_count: 3),
+    allowance: true
   )
 end
 
