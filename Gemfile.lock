@@ -85,6 +85,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.5)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     erubi (1.10.0)
     execjs (2.7.0)
     faker (2.17.0)
@@ -272,6 +275,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   devise
+  devise_invitable (~> 2.0.0)
   faker
   gimei
   guard

@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :approval, dependent: :nullify
   validates :name, presence: true
   validates :email, presence: true #このバリデーションがあってもなくても、テストが通ってしまう？
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, invite_for: 14.days
   private
     def admin?
       @user.admin == true

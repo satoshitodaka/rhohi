@@ -16,7 +16,7 @@
     <% if @denied.any? %>
       <% @denied.each do |denied| %>
         <tr>
-          <td><%= denied.start_at %></td>
+          <td><%= l denied.start_at, format: :short %></td>
           <td><%= denied.user.name %></td>
           <td><%= denied.purpose %></td>
           <td><%= denied.distination %></td>
