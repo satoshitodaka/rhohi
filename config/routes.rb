@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'users/show'
   devise_for :users, controllers: {
     invitations: 'devise/invitations'
   }
@@ -8,7 +7,7 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/help'
   get 'home/contact'
-  resources :users, only: :show
+  resources :users 
   resources :trip_statements, shallow: true do
     patch 'submit', on: :member
     collection do
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
   get 'approval/index' => 'approval#index'
   get 'approval/approved' => 'approval#approved'
   get 'approval/denied' => 'approval#denied'
+  get 'users' => 'users#index'
   # post 'trip_statements/:id/submit', to: 'trip_statements#update_submit'
   # get 'trip_statements/:id/update' => 'trip_statement#update'
 end

@@ -1,0 +1,15 @@
+<% provide(:title, "ユーザー　一覧") %>
+<h1>ユーザー 一覧</h1>
+<h3>ユーザー数 <%= @users.count %>人</h3>
+<% if @users.any? %>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= user.name %></li>
+      <li><%= user.email %></li>
+      <li><%= user.admin %></li>
+      <li><%= user.system_admin %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>ユーザーは存在しません。</p><%# 多分使うこと無いですが・・ %>
+<% end %>

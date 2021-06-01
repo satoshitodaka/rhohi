@@ -39,6 +39,7 @@ class TripStatementsController < ApplicationController
       flash[:success] = "申請しました"
     else
       render 'new'
+      flash[:warning] = "問題が発生しました。再度登録してください。"
     end
   end
 

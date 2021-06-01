@@ -1,0 +1,20 @@
+<% provide(:title, "ユーザー作成") %>
+<h1>ユーザー作成</h1>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+    <%= f.label :email  %>
+    <%= f.text_area :email %>
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday %>
+    <%= f.label :company_id %>
+    <%= f.text_field :company_id %>
+    <%= f.label :admin %>
+    <%= f.text_field :admin %>
+    <%= f.label :system_admin %>
+    <%= f.text_field :system_admin %>
+  </div>
+  <%= f.submit "ユーザー登録・招待メール送信", class:"btn btn-primary col-md-6 col-md-offset-3" %>
+<% end %>
