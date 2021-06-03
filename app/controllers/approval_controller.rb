@@ -1,7 +1,8 @@
 class ApprovalController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_user?
+  # before_action :admin_user?
   # before_action :approve?, only: :create
+  load_and_authorize_resource
 
   def index
     @not_approved = TripStatement.where(applied: true, approved: false).where.not(user_id: current_user.id)

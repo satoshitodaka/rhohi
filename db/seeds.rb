@@ -1,13 +1,22 @@
 # Company
 Company.create!(name: "日立物流ファインネクスト株式会社", address: "東京都中央区京橋")
 
-# User
+# Admin User
+User.create!(name: "戸高 仁",
+  email: "satoshitodaka0705@gmail.com",
+  password: "password",
+  company_id: 1,
+  birthday: "1993-07-05",
+  admin: true
+)
+
+# Normal User
 User.create!(name: "戸高 仁",
   email: "gkjojo0507@yahoo.co.jp",
   password: "password",
   company_id: 1,
   birthday: "1993-07-05",
-  admin: true
+  admin: false
 )
 
 5.times do

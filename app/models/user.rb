@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify #:before_add => :before_add_method
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   belongs_to :company
@@ -10,6 +12,25 @@ class User < ApplicationRecord
   validates :email, presence: true #このバリデーションがあってもなくても、テストが通ってしまう？
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, invite_for: 14.days
+
+  
+  after_create :assign_default_role
+  after_create :assign_admin_role
+
+  # たぶん無くてもOK
+  # def before_add_method
+  #   # Roleが追加されたときの処理があれば書く
+  # end
+  
+  def assign_default_role
+    self.add_role(:normal) if self.admin == false
+  end
+
+  def assign_admin_role
+    self.add_role(:admin) if self.admin == true
+  end
+
+
   private
     def admin?
       @user.admin == true

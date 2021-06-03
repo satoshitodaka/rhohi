@@ -5,6 +5,10 @@ class TripStatementsController < ApplicationController
   before_action :applied?, only: [:destroy, :edit, :update]
   before_action :approved?, only: [:destroy, :edit, :update]
 
+  # load_and_authorize_resource
+  # authorize_resource
+  # load_resource
+
   def show
     @trip_statement = TripStatement.find(params[:id])
     @user = @trip_statement.user
