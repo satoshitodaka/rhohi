@@ -1,7 +1,7 @@
 class ApprovalController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user?
-  # before_action :same_company?
+  before_action :same_company?, only: [:new, :create, :edit, :update]
   # before_action :approve?, only: :create
 
   def index
@@ -83,13 +83,13 @@ class ApprovalController < ApplicationController
     def own_statement?
     end
 
-    # def same_company?
-    #   @trip_statement = TripStatement.find(params[:trip_statement_id])
-    #   if @trip_statement.user.company_id != current_user.company_id
-    #     redirect_to root_url
-    #     flash[:danger] = "他社の申請は操作できません"
-    #   end
-    # end
+    def same_company?
+      @trip_statement = TripStatement.find(params[:trip_statement_id])
+      if @trip_statement.user.company_id != current_user.company_id
+        redirect_to trip_statement_approval_index_url
+        flash[:danger] = "他社の申請は操作できません"
+      end
+    end
 
     # def approval_params
     #   params.permit(:comment).merge(approval_user_id: current_user.id, trip_statement_id: params[:id])

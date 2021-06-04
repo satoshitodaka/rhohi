@@ -6,7 +6,7 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
     @approver_user = users(:my_admin)
     @approved_statement = trip_statements(:approved)
     @other_company_user = users(:othre_normal)
-    @other_company_trip_statement = trip_statements(:six)
+    @other_company_user_trip_statement = trip_statements(:six)
   end
 
   # test "should get index" do
@@ -41,6 +41,13 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
 
   # test "approved trip_statement should not approved again" do
   #   log_in_as(users(:my_admin))
+
+  # end
+
+  # test "should redirect when approval other_company_user's trip_statement" do
+  #   log_in_as(@approver_user)
+  #   get new_trip_statement_approval_path(@other_company_user_trip_statement)
+  #   redirect_to root_url
 
   # end
 

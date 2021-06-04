@@ -6,7 +6,16 @@ Company.create!(name: "株式会社日立物流首都圏", address: "千葉県�
 Company.create!(name: "日立物流ソフトウェア株式会社", address: "東京都江東区東陽")
 
 # User
-User.create!(name: "戸高 仁",
+User.create!(name: "Admin_User",
+  email: "satoshitodaka0705@gmail.com",
+  password: "password",
+  company_id: 1,
+  birthday: "1993-07-05",
+  admin: true
+)
+
+# User
+User.create!(name: "Normal_User",
   email: "gkjojo0507@yahoo.co.jp",
   password: "password",
   company_id: 1,
