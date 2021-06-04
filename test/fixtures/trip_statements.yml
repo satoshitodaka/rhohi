@@ -1,5 +1,3 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   distination: tokyo
   purpose: meetings
@@ -10,7 +8,7 @@ one:
   applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: satoshi
+  user: my_system_admin
 
 two:
   distination: kyoto
@@ -22,7 +20,7 @@ two:
   applied_at: 2021-04-20 08:34:55
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: megumi
+  user: my_admin
 
 three:
   distination: tokyo
@@ -34,7 +32,7 @@ three:
   applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: hikaru
+  user: my_normal
 
 four:
   distination: kyoto
@@ -46,7 +44,7 @@ four:
   applied_at: 2021-04-20 08:34:55
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: masumi
+  user: other_system_admin
 
 five:
   distination: kyoto
@@ -58,7 +56,7 @@ five:
   applied_at: 2021-04-20 08:34:55
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: yoshiko
+  user: other_admin
 
 six:
   distination: kyoto
@@ -70,7 +68,7 @@ six:
   applied_at: 2021-04-20 08:34:55
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: akane
+  user: other_normal
 
 approved:
   distination: Sapporo
@@ -82,4 +80,4 @@ approved:
   applied_at: 2021-05-22 08:34:55
   approved: true
   approved_at: 2021-05-23 08:34:55
-  user: megumi
+  user: hikaru

@@ -4,7 +4,7 @@ class ApprovalTest < ActiveSupport::TestCase
   
   # def setup
   #   # @trip_statement = trip_statements(:one)
-  #   @user = users(:satoshi)
+  #   @user = users(:my_system_admin)
   #   @approval = @user.approval.new(trip_statement_id: @user.id )#, approval: true, comment: "")
   #   # @approval = approvals(:one)
   #   # @approval.save

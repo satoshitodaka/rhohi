@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = users(:satoshi)
+    @user = users(:my_system_admin)
     @trip_statement = trip_statements(:one)
   end
 

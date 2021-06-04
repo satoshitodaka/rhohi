@@ -4,7 +4,7 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
 
   def setup
-    @user = users(:satoshi)
+    @user = users(:my_system_admin)
   end
 
   test 'create new trip_statement' do

@@ -5,8 +5,8 @@ class TripStatementsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @trip_statement = trip_statements(:one)
-    @user = users(:satoshi)
-    @not_admin = users(:hikaru)
+    @user = users(:my_system_admin)
+    @not_admin = users(:my_normal)
   end
 
   test "should redirect index when not logged in" do

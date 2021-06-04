@@ -4,8 +4,8 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
 
   def setup
-    @user = users(:hikaru)
-    @approver = users(:satoshi)
+    @user = users(:my_normal)
+    @approver = users(:my_system_admin)
   end
 
   # ユーザーの出張申請を承認する。

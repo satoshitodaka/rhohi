@@ -1,31 +1,31 @@
 TGA:
   department_name: General Affairs Department
-  company: TDK
+  company: MY
 
 THR:
   department_name: Human Resources Division
-  company: TDK
+  company: MY
 
 TFD:
   department_name: Financial Department
-  company: TDK
+  company: MY
 
 TDD:
   department_name: Development Department
-  company: TDK
+  company: MY
 
 OGA:
   department_name: General Affairs Department
-  company: OHK
+  company: OTHER
 
 OHR:
   department_name: Human Resources Division
-  company: OHK
+  company: OTHER
 
 OFD:
   department_name: Financial Department
-  company: OHK
+  company: OTHER
 
 ODD:
   department_name: Development Department
-  company: OHK
+  company: OTHER

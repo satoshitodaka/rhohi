@@ -3,7 +3,7 @@ require "test_helper"
 class CompanyTest < ActiveSupport::TestCase
 
   def setup
-    @company = companies(:TDK)
+    @company = companies(:MY)
   end
 
   test "should be valid" do
