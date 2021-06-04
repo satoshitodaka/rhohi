@@ -1,5 +1,9 @@
 # Company
 Company.create!(name: "日立物流ファインネクスト株式会社", address: "東京都中央区京橋")
+Company.create!(name: "株式会社日立物流", address: "東京都中央区京橋")
+Company.create!(name: "株式会社日立物流東日本", address: "茨城県日立市城南町")
+Company.create!(name: "株式会社日立物流首都圏", address: "千葉県柏市末広町")
+Company.create!(name: "日立物流ソフトウェア株式会社", address: "東京都江東区東陽")
 
 # User
 User.create!(name: "戸高 仁",
