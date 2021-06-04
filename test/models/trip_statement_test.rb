@@ -3,7 +3,7 @@ require 'test_helper'
 class TripStatementTest < ActiveSupport::TestCase
   
   def setup
-    @user = users(:megumi)
+    @user = users(:my_admin)
     @trip_statement = @user.trip_statements.build(distination: "kamakura", purpose: "conference", user_id: @user.id)
   end
 

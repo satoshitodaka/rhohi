@@ -4,7 +4,7 @@ class ExpencesControllerTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   
   def setup
-    @user = users(:satoshi)
+    @user = users(:my_system_admin)
     @trip_statement = trip_statements(:one)
     @expence = expences(:one_1)
   end

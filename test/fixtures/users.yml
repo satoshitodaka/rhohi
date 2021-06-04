@@ -1,58 +1,58 @@
-satoshi:
-  company: TDK
+my_system_admin:
+  company: MY
   # department_id: 
-  name: satoshitodaka
-  email: satoshitodaka@rhohi.com
+  name: my_system_admin
+  email: my_system_admin@my.com
   birthday: 1993-07-05
   admin: true
   system_admin: true
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-megumi:
-  company: TDK
+my_admin:
+  company: MY
   # department_id: 
-  name: megumitodaka
-  email: megumitodaka@rhohi.com
+  name: my_admin
+  email: my_admin@my.com
   birthday: 1995-06-17
   admin: true
   system_admin: false
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-hikaru:
-  company: TDK
+my_normal:
+  company: MY
   # department_id: 
-  name: hikarutodaka
-  email: hikarutodaka@rhohi.com
+  name: my_normal
+  email: my_normal@my.com
   birthday: 1997-07-25
   admin: false
   system_admin: false
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-masumi:
-  company: OHK
+other_system_admin:
+  company: OTHER
   # department_id: 
-  name: masumiohkawara
-  email: masumiohkawara@ohk.com
+  name: other_system_admin
+  email: other_system_admin@other.com
   birthday: 1994-12-16
   admin: true
   system_admin: true
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-yoshiko:
-  company: OHK
+other_admin:
+  company: OTHER
   # department_id: 
-  name: yoshikoohkawara
-  email: yoshikoohkawara@ohk.com
+  name: other_admin
+  email: other_admin@other.com
   birthday: 1994-12-16
   admin: true
   system_admin: false
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-akane:
-  company: OHK
+other_normal:
+  company: OTHER
   # department_id: 
-  name: akaneohkawara
-  email: akaneohkawara@ohk.com
+  name: other_normal
+  email: other_normal@other.com
   birthday: 1994-12-16
   admin: false
   system_admin: false

@@ -1,7 +1,7 @@
-TDK:
-  name: Todaka
+MY:
+  name: My_company
   address: Kobayashi
 
-OHK:
-  name: Ohkawara
+OTHER:
+  name: Other_company
   address: Takizawa

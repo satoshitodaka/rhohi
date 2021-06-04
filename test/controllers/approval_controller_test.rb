@@ -3,8 +3,10 @@ require 'test_helper'
 class ApprovalControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @approver_user = users(:megumi)
+    @approver_user = users(:my_admin)
     @approved_statement = trip_statements(:approved)
+    @other_company_user = users(:othre_normal)
+    @other_company_trip_statement = trip_statements(:six)
   end
 
   # test "should get index" do
@@ -38,7 +40,7 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
   # end
 
   # test "approved trip_statement should not approved again" do
-  #   log_in_as(users(:megumi))
+  #   log_in_as(users(:my_admin))
 
   # end
 
