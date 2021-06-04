@@ -1,6 +1,7 @@
 class ApprovalController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user?
+  before_action :same_company?
   # before_action :approve?, only: :create
 
   def index
@@ -80,6 +81,10 @@ class ApprovalController < ApplicationController
     end
 
     def own_statement?
+    end
+
+    def same_company?
+      # @my_company = 
     end
 
     # def approval_params

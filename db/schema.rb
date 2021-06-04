@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_05_30_221113) do
 
-  create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "trip_statement_id"
     t.boolean "approval"
     t.string "comment"
@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(version: 2021_05_30_221113) do
     t.index ["user_id"], name: "index_approvals_on_user_id"
   end
 
-  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "department_name"
     t.bigint "company_id"
     t.datetime "created_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_221113) do
     t.index ["company_id"], name: "index_departments_on_company_id"
   end
 
-  create_table "expences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "expences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.date "date"
     t.string "transportation"
     t.string "bording"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_221113) do
     t.index ["trip_statement_id"], name: "index_expences_on_trip_statement_id"
   end
 
-  create_table "trip_statements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "trip_statements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "distination"
     t.string "purpose"
     t.datetime "start_at"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_221113) do
     t.index ["user_id"], name: "index_trip_statements_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
