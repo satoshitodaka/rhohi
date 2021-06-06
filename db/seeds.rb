@@ -1,9 +1,9 @@
 # Company
 Company.create!(name: "日立物流ファインネクスト株式会社", address: "東京都中央区京橋")
-Company.create!(name: "株式会社日立物流", address: "東京都中央区京橋")
-Company.create!(name: "株式会社日立物流東日本", address: "茨城県日立市城南町")
-Company.create!(name: "株式会社日立物流首都圏", address: "千葉県柏市末広町")
-Company.create!(name: "日立物流ソフトウェア株式会社", address: "東京都江東区東陽")
+# Company.create!(name: "株式会社日立物流", address: "東京都中央区京橋")
+# Company.create!(name: "株式会社日立物流東日本", address: "茨城県日立市城南町")
+# Company.create!(name: "株式会社日立物流首都圏", address: "千葉県柏市末広町")
+# Company.create!(name: "日立物流ソフトウェア株式会社", address: "東京都江東区東陽")
 
 # User
 User.create!(name: "Admin_User",
@@ -23,23 +23,40 @@ User.create!(name: "Normal_User",
   admin: true
 )
 
-5.times do
-  name = Faker::Company.name
-  address = Gimei.address.kanji
-  Company.create!(name: name, address: address)
+# 5.times do
+#   name = Faker::Company.name
+#   address = Gimei.address.kanji
+#   Company.create!(name: name, address: address)
+# end
+
+# 各社10名ずつユーザーを作成する。
+Company.all.each do |company|
+  10.times do
+    company.users.create!(
+      name: Gimei.kanji,
+      email: Faker::Internet.email,
+      password: "password",
+      birthday: Faker::Date.between(from: '1973-01-01', to: '2003-12-31'),
+      admin: false,
+      system_admin: false
+    )
+  end
 end
 
-Company.all.each do |company|
-  company.users.create!(
-    name: Gimei.kanji,
-    email: Faker::Internet.email,
-    password: "password",
-    birthday: Faker::Date.between(from: '1973-01-01', to: '2003-12-31'),
-    admin: false,
-    system_admin: false
+# 各ユーザーに1件ずつ提出済・承認済の申請情報を作成
+User.all.each do |user|
+  user.trip_statements.create!(
+    distination: Gimei.address.kanji,
+    purpose: Faker::Lorem.sentence(word_count: 3),
+    start_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    finish_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now),
+    work_done_at: Faker::Time.between(from: Time.zone.now - 30, to: Time.zone.now - 1),
+    applied: true,
+    approved: true
   )
 end
 
+# 各ユーザーに1件ずつ提出済・未承認の申請情報を作成
 User.all.each do |user|
   user.trip_statements.create!(
     distination: Gimei.address.kanji,
@@ -52,6 +69,7 @@ User.all.each do |user|
   )
 end
 
+# 各ユーザーに1件ずつ未提出・未承認の申請情報を作成
 User.all.each do |user|
   user.trip_statements.create!(
     distination: Gimei.address.kanji,
@@ -64,6 +82,7 @@ User.all.each do |user|
   )
 end
 
+# 各申請に旅費手当情報を作成する。
 TripStatement.all.each do |trip_statement|
   trip_statement.expences.create!(
     date: Faker::Date.between(from: 30.days.ago, to: Date.today),
@@ -75,18 +94,26 @@ TripStatement.all.each do |trip_statement|
   )
 end
 
-# companies = Company.order(:created_at).take(3)
-# 20.times do
-#   user_name = Gimei.kanji
-#   email = "example-#{n+1}@rhohi.com"
-#   companies.each { |company| company.users.create!(name: user_name, email: email, password: "password") }
-# end
+# 承認した申請情報を作成する。
+i = 1
+12.times do |n|
+  # i ||= 1
+  # approval = Faker::Boolean.boolean
+  Approval.create!(
+    approval: true,
+    user_id: 1,
+    trip_statement_id: i
+  )
+  i += 1
+end
 
-# # TripStatement
-
-# users = User.order(:created_at).take(15)
-# 30.times do
-#   distination = Gimei.address.kanji
-#   purpose = Faker::Lorem.sentence(word_count: 5)
-#   users.each { |user| user.trip_statements.create!(distination: distination, purpose: purpose, applied: false, approved: false) }
+# # 否認した承認情報を作成する。
+# i = 13
+# 12.times do |n|
+#   Approval.create!(
+#     approval: false,
+#     user_id: 1,
+#     trip_statement_id: i
+#   )
+#   i += 1
 # end

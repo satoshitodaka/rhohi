@@ -12,20 +12,26 @@ class TripStatementsController < ApplicationController
     
   end
 
+  # 承認依頼中の申請
+  
   def index
     @user = current_user
     @created_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っていない。
+    # @created_statements = TripStatement.includes(:approval).where( approval: {:id => nil})#申請情報は持っていない。
+    # @created_statements = TripStatement.joins(:approval).distinct
+    # @created_statements = TripStatement.left_outer_joins(:approval).where(approval: { id: nil })
   end
 
+  # 承認済みの申請
   def approved
     @user = current_user
     @approved_statements = @user.trip_statements.all.where(approved: true)
-    
   end
 
+  # 否認された申請
   def denied
     @user = current_user
-    @denied_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っている。
+    @denied_statements = @user.trip_statements.includes(:approval).where(applied: true, approved: false)#申請情報は持っている。
   end  
 
   def new
@@ -33,10 +39,10 @@ class TripStatementsController < ApplicationController
   end
 
   def create
-    @trip_statement = current_user.trip_statements.create(new_trip_statement_params)
+    @trip_statement = current_user.trip_statements.create(create_trip_statement_params)
     if @trip_statement.save
       redirect_to trip_statement_path(@trip_statement)
-      flash[:success] = "申請しました"
+      flash[:success] = "出張申請を作成しました。手当情報を追加してください。"
     else
       render 'new'
     end
@@ -51,7 +57,7 @@ class TripStatementsController < ApplicationController
     if @trip_statement.update(update_trip_statement_params)
       @trip_statement.save
       redirect_to trip_statement_url(params[:id])
-      flash[:success] = "出張情報を更新しました。"
+      flash[:success] = "出張申請を提出しました。"
     else
       render 'edit'
     end
@@ -73,7 +79,7 @@ class TripStatementsController < ApplicationController
   end
 
   private
-    def new_trip_statement_params
+    def create_trip_statement_params
       params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at).merge(applied: false, approved: false)
     end
 
@@ -84,7 +90,7 @@ class TripStatementsController < ApplicationController
     def applied?
       if @trip_statement.applied == true
         redirect_to trip_statements_url(@trip_statement)
-        flash[:warning] = "申請済みの申請は操作できません"
+        flash[:warning] = "提出済みの申請は操作できません"
       end 
     end
 

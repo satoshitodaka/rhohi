@@ -20,7 +20,9 @@ class ApprovalController < ApplicationController
 
   def new
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    @user = @trip_statement.user
+    # @user = @trip_statement.user
+    # @approval = @trip_statement.approval.build(user_id: current_user.id)
+    @user = current_user
     @approval = @user.approval.build(trip_statement_id: @trip_statement.id)
     @expences = @trip_statement.expences.all #承認画面にて、紐づく旅費全てを表示する。
   end
@@ -33,7 +35,7 @@ class ApprovalController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     if params[:approval] == "true"
       @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: true)
-      @trip_statement.approved = true
+      @trip_statement.update(approved: true, approved_at: Time.zone.now)
     elsif params[:approval] == "false"
       @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: false)
       @trip_statement.approved = false
@@ -48,7 +50,7 @@ class ApprovalController < ApplicationController
     elsif params[:approval] == "false"
       flash[:warning] = "否認しました。"
     end
-    redirect_to trip_statement_approval_index_path
+    redirect_to trip_statement_approval_index_url
   end
     
   #   redirect_to trip_statement_approval_index_path

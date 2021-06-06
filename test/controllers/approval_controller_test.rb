@@ -9,10 +9,11 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
     @other_company_user_trip_statement = trip_statements(:six)
   end
 
-  # test "should get index" do
-  #   get approval_index_url
-  #   assert_response :success
-  # end
+  test "should get index" do
+    log_in_as(@approver_user)
+    get approval_index_url
+    assert_response :success
+  end
 
   # test "should get show" do
   #   get approval_show_url
