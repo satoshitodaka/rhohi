@@ -1,28 +1,4 @@
-one:
-  distination: tokyo
-  purpose: meetings
-  start_at: 2021-04-01 08:34:55
-  finish_at: 2021-04-03 08:34:55
-  work_done_at: 2021-04-02 08:34:55
-  applied: false
-  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
-  approved: false
-  approved_at: 2021-04-20 08:34:55
-  user: my_system_admin
-
-two:
-  distination: kyoto
-  purpose: recruit
-  start_at: 2021-04-15 08:34:55
-  finish_at: 2021-04-15 21:34:55
-  work_done_at: 2021-04-15 18:34:55
-  applied: false
-  applied_at: 2021-04-20 08:34:55
-  approved: false
-  approved_at: 2021-04-20 08:34:55
-  user: my_admin
-
-three:
+my_not_applied_statement:
   distination: tokyo
   purpose: meetings
   start_at: 2021-04-01 08:34:55
@@ -34,31 +10,43 @@ three:
   approved_at: 2021-04-20 08:34:55
   user: my_normal
 
-four:
+my_not_applied_statement2:
+  distination: tokyo
+  purpose: meetings
+  start_at: 2021-04-01 08:34:55
+  finish_at: 2021-04-03 08:34:55
+  work_done_at: 2021-04-02 08:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: my_admin
+
+my_applied_statement:
   distination: kyoto
   purpose: recruit
   start_at: 2021-04-15 08:34:55
   finish_at: 2021-04-15 21:34:55
   work_done_at: 2021-04-15 18:34:55
-  applied: false
+  applied: true
   applied_at: 2021-04-20 08:34:55
   approved: false
   approved_at: 2021-04-20 08:34:55
-  user: other_system_admin
+  user: my_normal
 
-five:
-  distination: kyoto
-  purpose: recruit
-  start_at: 2021-04-15 08:34:55
-  finish_at: 2021-04-15 21:34:55
-  work_done_at: 2021-04-15 18:34:55
-  applied: false
-  applied_at: 2021-04-20 08:34:55
-  approved: false
+my_approved_statement:
+  distination: tokyo
+  purpose: meetings
+  start_at: 2021-04-01 08:34:55
+  finish_at: 2021-04-03 08:34:55
+  work_done_at: 2021-04-02 08:34:55
+  applied: true
+  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  approved: true
   approved_at: 2021-04-20 08:34:55
-  user: other_admin
+  user: my_normal
 
-six:
+other_not_applied_statement:
   distination: kyoto
   purpose: recruit
   start_at: 2021-04-15 08:34:55
@@ -70,14 +58,26 @@ six:
   approved_at: 2021-04-20 08:34:55
   user: other_normal
 
-approved:
-  distination: Sapporo
+other_applied_statement:
+  distination: kyoto
   purpose: recruit
-  start_at: 2021-05-15 08:34:55
-  finish_at: 2021-05-21 21:34:55
-  work_done_at: 2021-05-20 18:34:55
-  applied: true
-  applied_at: 2021-05-22 08:34:55
-  approved: true
-  approved_at: 2021-05-23 08:34:55
-  user: hikaru
+  start_at: 2021-04-15 08:34:55
+  finish_at: 2021-04-15 21:34:55
+  work_done_at: 2021-04-15 18:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: other_normal
+
+other_approved_statement:
+  distination: kyoto
+  purpose: recruit
+  start_at: 2021-04-15 08:34:55
+  finish_at: 2021-04-15 21:34:55
+  work_done_at: 2021-04-15 18:34:55
+  applied: false
+  applied_at: 2021-04-20 08:34:55
+  approved: false
+  approved_at: 2021-04-20 08:34:55
+  user: other_normal

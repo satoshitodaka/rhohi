@@ -1,6 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one_1:
+# 自分の会社のユーザーの未提出の申請に紐づく旅費
+my_not_applied_statement_1:
   date: 2021-04-01
   transportation: Train
   bording: Totsuka
@@ -8,9 +7,9 @@ one_1:
   fare: 726
   mileage: 
   allowance: 0
-  trip_statement: one
+  trip_statement: my_not_applied_statement
 
-one_2:
+my_not_applied_statement_2:
   date: 2021-04-01
   transportation: Train
   bording: Tokyo
@@ -18,9 +17,31 @@ one_2:
   fare: 726
   mileage: 
   allowance: 0
-  trip_statement: one
+  trip_statement: my_not_applied_statement
 
-two_1:
+# 自分の会社の他ユーザーの未提出の申請に紐づく旅費
+my_not_applied_statement2_1:
+  date: 2021-04-01
+  transportation: Train
+  bording: Totsuka
+  get_off: Tokyo
+  fare: 726
+  mileage: 
+  allowance: 0
+  trip_statement: my_not_applied_statement2
+
+my_not_applied_statement2_2:
+  date: 2021-04-01
+  transportation: Train
+  bording: Tokyo
+  get_off: Totsuka
+  fare: 726
+  mileage: 
+  allowance: 0
+  trip_statement: my_not_applied_statement2
+
+# 自分の会社のユーザーの提出済の申請に紐づく旅費
+my_applied_statement_1:
   date: 2021-04-15
   transportation: Shinkansen
   bording: Tokyo
@@ -28,9 +49,9 @@ two_1:
   fare: 13,320
   mileage: 1
   allowance: 3,200
-  trip_statement: two
+  trip_statement: my_applied_statement
 
-two_2:
+my_applied_statement_2:
   date: 2021-04-15
   transportation: Shinkansen
   bording: Tokyo
@@ -38,4 +59,4 @@ two_2:
   fare: 13,320
   mileage: 1
   allowance: 3,200
-  trip_statement: two
+  trip_statement: my_applied_statement

@@ -10,13 +10,13 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
 
   # ユーザーの出張申請を承認する。
   test "admin_user can approve other statement" do
-    login_as(@approver)
-    @others_statement = trip_statements(:two)
-    get approval_index_path
-    assert_template 'approval/index'
-    # 編集・削除タグは無いか？
-    get new_trip_statement_approval_path(@others_statement)
-    assert_template 'approval/new'
+    # login_as(@approver)
+    # @others_statement = trip_statements(:my_not_applied_statement)
+    # get approval_index_path
+    # assert_template 'approval/index'
+    # # 編集・削除タグは無いか？
+    # get new_trip_statement_approval_path(@others_statement)
+    # assert_template 'approval/new'
     # post trip_statement_approval_index_path(@approver), params: {
     #   approval: {
     #     trip_statement_id: @others_statement.id,
