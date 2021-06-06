@@ -5,8 +5,8 @@ class ExpencesControllerTest < ActionDispatch::IntegrationTest
   
   def setup
     @user = users(:my_system_admin)
-    @trip_statement = trip_statements(:one)
-    @expence = expences(:one_1)
+    @trip_statement = trip_statements(:my_not_applied_statement)
+    @expence = expences(:my_not_applied_statement_1)
   end
 
   test "should redirect new when not logged in" do
@@ -51,7 +51,7 @@ class ExpencesControllerTest < ActionDispatch::IntegrationTest
   test "should redirect delete for wrong expence" do
     login_as(@user)
     assert_no_difference 'Expence.count' do
-      @expence = expences(:two_1)
+      @expence = expences(:my_not_applied_statement2_1)
       delete expence_path(@expence)
     end
     assert_redirected_to root_url

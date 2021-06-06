@@ -2,7 +2,8 @@ class ApprovalController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user?
   before_action :same_company?, only: [:new, :create, :edit, :update]
-  # before_action :approve?, only: :create
+  before_action :approve?, only: [:new, :create]
+  before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
     @not_approved = TripStatement.where(applied: true, approved: false).where.not(user_id: current_user.id)
@@ -77,8 +78,15 @@ class ApprovalController < ApplicationController
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.approved
         redirect_to trip_statement_approval_index_url
-        # flash[:danger] = "承認済の申請です。"
-        flash[:success] = "出張を申請しました。"
+        flash[:danger] = "承認済の申請です。"
+      end
+    end
+
+    def applied?
+      @trip_statement = TripStatement.find(params[:trip_statement_id])
+      if @trip_statement.applied == false
+        redirect_to trip_statement_approval_index_url
+        flash[:danger] = "未提出の申請です。"
       end
     end
 

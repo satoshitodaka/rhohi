@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = users(:my_system_admin)
-    @trip_statement = trip_statements(:one)
+    @trip_statement = trip_statements(:my_not_applied_statement)
   end
 
   test "should be valid" do

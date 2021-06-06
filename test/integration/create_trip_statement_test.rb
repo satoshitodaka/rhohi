@@ -4,7 +4,7 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
 
   def setup
-    @user = users(:my_system_admin)
+    @user = users(:my_normal)
   end
 
   test 'create new trip_statement' do
@@ -43,7 +43,7 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
 
   test "create new expence" do
     login_as(@user)
-    @trip_statement = trip_statements(:one)
+    @trip_statement = trip_statements(:my_not_applied_statement)
     get trip_statements_path
     assert_template 'trip_statements/index'
     get trip_statement_path(@trip_statement)
@@ -68,8 +68,8 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
 
   test "edit trip_statement & expence" do
     login_as(@user)
-    @trip_statement = trip_statements(:one)
-    @expence = expences(:one_1)
+    @trip_statement = trip_statements(:my_not_applied_statement)
+    @expence = expences(:my_not_applied_statement_1)
     get trip_statements_path
     assert_template 'trip_statements/index'
     get trip_statement_path(@trip_statement)
@@ -103,10 +103,10 @@ class CreateTripStatementTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  # 申請の提出についてのテスト
+  # 申請の提出機能についてのテスト
   test "subumit trip_statement" do
     login_as(@user)
-    @trip_statement = trip_statements(:one)
+    @trip_statement = trip_statements(:my_not_applied_statement)
     get trip_statements_path
     get trip_statement_path(@trip_statement)
     assert_equal false, @trip_statement.applied

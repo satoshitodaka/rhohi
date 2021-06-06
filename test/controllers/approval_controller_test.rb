@@ -1,55 +1,57 @@
 require 'test_helper'
 
 class ApprovalControllerTest < ActionDispatch::IntegrationTest
+  include Warden::Test::Helpers
 
   def setup
     @approver_user = users(:my_admin)
-    @approved_statement = trip_statements(:approved)
-    @other_company_user = users(:othre_normal)
-    @other_company_user_trip_statement = trip_statements(:six)
+    @applied_statement = trip_statements(:my_applied_statement)
+    @not_applied_statement = trip_statements(:my_not_applied_statement)
+    @approved_statement = trip_statements(:my_approved_statement)
+    @other_company_user = users(:other_normal)
+    @other_company_user_trip_statement = trip_statements(:other_not_applied_statement)
   end
 
   test "should get index" do
-    log_in_as(@approver_user)
+    login_as(@approver_user)
     get approval_index_url
     assert_response :success
   end
 
-  # test "should get show" do
-  #   get approval_show_url
-  #   assert_response :success
-  # end
+  test "should get new" do
+    login_as(@approver_user)
+    get new_trip_statement_approval_path(@applied_statement)
+    assert_response :success
+  end
 
-  # test "should get create" do
-  #   get approval_create_url
-  #   assert_response :success
-  # end
+  # 未提出の申請を承認するとリダイレクトする。
+  test "should redirect when approval not_applied trip_statement" do
+    login_as(@approver_user)
+    assert_no_difference 'Approval.count' do
+      post trip_statement_approval_index_path(@not_applied_statement), params: { approval: "true" } 
+    end
+    assert_redirected_to trip_statement_approval_index_url
+    assert_not flash.empty?
+  end
 
-  # test "should get edit" do
-  #   get approval_edit_url
-  #   assert_response :success
-  # end
+  # 承認済の申請を承認すると、リダイレクトする。
+  test "should redirect when approval approved trip_statement" do
+    login_as(@approver_user)
+    assert_no_difference 'Approval.count' do
+      post trip_statement_approval_index_path(@approved_statement), params: { approval: "true" } 
+    end
+    assert_redirected_to trip_statement_approval_index_url
+    assert_not flash.empty?
+  end
 
-  # test "should get update" do
-  #   get approval_update_url
-  #   assert_response :success
-  # end
-
-  # test "should get destroy" do
-  #   get approval_destroy_url
-  #   assert_response :success
-  # end
-
-  # test "approved trip_statement should not approved again" do
-  #   log_in_as(users(:my_admin))
-
-  # end
-
-  # test "should redirect when approval other_company_user's trip_statement" do
-  #   log_in_as(@approver_user)
-  #   get new_trip_statement_approval_path(@other_company_user_trip_statement)
-  #   redirect_to root_url
-
-  # end
+  # 他社のユーザーの申請を承認(create)すると、リダイレクトする。
+  test "should redirect when create approval other company's trip_statement" do
+    login_as(@approver_user)
+    assert_no_difference 'Approval.count' do
+      post trip_statement_approval_index_path(@other_company_user_trip_statement), params: { approval: "true" }
+    end
+    assert_redirected_to trip_statement_approval_index_url
+    assert_not flash.empty?
+  end
 
 end
