@@ -5,9 +5,9 @@ my_not_applied_statement:
   finish_at: 2021-04-03 08:34:55
   work_done_at: 2021-04-02 08:34:55
   applied: false
-  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  # applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
-  approved_at: 2021-04-20 08:34:55
+  # approved_at: 2021-04-20 08:34:55
   user: my_normal
 
 my_not_applied_statement2:
@@ -17,9 +17,9 @@ my_not_applied_statement2:
   finish_at: 2021-04-03 08:34:55
   work_done_at: 2021-04-02 08:34:55
   applied: false
-  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  # applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
   approved: false
-  approved_at: 2021-04-20 08:34:55
+  # approved_at: 2021-04-20 08:34:55
   user: my_admin
 
 my_applied_statement:
@@ -31,7 +31,7 @@ my_applied_statement:
   applied: true
   applied_at: 2021-04-20 08:34:55
   approved: false
-  approved_at: 2021-04-20 08:34:55
+  # approved_at: 2021-04-20 08:34:55
   user: my_normal
 
 my_approved_statement:
@@ -41,7 +41,7 @@ my_approved_statement:
   finish_at: 2021-04-03 08:34:55
   work_done_at: 2021-04-02 08:34:55
   applied: true
-  applied_at: 2021-04-20 08:34:55 #空白だとどうなるか？
+  applied_at: 2021-04-20 08:34:55
   approved: true
   approved_at: 2021-04-20 08:34:55
   user: my_normal
@@ -53,9 +53,9 @@ other_not_applied_statement:
   finish_at: 2021-04-15 21:34:55
   work_done_at: 2021-04-15 18:34:55
   applied: false
-  applied_at: 2021-04-20 08:34:55
+  # applied_at: 2021-04-20 08:34:55
   approved: false
-  approved_at: 2021-04-20 08:34:55
+  # approved_at: 2021-04-20 08:34:55
   user: other_normal
 
 other_applied_statement:
@@ -67,7 +67,7 @@ other_applied_statement:
   applied: false
   applied_at: 2021-04-20 08:34:55
   approved: false
-  approved_at: 2021-04-20 08:34:55
+  # approved_at: 2021-04-20 08:34:55
   user: other_normal
 
 other_approved_statement:

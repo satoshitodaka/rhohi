@@ -6,5 +6,15 @@ class TripStatement < ApplicationRecord
   validates :purpose, presence: true
   validates :user_id, presence: true
 
+   
+
+  # def add_approval
+  #   self.update(approval: true, approval_at: Time.zone.now)
+  # end
+
+  # def add_denial
+  #   self.update(approval: false, approval_at: Time.zone.now)
+  # end
+
 
 end

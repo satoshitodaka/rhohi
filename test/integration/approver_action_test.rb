@@ -5,42 +5,44 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:my_normal)
-    @approver = users(:my_system_admin)
+    @approver = users(:my_admin)
   end
 
   # ユーザーの出張申請を承認する。
   test "admin_user can approve other statement" do
-    # login_as(@approver)
-    # @others_statement = trip_statements(:my_not_applied_statement)
-    # get approval_index_path
-    # assert_template 'approval/index'
+    login_as(@approver)
+    @other_users_statement = trip_statements(:my_applied_statement)
+    get approval_index_path
+    assert_template 'approval/index'
     # # 編集・削除タグは無いか？
-    # get new_trip_statement_approval_path(@others_statement)
-    # assert_template 'approval/new'
-    # post trip_statement_approval_index_path(@approver), params: {
-    #   approval: {
-    #     trip_statement_id: @others_statement.id,
-    #     approval: "true"
-    #   }
-    # }
-    # assert_equal true, @others_statement.approved
+    get new_trip_statement_approval_path(@other_users_statement)
+    assert_template 'approval/new'
+    assert_difference 'Approval.count', 1 do
+      post trip_statement_approval_index_path(@other_users_statement), params: { approval: "true" }
+      @approval = Approval.last
+    end
+    assert_equal true, @approval.approval
+    assert_equal @user.id, @other_users_statement.user_id
+    # assert_equal true, @other_users_statement.approved # 実際にはupdateされているので、テストの記述が間違っている可能性大
+    assert_equal @other_users_statement, @approval.trip_statement_id
   end
+
   # ユーザーの出張承認を否認する。
-
-
-  # adminユーザーが他人の出張申請を編集する場合、リダイレクトするか？
-  # test "should "
-  # test "should redirect when admin_user edit other's trip_statement" do
-  # end
-
-  # adminユーザーが他人の出張申請を削除する場合、リダイレクトするか？
-  # test "should redirect when admin_user delete other's trip_statement" do
-  # end
-
-
-
-
-
-
+  test "admin_user can deny other statement" do
+    login_as(@approver)
+    @others_statement = trip_statements(:my_applied_statement)
+    get approval_index_path
+    assert_template 'approval/index'
+    # # 編集・削除タグは無いか？
+    get new_trip_statement_approval_path(@others_statement)
+    assert_template 'approval/new'
+    assert_difference 'Approval.count', 1 do
+      post trip_statement_approval_index_path(@others_statement), params: { approval: "false" }
+      @approval = Approval.last
+    end
+    assert_equal false, @approval.approval
+    assert_equal false, @others_statement.approved # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
+    # assert_equal @other_users_statement, @approval.trip_statement_id
+  end
 
 end

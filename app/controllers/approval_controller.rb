@@ -36,16 +36,18 @@ class ApprovalController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     if params[:approval] == "true"
       @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: true)
-      @trip_statement.update(approved: true, approved_at: Time.zone.now)
+      @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
+      # @trip_statement.approved = true
+      # @approval.add_approval
     elsif params[:approval] == "false"
       @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: false)
-      @trip_statement.approved = false
+      @trip_statement.update(approved: false, approved_at: Time.zone.now)
     else
       redirect_to trip_statement_approval_index_path
       flash[:warning] = "問題が発生しました。再度お試しください。"
     end
     @trip_statement.save
-    @approval.save
+    # @approval.save
     if params[:approval] == "true"
       flash[:success] = "承認しました！"
     elsif params[:approval] == "false"
@@ -53,9 +55,6 @@ class ApprovalController < ApplicationController
     end
     redirect_to trip_statement_approval_index_url
   end
-    
-  #   redirect_to trip_statement_approval_index_path
-  # end
 
   def edit
     @approval = Approval.find(params[:id])
