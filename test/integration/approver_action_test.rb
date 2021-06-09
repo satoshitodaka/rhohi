@@ -24,7 +24,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     assert_equal true, @approval.approval
     assert_equal @user.id, @other_users_statement.user_id
     # assert_equal true, @other_users_statement.approved # 実際にはupdateされているので、テストの記述が間違っている可能性大
-    assert_equal @other_users_statement, @approval.trip_statement_id
+    # assert_equal @other_users_statement, @approval.trip_statement_id
   end
 
   # ユーザーの出張承認を否認する。
@@ -33,15 +33,14 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     @others_statement = trip_statements(:my_applied_statement)
     get approval_index_path
     assert_template 'approval/index'
-    # # 編集・削除タグは無いか？
     get new_trip_statement_approval_path(@others_statement)
     assert_template 'approval/new'
     assert_difference 'Approval.count', 1 do
-      post trip_statement_approval_index_path(@others_statement), params: { approval: "false" }
+      post trip_statement_approval_index_path(@others_statement.id, approval: "false" )#, params: { approval: "false" }
       @approval = Approval.last
     end
     assert_equal false, @approval.approval
-    assert_equal false, @others_statement.approved # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
+    assert_equal @approval, @others_statement # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
     # assert_equal @other_users_statement, @approval.trip_statement_id
   end
 

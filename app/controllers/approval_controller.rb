@@ -7,7 +7,6 @@ class ApprovalController < ApplicationController
 
   def index
     @not_approved = TripStatement.where(applied: true, approved: false).where.not(user_id: current_user.id)
-    # @not_approved = TripStatement.left_joins(:approval).select("trip_statements.*").where("approval.id is null")
   end
 
   def approved
@@ -15,14 +14,11 @@ class ApprovalController < ApplicationController
   end
 
   def denied
-    @denied = TripStatement.where(approved: true)
-    # @denied_approval = @denied.approvals
+    @denied = TripStatement.where(approved: false, applied_at: nil)
   end
 
   def new
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    # @user = @trip_statement.user
-    # @approval = @trip_statement.approval.build(user_id: current_user.id)
     @user = current_user
     @approval = @user.approval.build(trip_statement_id: @trip_statement.id)
     @expences = @trip_statement.expences.all #承認画面にて、紐づく旅費全てを表示する。
@@ -37,8 +33,6 @@ class ApprovalController < ApplicationController
     if params[:approval] == "true"
       @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: true)
       @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
-      # @trip_statement.approved = true
-      # @approval.add_approval
     elsif params[:approval] == "false"
       @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: false)
       @trip_statement.update(approved: false, approved_at: Time.zone.now)
