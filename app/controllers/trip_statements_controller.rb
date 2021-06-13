@@ -12,14 +12,16 @@ class TripStatementsController < ApplicationController
     
   end
 
-  # 承認依頼中の申請
-  
+  # 承認依頼中の申請(紐づく承認を持っていない)
   def index
     @user = current_user
-    @created_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っていない。
-    # @created_statements = TripStatement.includes(:approval).where( approval: {:id => nil})#申請情報は持っていない。
-    # @created_statements = TripStatement.joins(:approval).distinct
-    # @created_statements = TripStatement.left_outer_joins(:approval).where(approval: { id: nil })
+    @created_statements = @user.trip_statements.left_joins(:approval).merge(Approval.where(id: nil))
+
+    # @created_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っていない。
+    # @created_statements = TripStatement.left_joins(:approval).where( approval: {id: "1"})#申請情報は持っていない。
+    # @created_statements = TripStatement.left_outer_joins(:approval).where( approval: {id: nil})
+    # @created_statements = TripStatement.left_joins(:approval).select("trip_statements.*").where("approval.id is null")
+    
   end
 
   # 承認済みの申請
@@ -42,7 +44,7 @@ class TripStatementsController < ApplicationController
     @trip_statement = current_user.trip_statements.create(create_trip_statement_params)
     if @trip_statement.save
       redirect_to trip_statement_path(@trip_statement)
-      flash[:success] = "出張申請を作成しました。手当情報を追加してください。"
+      flash[:success] = "出張申請を作成しました。旅費情報を追加してください。"
     else
       render 'new'
     end
@@ -57,7 +59,7 @@ class TripStatementsController < ApplicationController
     if @trip_statement.update(update_trip_statement_params)
       @trip_statement.save
       redirect_to trip_statement_url(params[:id])
-      flash[:success] = "出張申請を提出しました。"
+      flash[:success] = "出張申請を編集しました。"
     else
       render 'edit'
     end
@@ -65,11 +67,12 @@ class TripStatementsController < ApplicationController
 
   def submit
     @trip_statement = TripStatement.find(params[:id])
-    @trip_statement.applied = true
-    @trip_statement.applied_at = Time.zone.now
+    @trip_statement.update(applied: true, applied_at: Time.zone.now)
+    # @trip_statement.applied = true
+    # @trip_statement.applied_at = Time.zone.now
     @trip_statement.save
     redirect_to trip_statements_url
-    flash[:success] = "出張を申請しました。"
+    flash[:success] = "出張を提出しました。"
   end
 
   def destroy
