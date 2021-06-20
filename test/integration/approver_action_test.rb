@@ -27,22 +27,20 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     assert_equal @other_users_statement.id, @approval.trip_statement_id
   end
 
-  # # ユーザーの出張承認を否認する。
-  # test "admin_user can deny other statement" do
-  #   login_as(@approver)
-  #   @other_users_statement = trip_statements(:my_applied_statement)
-  #   get approvals_index_path
-  #   assert_template 'approvals/index'
-  #   get new_trip_statement_approval_path(@other_users_statement)
-  #   assert_template 'approvals/new'
-  #   assert_difference 'Approval.count', 1 do
-  #     # post trip_statement_approvals_path(@other_users_statement.id, approval: "false" )#, params: { approval: "false" }
-  #     post trip_statement_approvals_path(@other_users_statement), params: { approval: "false" }
-  #     @approval = Approval.last
-  #   end
-  #   assert_equal false, @approval.approval
-  #   # assert_equal false, @others_statement.approved_at # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
-  #   assert_equal true, @other_users_statement#, @approval.trip_statement_id
-  # end
+  # ユーザーの出張承認を否認する。
+  test "admin_user can deny other statement" do
+    login_as(@approver)
+    @other_users_statement = trip_statements(:my_applied_statement)
+    get approvals_index_path
+    assert_template 'approvals/index'
+    get new_trip_statement_approval_path(@other_users_statement)
+    assert_template 'approvals/new'
+    assert_difference 'Approval.count', 1 do
+      post trip_statement_approvals_path(@other_users_statement), params: { approval: "false" }
+      @approval = Approval.last
+    end
+    assert_equal false, @approval.approval
+    assert_equal false, @other_users_statement.approved # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
+  end
 
 end

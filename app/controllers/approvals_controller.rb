@@ -25,10 +25,6 @@ class ApprovalsController < ApplicationController
     @expences = @trip_statement.expences.all #承認画面にて、紐づく旅費全てを表示する。
   end
 
-  # def show
-  #   @not_approved = TripStatement.find(:id)
-  # end
-
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     if params[:approval] == "true"
@@ -94,9 +90,5 @@ class ApprovalsController < ApplicationController
         flash[:danger] = "他社の申請は操作できません"
       end
     end
-
-    # def approval_params
-    #   params.permit(:comment).merge(approval_user_id: current_user.id, trip_statement_id: params[:id])
-    # end
 
 end
