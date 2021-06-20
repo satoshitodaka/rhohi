@@ -1,4 +1,5 @@
-class ApprovalController < ApplicationController
+class ApprovalsController < ApplicationController
+
   before_action :authenticate_user!
   before_action :admin_user?
   before_action :same_company?, only: [:new, :create, :edit, :update]
@@ -20,7 +21,7 @@ class ApprovalController < ApplicationController
   def new
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @user = current_user
-    @approval = @user.approval.build(trip_statement_id: @trip_statement.id)
+    @approval = @user.approvals.build(trip_statement_id: @trip_statement.id)
     @expences = @trip_statement.expences.all #承認画面にて、紐づく旅費全てを表示する。
   end
 
@@ -31,13 +32,13 @@ class ApprovalController < ApplicationController
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     if params[:approval] == "true"
-      @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: true)
+      @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: true)
       @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
     elsif params[:approval] == "false"
-      @approval = current_user.approval.create(trip_statement_id: @trip_statement.id, approval: false)
+      @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: false)
       @trip_statement.update(approved: false, approved_at: Time.zone.now)
     else
-      redirect_to trip_statement_approval_index_path
+      redirect_to approvals_index_path
       flash[:warning] = "問題が発生しました。再度お試しください。"
     end
     @trip_statement.save
@@ -47,7 +48,7 @@ class ApprovalController < ApplicationController
     elsif params[:approval] == "false"
       flash[:warning] = "否認しました。"
     end
-    redirect_to trip_statement_approval_index_url
+    redirect_to approvals_index_url
   end
 
   def edit
@@ -70,7 +71,7 @@ class ApprovalController < ApplicationController
     def approve?
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.approved
-        redirect_to trip_statement_approval_index_url
+        redirect_to approvals_index_url
         flash[:danger] = "承認済の申請です。"
       end
     end
@@ -78,7 +79,7 @@ class ApprovalController < ApplicationController
     def applied?
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.applied == false
-        redirect_to trip_statement_approval_index_url
+        redirect_to approvals_index_url
         flash[:danger] = "未提出の申請です。"
       end
     end
@@ -89,7 +90,7 @@ class ApprovalController < ApplicationController
     def same_company?
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.user.company_id != current_user.company_id
-        redirect_to trip_statement_approval_index_url
+        redirect_to approvals_index_url
         flash[:danger] = "他社の申請は操作できません"
       end
     end

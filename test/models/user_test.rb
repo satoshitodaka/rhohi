@@ -30,7 +30,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated approval should be destroyed" do #ユーザーを削除しても承認情報は消えない。
     @user.save
-    @user.approval.create!(trip_statement_id: @trip_statement.id, approval: true)
+    @user.approvals.create!(trip_statement_id: @trip_statement.id, approval: true)
     assert_no_difference 'Approval.count' do
       @user.destroy
     end

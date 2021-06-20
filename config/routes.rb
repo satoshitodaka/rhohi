@@ -16,16 +16,16 @@ Rails.application.routes.draw do
       get :denied
     end
     resources :expences
-    resources :approval, only: [:index, :new, :create, :edit, :update, :destroy] do
+    resources :approvals, only: [:index, :new, :create, :edit, :update, :destroy] do
       collection do
         get 'approved'
         get :denied
       end
     end
   end
-  get 'approval/index' => 'approval#index'
-  get 'approval/approved' => 'approval#approved'
-  get 'approval/denied' => 'approval#denied'
+  get 'approvals/index' => 'approvals#index'
+  get 'approvals/approved' => 'approvals#approved'
+  get 'approvals/denied' => 'approvals#denied'
   # post 'trip_statements/:id/submit', to: 'trip_statements#update_submit'
   # get 'trip_statements/:id/update' => 'trip_statement#update'
 end
