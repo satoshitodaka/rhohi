@@ -12,18 +12,18 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
   test "admin_user can approve other statement" do
     login_as(@approver)
     @other_users_statement = trip_statements(:my_applied_statement)
-    get approval_index_path
-    assert_template 'approval/index'
+    get approvals_index_path
+    assert_template 'approvals/index'
     # # 編集・削除タグは無いか？
     get new_trip_statement_approval_path(@other_users_statement)
-    assert_template 'approval/new'
+    assert_template 'approvals/new'
     assert_difference 'Approval.count', 1 do
-      post trip_statement_approval_index_path(@other_users_statement), params: { approval: "true" }
+      post trip_statement_approvals_path(@other_users_statement), params: { approval: "true" }
       @approval = Approval.last
     end
     assert_equal true, @approval.approval
     assert_equal @user.id, @other_users_statement.user_id
-    # assert_equal true, @other_users_statement.approved # 実際にはupdateされているので、テストの記述が間違っている可能性大
+    assert_equal true, @other_users_statement.approved # 実際にはupdateされているので、テストの記述が間違っている可能性大
     # assert_equal @other_users_statement, @approval.trip_statement_id
   end
 
@@ -31,12 +31,12 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
   test "admin_user can deny other statement" do
     login_as(@approver)
     @others_statement = trip_statements(:my_applied_statement)
-    get approval_index_path
-    assert_template 'approval/index'
+    get approvals_index_path
+    assert_template 'approvals/index'
     get new_trip_statement_approval_path(@others_statement)
-    assert_template 'approval/new'
+    assert_template 'approvals/new'
     assert_difference 'Approval.count', 1 do
-      post trip_statement_approval_index_path(@others_statement.id, approval: "false" )#, params: { approval: "false" }
+      post trip_statement_approvals_path(@others_statement.id, approval: "false" )#, params: { approval: "false" }
       @approval = Approval.last
     end
     assert_equal false, @approval.approval

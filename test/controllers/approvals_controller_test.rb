@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApprovalControllerTest < ActionDispatch::IntegrationTest
+class ApprovalsControllerTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
 
   def setup
@@ -14,7 +14,7 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     login_as(@approver_user)
-    get approval_index_url
+    get approvals_index_url
     assert_response :success
   end
 
@@ -28,9 +28,9 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
   test "should redirect when approval not_applied trip_statement" do
     login_as(@approver_user)
     assert_no_difference 'Approval.count' do
-      post trip_statement_approval_index_path(@not_applied_statement), params: { approval: "true" } 
+      post trip_statement_approvals_path(@not_applied_statement), params: { approval: "true" } 
     end
-    assert_redirected_to trip_statement_approval_index_url
+    assert_redirected_to approvals_index_url
     assert_not flash.empty?
   end
 
@@ -38,9 +38,9 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
   test "should redirect when approval approved trip_statement" do
     login_as(@approver_user)
     assert_no_difference 'Approval.count' do
-      post trip_statement_approval_index_path(@approved_statement), params: { approval: "true" } 
+      post trip_statement_approvals_path(@approved_statement), params: { approval: "true" } 
     end
-    assert_redirected_to trip_statement_approval_index_url
+    assert_redirected_to approvals_index_url
     assert_not flash.empty?
   end
 
@@ -48,9 +48,9 @@ class ApprovalControllerTest < ActionDispatch::IntegrationTest
   test "should redirect when create approval other company's trip_statement" do
     login_as(@approver_user)
     assert_no_difference 'Approval.count' do
-      post trip_statement_approval_index_path(@other_company_user_trip_statement), params: { approval: "true" }
+      post trip_statement_approvals_path(@other_company_user_trip_statement), params: { approval: "true" }
     end
-    assert_redirected_to trip_statement_approval_index_url
+    assert_redirected_to approvals_index_url
     assert_not flash.empty?
   end
 

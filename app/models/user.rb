@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # belongs_to :department
   has_many :trip_statements, dependent: :nullify
   has_many :expences, through: :trip_statements # ユーザーから旅費情報を参照できる。
-  has_many :approval, dependent: :nullify
+  has_many :approvals, dependent: :nullify
   validates :name, presence: true
   validates :email, presence: true #このバリデーションがあってもなくても、テストが通ってしまう？
   devise :invitable, :database_authenticatable, :registerable,
