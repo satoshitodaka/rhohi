@@ -1,6 +1,3 @@
-<h1>RhoHiへようこそ</h1>
-<p>利用した旅費を申請してみましょう</p>
-
 <% if user_signed_in? %>
   <h3>申請中の出張旅費申請は<%= @created_statements.count %>件</h3>
   <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary" %>
@@ -27,5 +24,8 @@
     <h3>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h3>
     <%= link_to '承認する', approvals_index_path, class:"btn btn-primary"  %>
   <% end %>
+<% else %>
+   <h1>RhoHiへようこそ</h1>
+    <p>利用した旅費を申請してみましょう</p>
 <% end %>
 

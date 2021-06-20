@@ -40,7 +40,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
       @approval = Approval.last
     end
     assert_equal false, @approval.approval
-    assert_equal @approval, @others_statement # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
+    assert_equal false, @others_statement.approved_at # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
     # assert_equal @other_users_statement, @approval.trip_statement_id
   end
 
