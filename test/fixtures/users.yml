@@ -16,6 +16,7 @@ my_admin:
   birthday: 1995-06-17
   admin: true
   system_admin: false
+  # password: 'password'
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 my_normal:
@@ -26,6 +27,7 @@ my_normal:
   birthday: 1997-07-25
   admin: false
   system_admin: false
+  # password: 'password'
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 other_system_admin:
@@ -36,6 +38,7 @@ other_system_admin:
   birthday: 1994-12-16
   admin: true
   system_admin: true
+  # password: 'password'
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 other_admin:

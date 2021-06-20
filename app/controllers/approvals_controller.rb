@@ -7,7 +7,7 @@ class ApprovalsController < ApplicationController
   before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
-    @not_approved = TripStatement.where(applied: true, approved: false).where.not(user_id: current_user.id)
+    @not_approved = TripStatement.where(applied: true, approved: false, approved_at: nil).where.not(user_id: current_user.id)
   end
 
   def approved
@@ -36,7 +36,7 @@ class ApprovalsController < ApplicationController
       @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
     elsif params[:approval] == "false"
       @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: false)
-      @trip_statement.update(approved: false, approved_at: Time.zone.now)
+      @approval.trip_statement.update(approved: false, approved_at: Time.zone.now)
     else
       redirect_to approvals_index_path
       flash[:warning] = "問題が発生しました。再度お試しください。"
