@@ -1,6 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* universal 全体のレイアウトに影響 */
+
+// headerの表示領域を60px確保する。
 body {
   padding-top: 60px;
 }
@@ -13,6 +16,7 @@ textarea {
   resize: vertical;
 }
 
+// テキストを中央に寄せる
 .center {
   text-align: center;
 }
@@ -22,7 +26,7 @@ textarea {
 }
 
 
-/* typography */
+/* typography テキストの見栄えを良くする。 */
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
