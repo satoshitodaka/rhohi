@@ -1,18 +1,21 @@
 <% if user_signed_in? %>
-  <aside class="col-md-4">
-    <h3>申請中の出張旅費申請は<%= @created_statements.count %>件</h3>
-    <%# <%= render created_statements %>
-    <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary" %>
-    <% if current_user.admin %>
-      <h3>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h3>
-      <%# <%= render not_approved %>
-      <%= link_to '承認する', approvals_index_path, class:"btn btn-primary"  %>
-    <% end %>
-  </aside>
   <div class="row">
-    <section class="trip_statement_form">
-      <%= form_with(model: @trip_statement, local: true) do |f| %>
-        <div class="col-md-6 col-md-offset-3">
+    <aside class="col-md-4">
+      <h3>申請中の出張旅費申請は<%= @created_statements.count %>件</h3>
+        <div>
+        </div>
+      <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary" %>
+      <% if current_user.admin %>
+        <h3>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h3>
+          <div>
+          </div>
+        <%= link_to '承認する', approvals_index_path, class:"btn btn-primary"  %>
+      <% end %>
+    </aside>
+    <div class="col-md-6 col-md-offset-2">
+      <h3></h3>
+      <section class="trip_statement_form">
+        <%= form_with(model: @trip_statement, local: true) do |f| %>
           <%= f.label :distination, "出張先" %>
           <%= f.text_area :distination, placeholder: "出張先を入力してください" %>
           <%= f.label :purpose, "出張理由" %>
@@ -23,10 +26,10 @@
           <%= f.datetime_field :finish_at %>
           <%= f.label :work_done_at, "作業完了日時" %>
           <%= f.datetime_field :work_done_at %>
-        </div>
-        <%= f.submit "出張情報を登録する", class:"btn btn-primary col-md-6 col-md-offset-3" %>
-      <% end %>
-    </section>
+          <%= f.submit "出張情報を登録する", class:"btn btn-primary col-md-6 col-md-offset-3" %>
+        <% end %>
+      </section>
+     </div>
   </div>
 <% else %>
   <div class="jumbotron center">
