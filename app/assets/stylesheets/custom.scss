@@ -130,3 +130,9 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
+/* devise */
+
+devise_error_messages {
+  color: red;
+}
