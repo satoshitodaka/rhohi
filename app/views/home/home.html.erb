@@ -6,7 +6,7 @@
         <div>
         </div>
       <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary" %>
-      <% if current_user.admin %>
+      <% if current_user.has_role? :admin %>
         <h3>承認依頼があります</h3>
         <h4>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h4>
           <div>

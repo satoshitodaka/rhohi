@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     invitations: 'devise/invitations'
   }
+  devise_scope :user do
+    get 'users/:id/edit' => 'users/registrations#edit', as: :edit_other_user_registration
+    match 'users/:id', to: 'users/registrations#update', via: [:patch, :put], as: :other_user_registration
+  end
+
   root 'home#home'
   get 'home/about'
   get 'home/help'
