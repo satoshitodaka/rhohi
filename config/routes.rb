@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   
-  get 'users/show'
-  devise_for :users, controllers: {
-    invitations: 'devise/invitations'
+ 
+  # devise_for :users, controllers: {
+  #   invitations: 'devise/invitations'
+  # }
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
   }
+
   devise_scope :user do
     get 'users/:id/edit' => 'users/registrations#edit', as: :edit_other_user_registration
     match 'users/:id', to: 'users/registrations#update', via: [:patch, :put], as: :other_user_registration
@@ -13,7 +17,9 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/help'
   get 'home/contact'
-  resources :users, only: :show
+  resources :users, only: [:show, :index] do
+    patch 'invite', on: :member
+  end
   resources :trip_statements, shallow: true do
     patch 'submit', on: :member
     collection do

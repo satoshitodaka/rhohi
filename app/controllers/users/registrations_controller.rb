@@ -98,10 +98,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # The path used after sign up.
     def after_sign_up_path_for(resource)
-      if current_user_is_admin?	
-        users_path	
-      else	
-      super(resource)
+      if current_user_is_admin?
+        users_path
+      else
+        super(resource)
       end
     end
 
@@ -126,20 +126,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def update_resource_without_password(resource, params)	
-      resource.update_without_password(params)	
-      end
+      resource.update_without_password(params)
+    end
 
     def creatable?
       raise CanCan::AccessDenied unless user_signed_in?
-      if current_user.admin
-        raise CanCan::AccessDenied
+      if !current_user_is_admin?
+        # raise CanCan::AccessDenied
+        redirect_to root_url
+        flash[:danger] = "ユーザー作成の権限がありません"
       end
     end
 
     def editable?
       raise CanCan::AccessDenied unless user_signed_in?
       if params[:id].present? && !current_user_is_admin?
-        raise CanCan::AccessDenied
+        # raise CanCan::AccessDenied
+        redirect_to root_url
+        flash[:danger] = "ユーザー編集の権限がありません"
       end
     end
 
