@@ -16,12 +16,6 @@ class TripStatementsController < ApplicationController
   def index
     @user = current_user
     @created_statements = @user.trip_statements.left_joins(:approvals).merge(Approval.where(id: nil))
-
-    # @created_statements = @user.trip_statements.all.where(applied: true, approved: false)#申請情報は持っていない。
-    # @created_statements = TripStatement.left_joins(:approval).where( approval: {id: "1"})#申請情報は持っていない。
-    # @created_statements = TripStatement.left_outer_joins(:approval).where( approval: {id: nil})
-    # @created_statements = TripStatement.left_joins(:approval).select("trip_statements.*").where("approval.id is null")
-    
   end
 
   # 承認済みの申請
@@ -65,6 +59,7 @@ class TripStatementsController < ApplicationController
     end
   end
 
+    # 承認依頼（提出）する
   def submit
     @trip_statement = TripStatement.find(params[:id])
     @trip_statement.update(applied: true, applied_at: Time.zone.now)

@@ -25,6 +25,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

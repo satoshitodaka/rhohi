@@ -1,0 +1,13 @@
+<%= form_with(model: @trip_statement, local: true) do |f| %>
+  <%= f.label :distination, "出張先" %>
+  <%= f.text_area :distination, placeholder: "出張先を入力してください" %>
+  <%= f.label :purpose, "出張理由" %>
+  <%= f.text_area :purpose, placeholder: "出張理由を入力してください" %>
+  <%= f.label :start_at, "出発日時" %>
+  <%= f.datetime_field :start_at %>
+  <%= f.label :finish_at, "帰着日時" %>
+  <%= f.datetime_field :finish_at %>
+  <%= f.label :work_done_at, "作業完了日時" %>
+  <%= f.datetime_field :work_done_at %>
+  <%= f.submit "出張情報を登録する", class:"btn btn-primary col-md-6 col-md-offset-3" %>
+<% end %>

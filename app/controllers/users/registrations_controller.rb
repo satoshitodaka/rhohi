@@ -79,16 +79,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :company_id])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :company_id, :birthday])
     end
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :company_id])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :company_id, :birthday])
     end
 
     def by_admin_user?(params)	
-      params[:id].present? && current_user_is_admin?	
+      params[:id].present? && current_user_is_admin?
     end
 
     def current_user_is_admin?	
@@ -99,7 +99,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # The path used after sign up.
     def after_sign_up_path_for(resource)
       if current_user_is_admin?
-        users_path
+        new_user = User.last
+        user_path(new_user)
       else
         super(resource)
       end
@@ -132,7 +133,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def creatable?
       raise CanCan::AccessDenied unless user_signed_in?
       if !current_user_is_admin?
-        # raise CanCan::AccessDenied
         redirect_to root_url
         flash[:danger] = "ユーザー作成の権限がありません"
       end
@@ -141,7 +141,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def editable?
       raise CanCan::AccessDenied unless user_signed_in?
       if params[:id].present? && !current_user_is_admin?
-        # raise CanCan::AccessDenied
         redirect_to root_url
         flash[:danger] = "ユーザー編集の権限がありません"
       end
