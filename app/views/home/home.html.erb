@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
   <div class="row">
     <aside class="col-md-4">
-      <h3>申請処理中の申請です</h3>
+      <h3>申請情報</h3>
       <h4>申請中の出張旅費申請は<%= @created_statements.count %>件</h4>
         <div>
         </div>
       <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary" %>
       <% if current_user.has_role? :admin %>
-        <h3>承認依頼があります</h3>
+        <h3>承認依頼情報</h3>
         <h4>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h4>
           <div>
           </div>
@@ -15,7 +15,7 @@
       <% end %>
     </aside>
     <div class="col-md-6 col-md-offset-2">
-      <h3>出張旅費を申請しよう</h3>
+      <h3>新規申請</h3>
       <section class="trip_statement_form">
         <%= form_with(model: @trip_statement, local: true) do |f| %>
           <%= f.label :distination, "出張先" %>
