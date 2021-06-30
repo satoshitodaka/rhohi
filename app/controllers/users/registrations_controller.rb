@@ -131,8 +131,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def creatable?
-      raise CanCan::AccessDenied unless user_signed_in?
-      if !current_user_is_admin?
+      if !user_signed_in?
+        redirect_to root_url
+        flash[:danger] = "ユーザー作成の権限がありません。管理者に連絡してください。"
+      elsif !current_user_is_admin?
         redirect_to root_url
         flash[:danger] = "ユーザー作成の権限がありません"
       end
