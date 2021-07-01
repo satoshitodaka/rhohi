@@ -25,6 +25,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :admin %><br />
+    <%= f.check_box(:admin,{}, checked_value = "true", unchecked_value = "false") %>
+  </div>
+
+  <div class="field">
     <%= f.label :birthday %><br />
     <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %>
   </div>
