@@ -27,24 +27,21 @@ class ApprovalsController < ApplicationController
 
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    if params[:approval] == "true"
-      @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: true)
-      @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
-    elsif params[:approval] == "false"
-      @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: false)
-      @approval.trip_statement.update(approved: false, approved_at: Time.zone.now)
-    else
-      redirect_to approvals_index_path
-      flash[:warning] = "問題が発生しました。再度お試しください。"
-    end
+    @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: true)
+    @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
     @trip_statement.save
-    # @approval.save
-    if params[:approval] == "true"
-      flash[:success] = "承認しました！"
-    elsif params[:approval] == "false"
-      flash[:warning] = "否認しました。"
-    end
     redirect_to approvals_index_url
+    flash[:success] = "承認しました！"
+  end
+
+  def deny
+    @trip_statement = TripStatement.find(params[:trip_statement_id])
+    @approval = current_user.approvals.build(deny_params)
+    @approval.update(trip_statement_id: @trip_statement.id, approval: false)
+    @trip_statement.update(approved: false, approved_at: Time.zone.now)
+    # @trip_statement.save
+    redirect_to approvals_index_url
+    flash[:warning] = "否認しました。"
   end
 
   def edit
@@ -62,6 +59,10 @@ class ApprovalsController < ApplicationController
   private
     def admin_user?
       redirect_to root_url unless current_user.admin
+    end
+
+    def deny_params
+      params.permit(:comment).merge(approval: false)
     end
 
     def approve?

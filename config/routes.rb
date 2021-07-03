@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
- 
-  # devise_for :users, controllers: {
-  #   invitations: 'devise/invitations'
-  # }
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }
@@ -37,6 +33,5 @@ Rails.application.routes.draw do
   get 'approvals/index' => 'approvals#index'
   get 'approvals/approved' => 'approvals#approved'
   get 'approvals/denied' => 'approvals#denied'
-  # post 'trip_statements/:id/submit', to: 'trip_statements#update_submit'
-  # get 'trip_statements/:id/update' => 'trip_statement#update'
+  post 'trip_statements/:trip_statement_id/deny' => 'approvals#deny', as: :deny_approval
 end
