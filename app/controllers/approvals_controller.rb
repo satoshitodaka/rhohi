@@ -28,8 +28,7 @@ class ApprovalsController < ApplicationController
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: true)
-    @approval.trip_statement.update(approved: true, approved_at: Time.zone.now)
-    @trip_statement.save
+    @trip_statement.update(approved: true, approved_at: Time.zone.now)
     redirect_to approvals_index_url
     flash[:success] = "承認しました！"
   end

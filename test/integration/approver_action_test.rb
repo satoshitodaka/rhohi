@@ -18,9 +18,9 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     get new_trip_statement_approval_path(@other_users_statement)
     assert_template 'approvals/new'
     assert_difference 'Approval.count', 1 do
-      post trip_statement_approvals_path(@other_users_statement), params: { approval: "true" }
-      @approval = Approval.last
+      post trip_statement_approvals_path(@other_users_statement)#, params: { approval: "true" }
     end
+    @approval = Approval.last
     assert_equal true, @approval.approval
     assert_equal @user.id, @other_users_statement.user_id
     # assert_equal true, @other_users_statement#.approved # 実際にはupdateされているので、テストの記述が間違っている可能性大
