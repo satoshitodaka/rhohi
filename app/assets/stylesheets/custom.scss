@@ -6,26 +6,26 @@
 // headerの表示領域を60px確保する。
 body {
   padding-top: 60px;
-  background-image: image-url('station_platform.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;
-  z-index: 0;
+  // background-image: image-url('station_platform.jpg');
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-size: cover;
+  // background-color: #464646;
+  // z-index: 0;
 }
 
-body::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  bottom: -5px;
-  left: -5px;
-  right: -5px;
-  background: inherit;
-  filter: blur(2px);
-  z-index: -1;
-}
+// body::before {
+//   content: '';
+//   position: absolute;
+//   top: -5px;
+//   bottom: -5px;
+//   left: -5px;
+//   right: -5px;
+//   background: inherit;
+//   filter: blur(2px);
+//   z-index: -1;
+// }
 
 
 section {
@@ -98,7 +98,7 @@ footer {
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;
-  background-color: aliceblue;
+  // background-color: aliceblue;
 }
 
 footer a {
