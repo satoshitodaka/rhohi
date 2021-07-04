@@ -10,12 +10,15 @@ class ApprovalsController < ApplicationController
     @not_approved = TripStatement.where(applied: true, approved: false, approved_at: nil).where.not(user_id: current_user.id)
   end
 
+  # 承認した申請
   def approved
     @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
   end
 
+  # 否認した申請
   def denied
-    @denied = TripStatement.where(approved: false, applied_at: nil)
+    # @denied_statements = TripStatement.where(approved: false, applied_at: nil)
+    @denied_statements = TripStatement.left_joins(:approvals).where(approved: false)#申請情報は持っている。
   end
 
   def new
@@ -37,8 +40,7 @@ class ApprovalsController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @approval = current_user.approvals.build(deny_params)
     @approval.update(trip_statement_id: @trip_statement.id, approval: false)
-    @trip_statement.update(approved: false, approved_at: Time.zone.now)
-    # @trip_statement.save
+    @trip_statement.update(approved: false, approved_at: Time.zone.now, applied: false)
     redirect_to approvals_index_url
     flash[:warning] = "否認しました。"
   end

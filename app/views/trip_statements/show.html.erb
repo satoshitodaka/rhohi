@@ -63,3 +63,23 @@
   <h3>申請する</h3>
   <%= link_to "申請する", submit_trip_statement_path(@trip_statement), method: :patch, class:"btn btn-primary btn-block" %>
 <% end %>
+
+<h3>承認情報</h3>
+<% if @trip_statement.approvals.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>承認状況</th>
+        <th>コメント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @approval.approval %></td>
+        <td><%= @approval.comment %></td>
+      </tr>
+    </tbody>
+  </table>  
+<% else %>
+<p>承認されていません。</p>
+<% end %>

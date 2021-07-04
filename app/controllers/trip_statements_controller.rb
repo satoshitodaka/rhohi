@@ -9,6 +9,7 @@ class TripStatementsController < ApplicationController
     @trip_statement = TripStatement.find(params[:id])
     @user = @trip_statement.user
     @expences = @trip_statement.expences.all #申請書のshow画面にて、経費を全て表示する。
+    @approval = Approval.find_by(trip_statement_id: @trip_statement.id)
     
   end
 
@@ -111,5 +112,12 @@ class TripStatementsController < ApplicationController
           redirect_to root_url
         end
       end
+    end
+
+    def has_approval?
+      @trip_statement = TripStatement.find(params[:id])
+      if @trip_statement.approval.any?
+      end
+
     end
 end
