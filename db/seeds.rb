@@ -6,13 +6,14 @@ Company.create!(name: "日立物流ファインネクスト株式会社", addres
 # Company.create!(name: "日立物流ソフトウェア株式会社", address: "東京都江東区東陽")
 
 # User
-User.create!(name: "Admin_User",
+admin = User.create!(name: "Admin_User",
   email: "satoshitodaka0705@gmail.com",
   password: "password",
   company_id: 1,
   birthday: "1993-07-05",
   admin: true
 )
+admin.add_role :admin
 
 # User
 User.create!(name: "Normal_User",
