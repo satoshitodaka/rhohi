@@ -24,6 +24,14 @@ class User < ApplicationRecord
     result
   end
 
+  def self.guest
+    find_or_create_by(email: "guest@rhohi.com") do |user|
+      user.password = Rails.application.secrets.test_account_pass
+      user.name = "ゲスト　太朗"
+      user.company_id = 1
+    end
+  end
+
   # def own_user?
   #   @user = User.find(params[:id])
   # end

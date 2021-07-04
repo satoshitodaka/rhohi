@@ -1,18 +1,23 @@
 Rails.application.routes.draw do
-  
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations'
-  }
-
-  devise_scope :user do
-    get 'users/:id/edit' => 'users/registrations#edit', as: :edit_other_user_registration
-    match 'users/:id', to: 'users/registrations#update', via: [:patch, :put], as: :other_user_registration
-  end
 
   root 'home#home'
   get 'home/about'
   get 'home/help'
   get 'home/contact'
+  
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+  }
+
+  devise_scope :user do
+    get 'users/:id/edit' => 'users/registrations#edit', as: :edit_other_user_registration
+    match 'users/:id', to: 'users/registrations#update', via: [:patch, :put], as: :other_user_registration
+    # get 'sign_in', :to => 'users/sessions#new'
+    # get 'sign_out', :to => 'users/sessions#destroy'
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
+
   resources :users, only: [:show, :index] do
     patch 'invite', on: :member
   end
