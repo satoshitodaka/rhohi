@@ -25,3 +25,38 @@
     <% end %>
   </tbody> 
 </table>
+
+<p>テスト！表示されているか</p>
+<div id="app">
+  <v-client-table :columns="columns" :data="data" :options="options">
+  </v-client-table>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="app">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>名前</th>
+              <th>年齢</th>
+              <th>種類</th>
+              <th>好物</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in items">
+              <td>{{ item.no }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.sex }}</td>
+              <td>{{ item.kind }}</td>
+              <td>{{ item.favorite }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
