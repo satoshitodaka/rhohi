@@ -1,25 +1,29 @@
 <% if user_signed_in? %>
   <div class="row">
-    <aside class="col-md-4">
-      <h3>申請情報</h3>
-      <h4>申請中の出張旅費申請は<%= @created_statements.count %>件</h4>
-        <div>
-        </div>
-      <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary" %>
-      <% if current_user.has_role? :admin %>
-        <h3>承認依頼情報</h3>
-        <h4>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h4>
+    <aside class="col-md-5">
+      <div class="status_info_window">
+        <h3>申請情報</h3>
+        <h4>申請中の出張旅費申請は<%= @created_statements.count %>件</h4>
           <div>
           </div>
-        <%= link_to '承認する', approvals_index_path, class:"btn btn-primary" %>
-      <% end %>
+        <%= link_to '申請情報を確認する', trip_statements_path, class:"btn btn-primary btn-block" %>
+        <% if current_user.has_role? :admin %>
+          <h3>承認依頼情報</h3>
+          <h4>承認待ちの出張旅費申請は<%= @not_approved.count %>件</h4>
+            <div>
+            </div>
+          <%= link_to '承認する', approvals_index_path, class:"btn btn-primary btn-block" %>
+        <% end %>
+      </div>
     </aside>
-    <div class="col-md-6 col-md-offset-2">
-      <h3>新規申請</h3>
-      <section class="trip_statement_form">
-        <%= render 'trip_statements/form' %>
-      </section>
-     </div>
+    <div class="col-md-7">
+      <div class="apply_window">
+        <h3>新規申請</h3>
+        <section class="trip_statement_form">
+          <%= render 'trip_statements/form' %>
+        </section>
+      </div>
+    </div>
   </div>
 <% else %>
   <div class="jumbotron center">
@@ -27,6 +31,7 @@
     <p>利用した旅費を申請してみましょう</p>
     <%= link_to 'ログインする', new_user_session_path, class:"btn btn-primary" %>
     <%= link_to 'ゲストログインする', users_guest_sign_in_path, method: :post, class:"btn btn-primary" %>
+    <%= link_to 'ゲスト(admin)ログインする', '#', method: :post, class:"btn btn-primary" %>
   </div>
 <% end %>
 
