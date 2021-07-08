@@ -59,7 +59,10 @@ class ApprovalsController < ApplicationController
 
   private
     def admin_user?
-      redirect_to root_url unless current_user.admin
+      if !current_user.admin
+        redirect_to root_url
+        flash[:danger] = "管理者権限を確認してください。"
+      end
     end
 
     def deny_params
