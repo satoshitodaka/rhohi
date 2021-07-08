@@ -1,53 +1,56 @@
 <h1>ユーザー作成</h1>
+<div class="row">
+  <div class="com-md-4">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.label :company_id %><br />
+        <%= f.select :company_id, { 
+          株式会社日立物流: 2, 
+          日立物流ファインネクスト株式会社: 1, 
+          株式会社日立物流東日本: 3, 
+          株式会社日立物流首都圏: 4, 
+          日立物流ソフトウェア株式会社: 5
+        }, autocomplete: "company_id" %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :company_id %><br />
-    <%= f.select :company_id, { 
-      株式会社日立物流: 2, 
-      日立物流ファインネクスト株式会社: 1, 
-      株式会社日立物流東日本: 3, 
-      株式会社日立物流首都圏: 4, 
-      日立物流ソフトウェア株式会社: 5
-    }, autocomplete: "company_id" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="field">
+        <%= f.label :admin %><br />
+        <%= f.check_box(:admin,{}, checked_value = "true", unchecked_value = "false") %>
+      </div>
 
-  <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.check_box(:admin,{}, checked_value = "true", unchecked_value = "false") %>
-  </div>
+      <div class="field">
+        <%= f.label :birthday %><br />
+        <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :birthday %><br />
-    <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %>
-  </div>
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <div class="actions">
+        <%= f.submit "作成する" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "作成する" %>
-  </div>
-<% end %>
+</div>

@@ -1,27 +1,31 @@
 <% provide(:title, "承認一覧") %>
-<h1>承認待ちの出張旅費申請</h1>
-<h3>承認待ちは<%= @not_approved.count %>件</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>出張日</th>
-      <th>申請者</th>
-      <th>出張理由</th>
-      <th>出張先</th>
-      <th>承認</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @not_approved.any? %>
-      <% @not_approved.each do |not_approval| %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1>承認待ちの出張旅費申請</h1>
+    <h3>承認待ちは<%= @not_approved.count %>件</h3>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= l not_approval.start_at, format: :short %></td>
-          <td><%= not_approval.user.name %></td>
-          <td><%= not_approval.purpose %></td>
-          <td><%= not_approval.distination %></td>
-          <td><%= link_to "承認画面", new_trip_statement_approval_path(not_approval.id), class:"btn btn-primary" %></td>
+          <th>出張日</th>
+          <th>申請者</th>
+          <th>出張理由</th>
+          <th>出張先</th>
+          <th>承認</th>
         </tr>
-      <% end %>
-    <% end %>
-  </tbody> 
-</table>
+      </thead>
+      <tbody>
+        <% if @not_approved.any? %>
+          <% @not_approved.each do |not_approval| %>
+            <tr>
+              <td><%= l not_approval.start_at, format: :short %></td>
+              <td><%= not_approval.user.name %></td>
+              <td><%= not_approval.purpose %></td>
+              <td><%= not_approval.distination %></td>
+              <td><%= link_to "承認画面", new_trip_statement_approval_path(not_approval.id), class:"btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody> 
+    </table>
+  </div>
+</div>
