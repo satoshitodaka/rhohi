@@ -51,9 +51,12 @@
 <% if current_user.admin && @trip_statement.user_id != current_user.id %>
   <h3>承認</h3>
   <%= link_to "承認する", trip_statement_approvals_path(@trip_statement.id, approval: "true"), method: :post, class:"btn btn-primary btn-block btn-block" %>
-  <%= form_with(model: [@trip_statement, @approval], url:deny_approval_path(@trip_statement.id), local: true) do |f| %>
-    <%= f.label :comment, "コメント" %>
-    <%= f.text_area :comment %>
-    <%= f.submit "否認する", class: "btn btn-primary" %>
-  <% end %>
+  <div class="deny_form">
+    <h3>否認</h3>
+    <%= form_with(model: [@trip_statement, @approval], url:deny_approval_path(@trip_statement.id), local: true) do |f| %>
+      <%= f.label :comment, "コメント" %>
+      <%= f.text_area :comment %>
+      <%= f.submit "否認する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 <% end %>

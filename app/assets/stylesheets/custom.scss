@@ -152,8 +152,47 @@ input {
   height: auto !important;
 }
 
+.form {
+  // background-color: #555;
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid #555;
+}
+
 /* devise */
 
 devise_error_messages {
   color: red;
+}
+
+/* home */
+
+.status_info_window {
+  // background-color: #555;
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid #555;
+}
+
+.apply_window {
+  // background-color: #555;
+  margin: 5px;
+  padding: 20px;
+}
+
+/* trip_statements */
+
+.statements_index {
+  // background-color: #555;
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid #555;
+}
+
+/* approval */
+
+.deny_form {
+  // background-color: #555;
+  margin-top: 10px;
+  // padding: 5px;
 }
