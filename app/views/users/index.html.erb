@@ -1,28 +1,32 @@
 <h1>ユーザー管理</h1>
-<h3>所属情報</h3>
-<p>会社名 : <%= @company.name %></p>
-<h3>ユーザー一覧</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>誕生日</th>
-      <th>管理者権限</th>
-      <th>詳細</th>
-      <th>削除</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @mycompany_users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.birthday %></td>
-        <td><%= user.admin %></td>
-        <td><%= link_to "編集", user_path(user.id), class:"btn btn-primary" %></td>
-        <td><%= link_to "削除", '#', class:"btn btn-primary", data: {confirm: "削除しますか？" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+  <h3>所属情報</h3>
+  <p>会社名 : <%= @company.name %></p>
+  <h3>ユーザー一覧</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>誕生日</th>
+          <th>管理者権限</th>
+          <th>詳細</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @mycompany_users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.birthday %></td>
+            <td><%= user.admin %></td>
+            <td><%= link_to "編集", user_path(user.id), class:"btn btn-primary" %></td>
+            <td><%= link_to "削除", '#', class:"btn btn-primary", data: {confirm: "削除しますか？" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

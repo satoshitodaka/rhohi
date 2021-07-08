@@ -1,27 +1,31 @@
 <% provide(:title, "否認申請一覧") %>
-<h1>否認した出張旅費申請</h1>
-<h3>否認した申請は<%= @denied_statements.count %>件</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>出張日</th>
-      <th>申請者</th>
-      <th>出張理由</th>
-      <th>出張先</th>
-      <%# <th>コメント</th> %>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @denied_statements.any? %>
-      <% @denied_statements.each do |denied| %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1>否認した出張旅費申請</h1>
+    <h3>否認した申請は<%= @denied_statements.count %>件</h3>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= l denied.start_at, format: :short %></td>
-          <td><%= denied.user.name %></td>
-          <td><%= denied.purpose %></td>
-          <td><%= denied.distination %></td>
-          <%# <td><%= denied.approval.comment %>
+          <th>出張日</th>
+          <th>申請者</th>
+          <th>出張理由</th>
+          <th>出張先</th>
+          <%# <th>コメント</th> %>
         </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-<table>
+      </thead>
+      <tbody>
+        <% if @denied_statements.any? %>
+          <% @denied_statements.each do |denied| %>
+            <tr>
+              <td><%= l denied.start_at, format: :short %></td>
+              <td><%= denied.user.name %></td>
+              <td><%= denied.purpose %></td>
+              <td><%= denied.distination %></td>
+              <%# <td><%= denied.approval.comment %>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    <table>
+  </div>
+</div>
