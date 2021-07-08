@@ -25,6 +25,14 @@ class Users::SessionsController < Devise::SessionsController
     flash[:success] = "ゲストログインいただきありがとうございます！"
   end
 
+  def new_admin_guest
+    user = User.new_admin_guest
+    user.add_role :admin
+    sign_in user
+    redirect_to root_url
+    flash[:success] = "ゲスト管理者ログインいただきありがとうございます！"
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
