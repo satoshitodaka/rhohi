@@ -7,7 +7,7 @@ class ApprovalsController < ApplicationController
   before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
-    @not_approved = TripStatement.where(applied: true, approved: false, approved_at: nil).where.not(user_id: current_user.id)
+    @not_approved = TripStatement.joins(:user).where("(company_id = ?) AND (applied = ?) AND (approved = ?)", current_user.company_id, true, false)
   end
 
   # 承認した申請
@@ -92,7 +92,7 @@ class ApprovalsController < ApplicationController
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.user.company_id != current_user.company_id
         redirect_to approvals_index_url
-        flash[:danger] = "他社の申請は操作できません"
+        flash[:danger] = "他社ユーザーの申請は操作できません"
       end
     end
 
