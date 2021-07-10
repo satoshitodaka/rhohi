@@ -114,10 +114,10 @@ class TripStatementsController < ApplicationController
       end
     end
 
-    def has_approval?
-      @trip_statement = TripStatement.find(params[:id])
-      if @trip_statement.approval.any?
-      end
-
-    end
+    # 多分使ってない
+    # def has_approval?
+    #   if @trip_statement = TripStatement.find(params[:id])
+    #     @trip_statement.approval.any?
+    #   end
+    # end
 end
