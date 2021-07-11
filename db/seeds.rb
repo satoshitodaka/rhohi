@@ -18,7 +18,8 @@ Company.create!(name: "サンプル4株式会社", address: "千葉県柏市末�
 Company.create!(name: "サンプル5株式会社", address: "東京都江東区東陽")
 
 # User
-admin = User.create!(name: "Admin_User",
+admin = User.create!(
+  name: "Admin_User",
   email: "satoshitodaka0705@gmail.com",
   password: "password",
   company_id: 1,
@@ -28,18 +29,13 @@ admin = User.create!(name: "Admin_User",
 admin.add_role :admin
 
 # User
-User.create!(name: "Normal_User",
+User.create!(
+  name: "Normal_User",
   email: "gkjojo0507@yahoo.co.jp",
   password: "password",
   company_id: 1,
   birthday: "1993-07-05",
 )
-
-# 5.times do
-#   name = Faker::Company.name
-#   address = Gimei.address.kanji
-#   Company.create!(name: name, address: address)
-# end
 
 # 各社10名ずつユーザーを作成する。
 Company.all.each do |company|
