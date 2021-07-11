@@ -102,18 +102,18 @@ TripStatement.all.each do |trip_statement|
   )
 end
 
-# 承認した申請情報を作成する。
-i = 1
-12.times do |n|
-  # i ||= 1
-  # approval = Faker::Boolean.boolean
-  Approval.create!(
-    approval: true,
-    user_id: 1,
-    trip_statement_id: i
-  )
-  i += 1
-end
+# # 承認した申請情報を作成する。
+# i = 1
+# 12.times do |n|
+#   # i ||= 1
+#   # approval = Faker::Boolean.boolean
+#   Approval.create!(
+#     approval: true,
+#     user_id: 1,
+#     trip_statement_id: i
+#   )
+#   i += 1
+# end
 
 # # 否認した承認情報を作成する。
 # i = 13
