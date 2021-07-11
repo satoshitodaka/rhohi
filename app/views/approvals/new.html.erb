@@ -1,66 +1,68 @@
 <% provide(:title, "承認画面") %>
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h1>承認画面</h1>
-    <h3>出張情報</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>申請者</th>
-          <th>出張先</th>
-          <th>出張理由</th>
-          <th>出発日時</th>
-          <th>帰着日時</th>
-          <th>作業完了日時</th>
-          <th>申請ステータス</th>
-          <th>承認ステータス</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @user.name %></td>
-          <td><%= @trip_statement.distination %></td>
-          <td><%= @trip_statement.purpose %></td>
-          <td><%= @trip_statement.start_at %></td>
-          <td><%= @trip_statement.finish_at %></td>
-          <td><%= @trip_statement.work_done_at %></td>
-          <td><%= @trip_statement.applied %></td>
-          <td><%= @trip_statement.approved %></td>
-        <tr>
-      </tbody>
-    </table>
-
-    <h3>旅費情報</h3>
-    <% if @trip_statement.expences.any? %>
+    <div class="universal">
+      <h1>承認画面</h1>
+      <h3>出張情報</h3>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>移動日</th>
-            <th>利用交通機関</th>
-            <th>乗車駅・出発地</th>
-            <th>降車駅・到着地</th>
-            <th>運賃・料金</th>
-            <th>移動距離</th>
-            <th>手当</th>
+            <th>申請者</th>
+            <th>出張先</th>
+            <th>出張理由</th>
+            <th>出発日時</th>
+            <th>帰着日時</th>
+            <th>作業完了日時</th>
+            <th>申請ステータス</th>
+            <th>承認ステータス</th>
           </tr>
-    </thead>
-        <%= render @expences %>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @user.name %></td>
+            <td><%= @trip_statement.distination %></td>
+            <td><%= @trip_statement.purpose %></td>
+            <td><%= @trip_statement.start_at %></td>
+            <td><%= @trip_statement.finish_at %></td>
+            <td><%= @trip_statement.work_done_at %></td>
+            <td><%= @trip_statement.applied %></td>
+            <td><%= @trip_statement.approved %></td>
+          <tr>
+        </tbody>
       </table>
-    <% else %>
-      <p>旅費手当が登録されていません。</p>
-    <% end %>
 
-    <% if current_user.admin && @trip_statement.user_id != current_user.id %>
-      <h3>承認</h3>
-      <%= link_to "承認する", trip_statement_approvals_path(@trip_statement.id, approval: "true"), method: :post, class:"btn btn-primary btn-block btn-block" %>
-      <div class="deny_form">
-        <h3>否認</h3>
-        <%= form_with(model: [@trip_statement, @approval], url:deny_approval_path(@trip_statement.id), local: true) do |f| %>
-          <%= f.label :comment, "コメント" %>
-          <%= f.text_area :comment %>
-          <%= f.submit "否認する", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    <% end %>
+      <h3>旅費情報</h3>
+      <% if @trip_statement.expences.any? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>移動日</th>
+              <th>利用交通機関</th>
+              <th>乗車駅・出発地</th>
+              <th>降車駅・到着地</th>
+              <th>運賃・料金</th>
+              <th>移動距離</th>
+              <th>手当</th>
+            </tr>
+      </thead>
+          <%= render @expences %>
+        </table>
+      <% else %>
+        <p>旅費手当が登録されていません。</p>
+      <% end %>
+
+      <% if current_user.admin && @trip_statement.user_id != current_user.id %>
+        <h3>承認</h3>
+        <%= link_to "承認する", trip_statement_approvals_path(@trip_statement.id, approval: "true"), method: :post, class:"btn btn-primary btn-block btn-block" %>
+        <div class="deny_form">
+          <h3>否認</h3>
+          <%= form_with(model: [@trip_statement, @approval], url:deny_approval_path(@trip_statement.id), local: true) do |f| %>
+            <%= f.label :comment, "コメント" %>
+            <%= f.text_area :comment %>
+            <%= f.submit "否認する", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
