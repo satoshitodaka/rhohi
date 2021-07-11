@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <div class="row">
     <aside class="col-md-5">
-      <div class="status_info_window">
+      <div class="status_info_window universal">
         <h3>申請情報</h3>
         <h4>申請中の出張旅費申請は<%= @created_statements.count %>件</h4>
           <div>
@@ -17,7 +17,7 @@
       </div>
     </aside>
     <div class="col-md-7">
-      <div class="apply_window">
+      <div class="apply_window universal">
         <h3>新規申請</h3>
         <section class="trip_statement_form">
           <%= render 'trip_statements/form' %>
@@ -28,15 +28,15 @@
 <% else %>
   <%# <div class="jumbotron center"> %>
   <div class="row">
-  <div class="col-md-5 col-md-offset-7 welcome-page">
-    <h1>RhoHiへようこそ</h1>
-    <p>利用した旅費を申請してみましょう</p>
-    <ul>
-      <li><%= link_to 'ログインする', new_user_session_path, class:"btn btn-primary" %></li>
-      <li><%= link_to 'ゲストログインする', users_guest_sign_in_path, method: :post, class:"btn btn-primary" %></li>
-      <li><%= link_to 'ゲスト(admin)ログインする', users_guest_admin_sign_in_path, method: :post, class:"btn btn-primary" %></li>
-    <ul>
-  </div>
+    <div class="col-md-5 col-md-offset-7 welcome-page">
+      <h1>RhoHiへようこそ</h1>
+      <p>利用した旅費を申請してみましょう</p>
+      <ul>
+        <li><%= link_to 'ログインする', new_user_session_path, class:"btn btn-primary" %></li>
+        <li><%= link_to 'ゲストログインする', users_guest_sign_in_path, method: :post, class:"btn btn-primary" %></li>
+        <li><%= link_to 'ゲスト(admin)ログインする', users_guest_admin_sign_in_path, method: :post, class:"btn btn-primary" %></li>
+      <ul>
+    </div>
   </div>
 <% end %>
 

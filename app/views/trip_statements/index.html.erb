@@ -1,6 +1,6 @@
 <% provide(:title, "出張旅費申請一覧") %>
 <h1><%= @user.name %>が申請した旅費</h1>
-<div class="statements_index">
+<div class="statements_index universal">
   <h3>旅費申請<%= @created_statements.count %>件</h3>
   <% if @created_statements.any? %>
     <table class="table table-striped">
