@@ -28,14 +28,16 @@
 <% else %>
   <%# <div class="jumbotron center"> %>
   <div class="row">
-    <div class="col-md-5 col-md-offset-7 welcome-page">
+    <aside class="col-md-7">
       <h1>RhoHiへようこそ</h1>
-      <p>利用した旅費を申請してみましょう</p>
-      <ul>
-        <li><%= link_to 'ログインする', new_user_session_path, class:"btn btn-primary" %></li>
-        <li><%= link_to 'ゲストログインする', users_guest_sign_in_path, method: :post, class:"btn btn-primary" %></li>
-        <li><%= link_to 'ゲスト(admin)ログインする', users_guest_admin_sign_in_path, method: :post, class:"btn btn-primary" %></li>
-      <ul>
+      <h3>利用した旅費を申請してみましょう</h3>
+    </aside>
+    <div class="col-md-5">
+      <div class="universal">
+        <%= link_to 'ログインする', new_user_session_path, class:"btn btn-primary btn-block" %>
+        <%= link_to 'ゲストログインする', users_guest_sign_in_path, method: :post, class:"btn btn-primary btn-block" %>
+        <%= link_to 'ゲスト(admin)ログインする', users_guest_admin_sign_in_path, method: :post, class:"btn btn-primary btn-block" %>
+      </div>
     </div>
   </div>
 <% end %>
