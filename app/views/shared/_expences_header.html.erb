@@ -7,7 +7,14 @@
     <th>運賃・料金</th>
     <th>移動距離</th>
     <th>手当</th>
-    <th>編集</th>
-    <th>削除</th>
+
+    <%# 操作については処理を分岐 %>
+
+    <% if controller_name == "trip_statements" %>
+      <th>編集</th>
+      <th>削除</th>
+    <% elsif controller_name == "approvals" %>
+      <%# 操作ボタンは置かない %>
+    <% end %>
   </tr>
 </thead>
