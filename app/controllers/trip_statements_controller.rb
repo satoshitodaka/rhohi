@@ -28,7 +28,7 @@ class TripStatementsController < ApplicationController
   # 否認された申請
   def denied
     @user = current_user
-    @denied_statements = @user.trip_statements.includes(:approvals).where(applied: true, approved: false)#申請情報は持っている。
+    @denied_statements = @user.trip_statements.includes(:approvals).where(applied: true, approved: false).where.not(approved_at: nil)
   end  
 
   def new

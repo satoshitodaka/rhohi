@@ -4,9 +4,9 @@
   <h3>旅費申請<%= @approved_statements.count %>件</h3>
   <% if @approved_statements.any? %>
     <table class="table table-striped">
-      <%= render 'shared/trip_statements_light_header' %>
+      <%= render 'shared/trip_statements_header' %>
       <tbody>
-        <%= render :partial => "shared/trip_statements_light_table", :collection => @approved_statements, :as => "trip_statement" %>
+        <%= render :partial => "shared/trip_statements_table", :collection => @approved_statements, :as => "trip_statement" %>
       </tbody>
     </table>
   <% else %>
