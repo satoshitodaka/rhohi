@@ -7,7 +7,7 @@ class ApprovalsController < ApplicationController
   before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
-    @not_approved = TripStatement.joins(:user).where("(company_id = ?) AND (applied = ?) AND (approved = ?)", current_user.company_id, true, false)
+    @not_approved = TripStatement.joins(:user).where("(company_id = ?) AND (applied = ?) AND (approved = ?)", current_user.company_id, true, false).where.not(user_id: current_user.id)
   end
 
   # 承認した申請
@@ -18,7 +18,7 @@ class ApprovalsController < ApplicationController
   # 否認した申請
   def denied
     # @denied_statements = TripStatement.where(approved: false, applied_at: nil)
-    @denied_statements = TripStatement.left_joins(:approvals).where(approved: false)#申請情報は持っている。
+    @denied_statements = TripStatement.left_joins(:approvals).where(approved: false).where.not(user_id: current_user.id)
   end
 
   def new

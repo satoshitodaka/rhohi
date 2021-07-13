@@ -1,0 +1,13 @@
+<tbody>
+  <tr>
+    <td><%= expence.date %></td>
+    <td><%= expence.transportation %></td>
+    <td><%= expence.bording %></td>
+    <td><%= expence.get_off %></td>
+    <td><%= expence.fare %>円</td>
+    <td><%= expence.mileage %>km</td>
+    <td><%= expence.allowance %>円</td>
+    <td><%= link_to "編集", edit_expence_path(expence.id), class:"btn btn-primary" %></td>
+    <td><%= link_to "削除", expence_path(expence.id), method: :delete, class:"btn btn-primary", data: { confirm: "旅費を削除しますか？" } %></td>
+  </tr>
+</tbody>

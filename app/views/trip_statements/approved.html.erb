@@ -4,20 +4,9 @@
   <h3>旅費申請<%= @approved_statements.count %>件</h3>
   <% if @approved_statements.any? %>
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>出張日</th>
-          <th>出張理由</th>
-          <th>出張先</th>
-          <th>承認ステータス</th>
-          <th>詳細・編集</th>
-          <th>削除</th>
-        </tr>
-      </thead>
-      <tbody>  
-        <% @approved_statements.each do |trip_statement| %>
-          <%= render trip_statement %>
-        <% end %>
+      <%= render 'shared/trip_statements_light_header' %>
+      <tbody>
+        <%= render :partial => "shared/trip_statements_light_table", :collection => @approved_statements, :as => "trip_statement" %>
       </tbody>
     </table>
   <% else %>
