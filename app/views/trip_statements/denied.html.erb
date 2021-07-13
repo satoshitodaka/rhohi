@@ -4,21 +4,8 @@
   <h3>旅費申請<%= @denied_statements.count %>件</h3>
   <% if @denied_statements.any? %>
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>出張日</th>
-          <th>出張理由</th>
-          <th>出張先</th>
-          <th>承認ステータス</th>
-          <th>詳細・編集</th>
-          <th>削除</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @denied_statements.each do |trip_statement| %>
-          <%= render trip_statement %>
-        <% end %> 
-      </tbody>
+      <%= render 'shared/trip_statements_header' %>
+      <%= render :partial => "shared/trip_statements_table", :collection => @denied_statements, :as => "trip_statement" %>
     </table>
   <% else %>
     <p>該当する申請はありません。</p>

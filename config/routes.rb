@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get :denied
     end
     resources :expences
-    resources :approvals, only: [:index, :new, :create, :edit, :update, :destroy] do
+    resources :approvals, only: [:index, :new, :create] do
       collection do
         get 'approved'
         get :denied
