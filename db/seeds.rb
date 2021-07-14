@@ -11,11 +11,11 @@ fares = [165, 170,195,200,350,500,720,810,920]
 allowances = [0,2300,3200]
 
 # Company
-Company.create!(name: "サンプル1株式会社", address: "東京都中央区京橋")
-Company.create!(name: "サンプル2株式会社", address: "東京都中央区京橋")
-Company.create!(name: "サンプル3株式会社", address: "茨城県日立市城南町")
-Company.create!(name: "サンプル4株式会社", address: "千葉県柏市末広町")
-Company.create!(name: "サンプル5株式会社", address: "東京都江東区東陽")
+Company.create(name: "サンプル1株式会社", address: "東京都中央区京橋")
+Company.create(name: "サンプル2株式会社", address: "東京都中央区京橋")
+Company.create(name: "サンプル3株式会社", address: "茨城県日立市城南町")
+Company.create(name: "サンプル4株式会社", address: "千葉県柏市末広町")
+Company.create(name: "サンプル5株式会社", address: "東京都江東区東陽")
 
 # User
 admin = User.create!(
