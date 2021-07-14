@@ -1,14 +1,18 @@
 class User < ApplicationRecord
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
+  # 関連付
   belongs_to :company
   # belongs_to :department
   has_many :trip_statements, dependent: :nullify
   has_many :expences, through: :trip_statements # ユーザーから旅費情報を参照できる。
   has_many :approvals, dependent: :nullify
+
+  # バリデーション
   validates :name, presence: true
   validates :email, presence: true #このバリデーションがあってもなくても、テストが通ってしまう？
+
+  # devise
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, invite_for: 14.days
   
@@ -28,7 +32,7 @@ class User < ApplicationRecord
     find_or_create_by(email: "guest@rhohi.com") do |user|
       user.password = "password"
       user.name = "ゲスト　太朗"
-      user.company_id = 1
+      # user.company_id = 1
     end
   end
 
@@ -41,13 +45,10 @@ class User < ApplicationRecord
     end
   end
 
-  # def own_user?
-  #   @user = User.find(params[:id])
-  # end
-
   private
-    def admin?
-      @user.admin == true
-    end
+    # おそらく不使用
+    # def admin?
+    #   @user.admin == true
+    # end
       
 end

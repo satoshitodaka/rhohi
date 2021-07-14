@@ -28,7 +28,13 @@
       <% else %>
       <% end %>
     <% elsif controller_name == "approvals" %>
-    <%# 　操作ボタンは置かない %>
+      <% if action_name == "index" %>
+        <td><%= link_to "承認画面", new_trip_statement_approval_path(trip_statement.id), class:"btn btn-primary" %></td>
+      <% elsif action_name == "approved" %>
+        <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+      <% elsif action_name == "denied" %>
+        <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+      <% end %>
     <% end %>
 
   </tr>

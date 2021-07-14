@@ -4,7 +4,14 @@ class TripStatementTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:my_admin)
-    @trip_statement = @user.trip_statements.build(distination: "kamakura", purpose: "conference", user_id: @user.id)
+    @trip_statement = @user.trip_statements.build(
+      distination: "kamakura",
+      purpose: "conference",
+      user_id: @user.id,
+      start_at: Time.zone.now,
+      finish_at: Time.zone.now,
+      work_done_at: Time.zone.now
+    )
   end
 
   test "should be valid" do # 存在性のテスト

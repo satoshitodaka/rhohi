@@ -24,7 +24,13 @@
       <% else %>
       <% end %>
     <% elsif controller_name == "approvals" %>
-      <%# 操作ボタンは置かない %>
+      <% if action_name == "index" %>
+        <th>承認</th>
+      <% elsif action_name == "denied" %>
+        <th>詳細</th>
+      <% elsif action_name == "approved" %>
+        <th>詳細</th>
+      <% end %>
     <% end %>
   </tr>
 </thead>

@@ -5,28 +5,9 @@
     <div class="universal">
       <h3>否認した申請は<%= @denied_statements.count %>件</h3>
       <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>出張日</th>
-            <th>申請者</th>
-            <th>出張理由</th>
-            <th>出張先</th>
-            <%# <th>コメント</th> %>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @denied_statements.any? %>
-            <% @denied_statements.each do |denied| %>
-              <tr>
-                <td><%= l denied.start_at, format: :short %></td>
-                <td><%= denied.user.name %></td>
-                <td><%= denied.purpose %></td>
-                <td><%= denied.distination %></td>
-                <%# <td><%= denied.approval.comment %>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
+        <%= render 'shared/trip_statements_header' %>
+        <%= render :partial => "shared/trip_statements_table", :collection => @denied_statements, :as => "trip_statement" %>
+        
       <table>
     </div>
   </div>

@@ -20,17 +20,25 @@ class Users::SessionsController < Devise::SessionsController
 
   def new_guest
     user = User.guest
-    sign_in user
-    redirect_to root_url
-    flash[:success] = "ゲストログインいただきありがとうございます！"
+    if sign_in user
+      redirect_to root_url
+      flash[:success] = "ゲストログインいただきありがとうございます！"
+    else
+      redirect_to root_url
+      flash[:info] = "ゲストログインに失敗しました。管理者にお問い合わせください。"
+    end
   end
 
   def new_admin_guest
     user = User.new_admin_guest
     user.add_role :admin
-    sign_in user
-    redirect_to root_url
-    flash[:success] = "ゲスト管理者ログインいただきありがとうございます！"
+    if sign_in user
+      redirect_to root_url
+      flash[:success] = "ゲスト管理者ログインいただきありがとうございます！"
+    else
+      redirect_to root_url
+      flash[:info] = "ゲストログインに失敗しました。管理者にお問い合わせください。"
+    end
   end
 
   # protected

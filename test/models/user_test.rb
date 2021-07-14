@@ -22,7 +22,15 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated trip_statements should be destroyed" do #ユーザーを削除しても申請情報は消えない。
     @user.save
-    @user.trip_statements.create!(distination: "kagoshima", purpose: "recruit", applied: false, approved: false)
+    @user.trip_statements.create!(
+      distination: "kagoshima",
+      purpose: "recruit",
+      applied: false,
+      approved: false,
+      start_at: Time.zone.now,
+      finish_at: Time.zone.now,
+      work_done_at: Time.zone.now
+    )
     assert_no_difference 'TripStatement.count' do
       @user.destroy
     end
