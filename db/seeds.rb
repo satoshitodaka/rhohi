@@ -11,29 +11,29 @@ fares = [165, 170,195,200,350,500,720,810,920]
 allowances = [0,2300,3200]
 
 # Company
-Company.create(name: "サンプル1株式会社", address: "東京都中央区京橋")
-Company.create(name: "サンプル2株式会社", address: "東京都中央区京橋")
-Company.create(name: "サンプル3株式会社", address: "茨城県日立市城南町")
-Company.create(name: "サンプル4株式会社", address: "千葉県柏市末広町")
-Company.create(name: "サンプル5株式会社", address: "東京都江東区東陽")
+company1 = Company.create(name: "サンプル1株式会社", address: "東京都中央区京橋")
+company2 = Company.create(name: "サンプル2株式会社", address: "東京都中央区京橋")
+company3 = Company.create(name: "サンプル3株式会社", address: "茨城県日立市城南町")
+company4 = Company.create(name: "サンプル4株式会社", address: "千葉県柏市末広町")
+company5 = Company.create(name: "サンプル5株式会社", address: "東京都江東区東陽")
 
 # User
-admin = User.create!(
+admin = company1.users.create(
   name: "Admin_User",
   email: "satoshitodaka0705@gmail.com",
   password: "password",
-  company_id: 1,
+  # company_id: 1,
   birthday: "1993-07-05",
   admin: true
 )
 admin.add_role :admin
 
 # User
-User.create!(
+normal_user = company1.users.create!(
   name: "Normal_User",
   email: "gkjojo0507@yahoo.co.jp",
   password: "password",
-  company_id: 1,
+  # company_id: 1,
   birthday: "1993-07-05",
 )
 
