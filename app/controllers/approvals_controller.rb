@@ -12,13 +12,15 @@ class ApprovalsController < ApplicationController
 
   # 承認した申請
   def approved
-    @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
+    @approved = TripStatement.joins(:user).where("(company_id = ?) AND (approved = ?)", current_user.company_id, true).where.not(user_id: current_user.id)
+    # @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
   end
 
   # 否認した申請
   def denied
     # @denied_statements = TripStatement.where(approved: false, applied_at: nil)
-    @denied_statements = TripStatement.left_joins(:approvals).where(approved: false).where.not(user_id: current_user.id)
+    @denied_statements = TripStatement.joins(:user, :approvals).where("(company_id = ?) AND (approval = ?)", current_user.company_id, false).where.not(user_id: current_user.id)
+    # @denied_statements = TripStatement.left_joins(:approvals).where(approved: false).where.not(user_id: current_user.id)
   end
 
   def new
@@ -38,11 +40,15 @@ class ApprovalsController < ApplicationController
 
   def deny
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    @approval = current_user.approvals.build(deny_params)
-    @approval.update(trip_statement_id: @trip_statement.id, approval: false)
+    @approval = current_user.approvals.create(deny_params)
     @trip_statement.update(approved: false, approved_at: Time.zone.now, applied: false)
-    redirect_to approvals_index_url
-    flash[:warning] = "否認しました。"
+    if @approval.save
+      redirect_to approvals_index_url
+      flash[:success] = "否認しました。"
+    else
+      render 'new'
+      flash[:warning] = "否認に失敗しました。再度確認してください。"
+    end
   end
 
   def edit
@@ -66,7 +72,7 @@ class ApprovalsController < ApplicationController
     end
 
     def deny_params
-      params.permit(:comment).merge(approval: false)
+      params.require(:approval).permit(:comment).merge(approval: false, trip_statement_id: @trip_statement.id)
     end
 
     def approve?
