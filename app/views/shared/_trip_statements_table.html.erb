@@ -18,7 +18,7 @@
           <td><%= link_to "削除", trip_statement_path(trip_statement.id), method: :delete, class:"btn btn-primary", data: {confirm: "削除しますか？" } %></td>
         <% end %>
       <% elsif action_name == "show" %>
-        <% if !trip_statement.applied %>
+        <% if current_user == trip_statement.user && !trip_statement.applied %>
           <td><%= link_to "編集", edit_trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
         <% end %>
       <% elsif action_name == "approved" %>
