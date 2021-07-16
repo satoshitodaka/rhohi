@@ -8,6 +8,7 @@
         <%= render 'shared/trip_statements_header' %>
         <%= render :partial => "shared/trip_statements_table", :collection => @approved, :as => "trip_statement" %>
       </table>
+      <%= paginate @approved %>
     </div>
   </div>
 </div>

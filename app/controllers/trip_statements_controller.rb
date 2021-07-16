@@ -10,25 +10,24 @@ class TripStatementsController < ApplicationController
     @user = @trip_statement.user
     @expences = @trip_statement.expences.all #申請書のshow画面にて、経費を全て表示する。
     @approval = Approval.find_by(trip_statement_id: @trip_statement.id)
-    
   end
 
   # 承認依頼中の申請(紐づく承認を持っていない)
   def index
     @user = current_user
-    @created_statements = @user.trip_statements.left_joins(:approvals).merge(Approval.where(id: nil))
+    @created_statements = @user.trip_statements.left_joins(:approvals).merge(Approval.where(id: nil)).page(params[:page])
   end
 
   # 承認済みの申請
   def approved
     @user = current_user
-    @approved_statements = @user.trip_statements.all.where(approved: true)
+    @approved_statements = @user.trip_statements.all.where(approved: true).page(params[:page])
   end
 
   # 否認された申請
   def denied
     @user = current_user
-    @denied_statements = @user.trip_statements.includes(:approvals).where(applied: true, approved: false).where.not(approved_at: nil)
+    @denied_statements = @user.trip_statements.includes(:approvals).where(applied: true, approved: false).where.not(approved_at: nil).page(params[:page])
   end  
 
   def new
