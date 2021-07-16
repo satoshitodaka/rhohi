@@ -7,20 +7,17 @@ class ApprovalsController < ApplicationController
   before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
-    @not_approved = TripStatement.joins(:user).where("(company_id = ?) AND (applied = ?) AND (approved = ?)", current_user.company_id, true, false).where.not(user_id: current_user.id)
+    @not_approved = TripStatement.joins(:user).where("(company_id = ?) AND (applied = ?) AND (approved = ?)", current_user.company_id, true, false).where.not(user_id: current_user.id).page(params[:page])
   end
 
   # 承認した申請
   def approved
-    @approved = TripStatement.joins(:user).where("(company_id = ?) AND (approved = ?)", current_user.company_id, true).where.not(user_id: current_user.id)
-    # @approved = TripStatement.where(approved: true).where.not(user_id: current_user.id)
+    @approved = TripStatement.joins(:user).where("(company_id = ?) AND (approved = ?)", current_user.company_id, true).where.not(user_id: current_user.id).page(params[:page])
   end
 
   # 否認した申請
   def denied
-    # @denied_statements = TripStatement.where(approved: false, applied_at: nil)
-    @denied_statements = TripStatement.joins(:user, :approvals).where("(company_id = ?) AND (approval = ?)", current_user.company_id, false).where.not(user_id: current_user.id)
-    # @denied_statements = TripStatement.left_joins(:approvals).where(approved: false).where.not(user_id: current_user.id)
+    @denied_statements = TripStatement.joins(:user, :approvals).where("(company_id = ?) AND (approval = ?)", current_user.company_id, false).where.not(user_id: current_user.id).page(params[:page])
   end
 
   def new

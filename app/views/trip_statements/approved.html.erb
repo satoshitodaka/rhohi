@@ -5,10 +5,9 @@
   <% if @approved_statements.any? %>
     <table class="table table-striped">
       <%= render 'shared/trip_statements_header' %>
-      <tbody>
-        <%= render :partial => "shared/trip_statements_table", :collection => @approved_statements, :as => "trip_statement" %>
-      </tbody>
+      <%= render :partial => "shared/trip_statements_table", :collection => @approved_statements, :as => "trip_statement" %>
     </table>
+    <%= paginate @approved_statements %>
   <% else %>
     <p>該当する申請はありません。</p>
   <% end %>
