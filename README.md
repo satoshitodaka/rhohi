@@ -20,8 +20,8 @@
 ## 技術スタック
 *言語: Ruby2.5.5  
 *フレームワーク: Ruby on Rails5.2.3  
-*DB: MySQL5.7 / CloudSQL for MySQL (GCP)  
-*インフラ: Docker / CloudRun (GCP)  
+*DB: MySQL8.0.25
+*インフラ: Heroku 
 *バージョン管理: Git  
 
 ## 実装した機能の概要
