@@ -1,81 +1,54 @@
-# README
-RhoHi
- 
-# DEMO
- 
-"RhoHi"の魅力が直感的に伝えわるデモ動画や図解を載せる
- 
-# Features
- 
-"RhoHi"のセールスポイントや差別化などを説明する
-・Deviseを使ったログイン機能
-・adminユーザーはユーザーのadmin権限を編集できる。
+# RhoHiについて
+## 概要
+・出張や旅費の情報を登録・承認依頼を出すことができます。
+・adminユーザーは承認依頼があった申請を承認・否認できます。
 
+## URL
+  https://rhohi.herokuapp.com/
+ 
+## 制作のきっかけ
+・普段の業務で使っている旅費申請アプリをRailsで作ってみたいと思ったため。
+
+## 重視した点
+・実際の業務での使用を想定し、ユーザーのアクションに制限を作成した。
+・Railチュートリアルでは使用しなかった技術を導入した。
+### 導入した技術等
+・deviseを用いたユーザー認証
+・DBにMySQLを使用
+・多層的なモデル構造の導入
+
+## 技術スタック
+・言語: Ruby2.5.5
+・フレームワーク: Ruby on Rails5.2.3
+・DB: MySQL5.7 / CloudSQL for MySQL (GCP)
+・インフラ: Docker / CloudRun (GCP)
+・バージョン管理: Git
+
+## 実装した機能の概要
+### 申請関連
 ・出張申請を作成できる。
-・新規入力と下書き保存ができる？
-・出張申請に紐付けて、旅費申請を登録できる。
-・adminユーザーは出張申請に対して承認・否認を行うことができる。
-・否認時はコメントを入力する必要がある。
-・一度承認した申請は再度承認できない。
+・出張申請に紐付けた旅費情報を登録できる。
+・申請中・承認済み・返戻（否認）済みの申請を一覧で確認できる。
 
-# Requirement
- 
-"RhoHi"を動かすのに必要なライブラリなどを列挙する
- 
-* huga 3.5.2
-* hogehuga 1.0.2
- 
-# Installation
- 
-Requirementで列挙したライブラリなどのインストール方法を説明する
- 
-```bash
-pip install huga_package
-```
- 
-# Usage
- 
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
- 
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
- 
-# Note注意点
- 
-# Author
- 
-作成情報を列挙する
- 
-* 作成者 satoshi todaka
-* 所属 Hitachi Finenext Transport System Co., Ltd.
-* E-mail satoshitodaka0705@gmail.com
- 
-# License
+### 承認関連
+・承認待ち・承認済み・否認済みの申請を一覧で確認できる。
+・adminユーザーは一般ユーザーの出張申請に対して承認・否認を行うことができる。
+・否認時はコメントを付与できる。
+・自社他ユーザーの提出済・承認済申請に対し、承認以外の操作を制限している。
+・他社ユーザーの申請に対し、全ての操作を制限している。
 
+### 認証・ユーザー管理
+・adminユーザーはユーザーの新規作成・招待メールの発行ができる。
+・外部からの新規登録は不可としている。（クローズドな運用を想定のため）
 
-<!-- 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### その他
+・承認ステータスに応じてビューの表示を変え、誤操作を防ぐ。
 
-Things you may want to cover:
+## 今後のアップデートについて
+### 実装したい機能
+・運賃・料金、手当額の全角文字入力に対応
+・集計機能の実装
+### 導入したい技術
+・テスト環境にDockerを導入
+・AWSのEC2に本番環境を移行
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ... -->
