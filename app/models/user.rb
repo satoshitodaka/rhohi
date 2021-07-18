@@ -31,7 +31,7 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by(email: "guest@rhohi.com") do |user|
       user.password = "password"
-      user.name = "ゲスト　太朗"
+      user.name = "ゲスト 太朗"
       # user.company_id = 1
     end
   end
