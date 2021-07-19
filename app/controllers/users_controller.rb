@@ -14,8 +14,7 @@ class UsersController < ApplicationController
 
   def invite
     user = User.find(params[:id])
-    if user.valid?
-      user.invite!
+    if user.invite!
       redirect_to users_path
       flash[:success] = "招待メールを送信しました。"
     else
