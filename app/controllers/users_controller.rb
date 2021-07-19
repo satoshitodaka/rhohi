@@ -1,15 +1,24 @@
 class UsersController < ApplicationController
-  before_action :admin_user?, only: :index
+  before_action :admin_user?, only: [:index, :destroy ]
 
   def show
-    # @user = User.find(params[:id])
     @user = User.find(params[:id])
-
   end
 
   def index
     @company = current_user.company
     @mycompany_users = User.all.where(company_id: current_user.company_id)
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      redirect_to users_path
+      flash[:success] = "ユーザーを削除しました"
+    else
+      user_path(@user)
+      flash[:warning] = "ユーザーの削除失敗しました"
+    end
   end
 
   def invite
