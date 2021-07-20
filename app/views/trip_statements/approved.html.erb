@@ -1,11 +1,11 @@
-<% provide(:title, "申請実績") %>
+<% provide(:title, '申請実績') %>
 <h1><%= @user.name %>の申請実績</h1>
-<div class="universal">
+<div class='universal'>
   <h3>旅費申請<%= @approved_statements.count %>件</h3>
   <% if @approved_statements.any? %>
-    <table class="table table-striped">
+    <table class='table table-striped'>
       <%= render 'shared/trip_statements_header' %>
-      <%= render :partial => "shared/trip_statements_table", :collection => @approved_statements, :as => "trip_statement" %>
+      <%= render :partial => 'shared/trip_statements_table', :collection => @approved_statements, :as => 'trip_statement' %>
     </table>
     <%= paginate @approved_statements %>
   <% else %>

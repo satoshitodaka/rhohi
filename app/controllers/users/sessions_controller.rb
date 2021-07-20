@@ -22,10 +22,10 @@ class Users::SessionsController < Devise::SessionsController
     user = User.guest
     if sign_in user
       redirect_to root_url
-      flash[:success] = "ゲストログインいただきありがとうございます！"
+      flash[:success] = 'ゲストログインいただきありがとうございます！'
     else
       redirect_to root_url
-      flash[:info] = "ゲストログインに失敗しました。管理者にお問い合わせください。"
+      flash[:info] = 'ゲストログインに失敗しました。管理者にお問い合わせください。'
     end
   end
 
@@ -34,10 +34,10 @@ class Users::SessionsController < Devise::SessionsController
     user.add_role :admin
     if sign_in user
       redirect_to root_url
-      flash[:success] = "ゲスト管理者ログインいただきありがとうございます！"
+      flash[:success] = 'ゲスト管理者ログインいただきありがとうございます！'
     else
       redirect_to root_url
-      flash[:info] = "ゲストログインに失敗しました。管理者にお問い合わせください。"
+      flash[:info] = 'ゲストログインに失敗しました。管理者にお問い合わせください。'
     end
   end
 

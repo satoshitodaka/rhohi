@@ -11,24 +11,24 @@
 
     <%# 操作については処理を分岐 %>
 
-    <% if controller_name == "trip_statements" %>
-      <% if action_name == "index" %>
+    <% if controller_name == 'trip_statements' %>
+      <% if action_name == 'index' %>
         <th>編集</th>
         <th>削除</th>
-      <% elsif action_name == "show" %>
+      <% elsif action_name == 'show' %>
         <th>編集</th>
-      <% elsif action_name == "approved" %>
+      <% elsif action_name == 'approved' %>
         <th>詳細</th>
-      <% elsif action_name == "denied" %>
+      <% elsif action_name == 'denied' %>
         <th>詳細</th>
       <% else %>
       <% end %>
-    <% elsif controller_name == "approvals" %>
-      <% if action_name == "index" %>
+    <% elsif controller_name == 'approvals' %>
+      <% if action_name == 'index' %>
         <th>承認</th>
-      <% elsif action_name == "denied" %>
+      <% elsif action_name == 'denied' %>
         <th>詳細</th>
-      <% elsif action_name == "approved" %>
+      <% elsif action_name == 'approved' %>
         <th>詳細</th>
       <% end %>
     <% end %>

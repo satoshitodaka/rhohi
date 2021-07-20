@@ -12,10 +12,10 @@
   <% if resource.new_record? %>
     <% required = true %>
   <% end %>
-  <%= f.password_field :password, autocomplete: "off", required: required %>
-  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <%= f.password_field :password, autocomplete: 'off', required: required %>
+  <%= f.password_field :password_confirmation, autocomplete: 'off' %>
   <% if resource.persisted? && !current_user.has_role?(:admin) %>
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.password_field :current_password, autocomplete: 'off' %>
   <% end %>
   <%= f.submit %>
 <% end %>

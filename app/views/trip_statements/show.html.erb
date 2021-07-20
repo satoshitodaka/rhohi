@@ -1,32 +1,32 @@
-<% provide(:title, "申請閲覧") %>
+<% provide(:title, '申請閲覧') %>
 <h1>出張旅費情報</h1>
 
-<div class="universal">
+<div class='universal'>
   <h3>出張情報</h3>
-  <table class="table table-striped">
+  <table class='table table-striped'>
     <%= render 'shared/trip_statements_header' %>
-    <%= render :partial => "shared/trip_statements_table", :locals => { trip_statement: @trip_statement } %>
+    <%= render :partial => 'shared/trip_statements_table', :locals => { trip_statement: @trip_statement } %>
   </table>
 
   <h3>旅費情報</h3>
   <% if @trip_statement.expences.any? %>
-    <table class="table table-striped">
+    <table class='table table-striped'>
       <%= render'shared/expences_header' %>
-      <%= render :partial => "shared/expences_table", :collection => @expences, :as => "expence" %>
+      <%= render :partial => 'shared/expences_table', :collection => @expences, :as => 'expence' %>
     </table>
   <% else %>
     <p>旅費手当が登録されていません。</p>
   <% end %>
 
   <% if @trip_statement.user_id == current_user.id && @trip_statement.applied == false %>
-    <%= link_to "旅費情報を追加する", new_trip_statement_expence_path(@trip_statement.id), class:"btn btn-primary btn-block" %>
+    <%= link_to '旅費情報を追加する', new_trip_statement_expence_path(@trip_statement.id), class:'btn btn-primary btn-block' %>
     <h3>申請する</h3>
-    <%= link_to "申請する", submit_trip_statement_path(@trip_statement), method: :patch, class:"btn btn-success btn-block" %>
+    <%= link_to '申請する', submit_trip_statement_path(@trip_statement), method: :patch, class:'btn btn-success btn-block' %>
   <% end %>
 
   <h3>承認情報</h3>
   <% if @trip_statement.approvals.any? %>
-    <table class="table table-striped">
+    <table class='table table-striped'>
       <thead>
         <tr>
           <th>承認状況</th>

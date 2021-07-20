@@ -7,17 +7,17 @@ class ApprovalsController < ApplicationController
   before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
-    @not_approved = TripStatement.joins(:user).where("(company_id = ?) AND (applied = ?) AND (approved = ?)", current_user.company_id, true, false).where.not(user_id: current_user.id).page(params[:page])
+    @not_approved = TripStatement.joins(:user).where('(company_id = ?) AND (applied = ?) AND (approved = ?)', current_user.company_id, true, false).where.not(user_id: current_user.id).page(params[:page])
   end
 
   # 承認した申請
   def approved
-    @approved = TripStatement.joins(:user).where("(company_id = ?) AND (approved = ?)", current_user.company_id, true).where.not(user_id: current_user.id).page(params[:page])
+    @approved = TripStatement.joins(:user).where('(company_id = ?) AND (approved = ?)', current_user.company_id, true).where.not(user_id: current_user.id).page(params[:page])
   end
 
   # 否認した申請
   def denied
-    @denied_statements = TripStatement.joins(:user, :approvals).where("(company_id = ?) AND (approval = ?)", current_user.company_id, false).where.not(user_id: current_user.id).page(params[:page])
+    @denied_statements = TripStatement.joins(:user, :approvals).where('(company_id = ?) AND (approval = ?)', current_user.company_id, false).where.not(user_id: current_user.id).page(params[:page])
   end
 
   def new
@@ -32,7 +32,7 @@ class ApprovalsController < ApplicationController
     @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: true)
     @trip_statement.update(approved: true, approved_at: Time.zone.now)
     redirect_to approvals_index_url
-    flash[:success] = "承認しました！"
+    flash[:success] = '承認しました！'
   end
 
   def deny
@@ -41,10 +41,10 @@ class ApprovalsController < ApplicationController
     @trip_statement.update(approved: false, approved_at: Time.zone.now, applied: false)
     if @approval.save
       redirect_to approvals_index_url
-      flash[:success] = "否認しました。"
+      flash[:success] = '否認しました。'
     else
       render 'new'
-      flash[:warning] = "否認に失敗しました。再度確認してください。"
+      flash[:warning] = '否認に失敗しました。再度確認してください。'
     end
   end
 
@@ -64,7 +64,7 @@ class ApprovalsController < ApplicationController
     def admin_user?
       if !current_user.admin
         redirect_to root_url
-        flash[:danger] = "管理者権限を確認してください。"
+        flash[:danger] = '管理者権限を確認してください。'
       end
     end
 
@@ -76,7 +76,7 @@ class ApprovalsController < ApplicationController
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.approved
         redirect_to approvals_index_url
-        flash[:danger] = "承認済の申請です。"
+        flash[:danger] = '承認済の申請です。'
       end
     end
 
@@ -84,7 +84,7 @@ class ApprovalsController < ApplicationController
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.applied == false
         redirect_to approvals_index_url
-        flash[:danger] = "未提出の申請です。"
+        flash[:danger] = '未提出の申請です。'
       end
     end
 
@@ -95,7 +95,7 @@ class ApprovalsController < ApplicationController
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.user.company_id != current_user.company_id
         redirect_to approvals_index_url
-        flash[:danger] = "他社ユーザーの申請は操作できません"
+        flash[:danger] = '他社ユーザーの申請は操作できません'
       end
     end
 

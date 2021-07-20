@@ -10,15 +10,15 @@
 
     <%# 操作については処理を分岐 %>
 
-    <% if controller_name == "trip_statements" %>
-      <% if action_name == "show" %>
+    <% if controller_name == 'trip_statements' %>
+      <% if action_name == 'show' %>
         <% if current_user == expence.trip_statement.user && !expence.trip_statement.applied %>
-          <td><%= link_to "編集", edit_expence_path(expence.id), class:"btn btn-primary" %></td>
-          <td><%= link_to "削除", expence_path(expence.id), method: :delete, class:"btn btn-warning", data: { confirm: "旅費を削除しますか？" } %></td>
+          <td><%= link_to '編集', edit_expence_path(expence.id), class:'btn btn-primary' %></td>
+          <td><%= link_to '削除', expence_path(expence.id), method: :delete, class:'btn btn-warning', data: { confirm: '旅費を削除しますか？' } %></td>
         <% end %>
       <% end %>
     
-    <% elsif controller_name == "approvals" %>
+    <% elsif controller_name == 'approvals' %>
     <%# 操作ボタンは置かない %>
     <% end %>
   </tr>
