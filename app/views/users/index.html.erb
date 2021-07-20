@@ -13,7 +13,6 @@
             <th>誕生日</th>
             <th>管理者権限</th>
             <th>詳細</th>
-            <th>削除</th>
           </tr>
         </thead>
         <tbody>
@@ -23,8 +22,7 @@
               <td><%= user.email %></td>
               <td><%= user.birthday %></td>
               <td><%= user.admin %></td>
-              <td><%= link_to "編集", user_path(user.id), class:"btn btn-primary" %></td>
-              <td><%= link_to "削除", '#', class:"btn btn-primary", data: {confirm: "削除しますか？" } %></td>
+              <td><%= link_to "詳細・編集", user_path(user.id), class:"btn btn-primary" %></td>  
             </tr>
           <% end %>
         </tbody>

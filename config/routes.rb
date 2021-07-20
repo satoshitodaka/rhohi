@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     post 'users/guest_admin_sign_in', to: 'users/sessions#new_admin_guest'
   end
 
-  resources :users, only: [:show, :index] do
+  resources :users, only: [:show, :index, :destroy] do
     patch 'invite', on: :member
   end
   resources :trip_statements, shallow: true do
