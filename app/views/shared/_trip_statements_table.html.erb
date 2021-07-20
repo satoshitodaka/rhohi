@@ -11,29 +11,29 @@
 
     <%# 操作については処理を分岐 %>
 
-    <% if controller_name == "trip_statements" %>
-      <% if action_name == "index" %>
-        <td><%= link_to "詳細・編集", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+    <% if controller_name == 'trip_statements' %>
+      <% if action_name == 'index' %>
+        <td><%= link_to '詳細・編集', trip_statement_path(trip_statement.id), class:'btn btn-primary' %></td>
         <% if current_user == trip_statement.user && !trip_statement.applied %>
-          <td><%= link_to "削除", trip_statement_path(trip_statement.id), method: :delete, class:"btn btn-primary", data: {confirm: "削除しますか？" } %></td>
+          <td><%= link_to '削除', trip_statement_path(trip_statement.id), method: :delete, class:'btn btn-primary', data: {confirm: '削除しますか？' } %></td>
         <% end %>
-      <% elsif action_name == "show" %>
+      <% elsif action_name == 'show' %>
         <% if current_user == trip_statement.user && !trip_statement.applied %>
-          <td><%= link_to "編集", edit_trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+          <td><%= link_to '編集', edit_trip_statement_path(trip_statement.id), class:'btn btn-primary' %></td>
         <% end %>
-      <% elsif action_name == "approved" %>
-        <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
-      <% elsif action_name == "denied" %>
-        <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+      <% elsif action_name == 'approved' %>
+        <td><%= link_to '詳細', trip_statement_path(trip_statement.id), class:'btn btn-primary' %></td>
+      <% elsif action_name == 'denied' %>
+        <td><%= link_to '詳細', trip_statement_path(trip_statement.id), class:'btn btn-primary' %></td>
       <% else %>
       <% end %>
-    <% elsif controller_name == "approvals" %>
-      <% if action_name == "index" %>
-        <td><%= link_to "承認画面", new_trip_statement_approval_path(trip_statement.id), class:"btn btn-primary" %></td>
-      <% elsif action_name == "approved" %>
-        <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
-      <% elsif action_name == "denied" %>
-        <td><%= link_to "詳細", trip_statement_path(trip_statement.id), class:"btn btn-primary" %></td>
+    <% elsif controller_name == 'approvals' %>
+      <% if action_name == 'index' %>
+        <td><%= link_to '承認画面', new_trip_statement_approval_path(trip_statement.id), class:'btn btn-primary' %></td>
+      <% elsif action_name == 'approved' %>
+        <td><%= link_to '詳細', trip_statement_path(trip_statement.id), class:'btn btn-primary' %></td>
+      <% elsif action_name == 'denied' %>
+        <td><%= link_to '詳細', trip_statement_path(trip_statement.id), class:'btn btn-primary' %></td>
       <% end %>
     <% end %>
 
