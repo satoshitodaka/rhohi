@@ -14,10 +14,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.destroy
       redirect_to users_path
-      flash[:success] = "ユーザーを削除しました"
+      flash[:success] = 'ユーザーを削除しました'
     else
       user_path(@user)
-      flash[:warning] = "ユーザーの削除失敗しました"
+      flash[:warning] = 'ユーザーの削除失敗しました'
     end
   end
 
@@ -25,10 +25,10 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if user.invite!
       redirect_to users_path
-      flash[:success] = "招待メールを送信しました。"
+      flash[:success] = '招待メールを送信しました。'
     else
       redirect_to root_url
-      flash[:warning] = "ユーザー情報が無効です。"#再度showページでも良いかも
+      flash[:warning] = 'ユーザー情報が無効です。'#再度showページでも良いかも
     end
   end
 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     def admin_user?
       if !current_user.has_role? :admin
         redirect_to root_url
-        flash[:info] = "操作権限がありません。"
+        flash[:info] = '操作権限がありません。'
       end
     end
 end

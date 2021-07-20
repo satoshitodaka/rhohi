@@ -23,10 +23,10 @@ class ExpencesController < ApplicationController
     @expence = @trip_statement.expences.build(expence_params)
     if @expence.save
       redirect_to trip_statement_path(params[:trip_statement_id])
-      flash[:success] = "旅費情報を登録しました！"
+      flash[:success] = '旅費情報を登録しました！'
     else
       redirect_to new_trip_statement_expence_url(@trip_statement)
-      flash[:danger] = "登録に失敗しました。。。"
+      flash[:danger] = '登録に失敗しました。。。'
     end
   end
 
@@ -34,7 +34,7 @@ class ExpencesController < ApplicationController
     @expence = Expence.find(params[:id])
     @expence.destroy
     redirect_to trip_statement_url(@expence.trip_statement.id)
-    flash[:info] = "旅費を削除しました"
+    flash[:info] = '旅費を削除しました'
   end
 
   def edit
@@ -47,7 +47,7 @@ class ExpencesController < ApplicationController
     @trip_statement = @expence.trip_statement
       if @expence.update(expence_params)
         redirect_to trip_statement_path(@expence.trip_statement.id)
-        flash[:success] = "旅費情報を更新しました。"
+        flash[:success] = '旅費情報を更新しました。'
       else
         render 'edit'
       end
@@ -64,7 +64,7 @@ class ExpencesController < ApplicationController
       @own_statement = current_user.trip_statements.find_by(id: @expence.trip_statement_id)
       if @own_statement.nil?
         redirect_to root_url
-        flash[:info] = "他ユーザーの申請は操作できません"
+        flash[:info] = '他ユーザーの申請は操作できません'
       end
     end
 
@@ -73,7 +73,7 @@ class ExpencesController < ApplicationController
       @trip_statement = @expence.trip_statement
       if @trip_statement.applied == true
         redirect_to trip_statement_path(@trip_statement)
-        flash[:danger] = "申請済みの旅費情報は操作できません。"
+        flash[:danger] = '申請済みの旅費情報は操作できません。'
       end
     end
 
