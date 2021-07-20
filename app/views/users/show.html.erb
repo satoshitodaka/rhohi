@@ -11,6 +11,7 @@
       <h3>その他</h3>
       <p>誕生日 : <%= @user.birthday %></p>
 
+      <h3>操作</h3>
       <% if current_user != @user %>
         <% if current_user.has_role? :admin %>
           <%= link_to '編集する', edit_other_user_registration_path(params[:id]), class:"btn btn-primary" %>
@@ -20,7 +21,7 @@
           <%= link_to '編集する', edit_registration_user_path, class:"btn btn-primary" %> 
         <% end %>
       <% else %>
-        <%= link_to '編集する', edit_user_registration_path, class:"btn btn-primary btn-block" %>
+        <%= link_to '編集する', edit_user_registration_path, class:"btn btn-primary" %>
       <% end %>
     </div>
   </div>
