@@ -23,7 +23,7 @@ class ExpencesController < ApplicationController
       flash[:success] = '旅費情報を登録しました！'
     else
       redirect_to new_trip_statement_expence_url(@trip_statement)
-      flash[:danger] = '登録に失敗しました。。。'
+      flash[:danger] = '登録に失敗しました。'
     end
   end
 

@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if by_admin_user?(params)	
       self.resource = resource_class.to_adapter.get!(params[:id])	
     else	
-      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)	
+      self.resource = resource_class.to_adapter.get!(send(:'current_#{resource_name}').to_key)	
     end
 
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)	
@@ -50,10 +50,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :update_needs_confirmation : :updated	
         set_flash_message :notice, flash_key	
       end	
-      if !by_admin_user?(params)	
-        bypass_sign_in resource, scope: resource_name	
-      end	
-      respond_with resource, location: after_update_path_for(resource)	
+      bypass_sign_in resource, scope: resource_name	unless by_admin_user?(params)
+      respond_with resource, location: after_update_path_for(resource)
     else	
       clean_up_passwords resource	
       set_minimum_password_length	
@@ -121,22 +119,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # end
 
     def sign_up(resource_name, resource)
-      if !current_user_is_admin?
+      unless current_user_is_admin?
         sign_in(resource_name, resource)
       end
     end
 
-    def update_resource_without_password(resource, params)	
+    def update_resource_without_password(resource, params)
       resource.update_without_password(params)
     end
 
     def creatable?
       if !user_signed_in?
         redirect_to root_url
-        flash[:danger] = "ユーザー作成の権限がありません。管理者に連絡してください。"
+        flash[:danger] = 'ユーザー作成の権限がありません。管理者に連絡してください。'
       elsif !current_user_is_admin?
         redirect_to root_url
-        flash[:danger] = "ユーザー作成の権限がありません"
+        flash[:danger] = 'ユーザー作成の権限がありません'
       end
     end
 
@@ -144,7 +142,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       raise CanCan::AccessDenied unless user_signed_in?
       if params[:id].present? && !current_user_is_admin?
         redirect_to root_url
-        flash[:danger] = "ユーザー編集の権限がありません"
+        flash[:danger] = 'ユーザー編集の権限がありません'
       end
     end
 

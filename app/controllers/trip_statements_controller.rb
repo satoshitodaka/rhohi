@@ -105,11 +105,7 @@ class TripStatementsController < ApplicationController
 
     def admin_user?
       @trip_statement = current_user.trip_statements.find_by(id: params[:id])
-      if @trip_statement.nil?
-        if current_user.admin != true
-          redirect_to root_url
-        end
-      end
+      redirect_to root_url if @trip_statement.nil? && current_user.admin != true
     end
 
 end
