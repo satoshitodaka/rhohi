@@ -14,16 +14,16 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     @other_users_statement = trip_statements(:my_applied_statement)
     get approvals_index_path
     assert_template 'approvals/index'
-    # # 編集・削除タグは無いか？
     get new_trip_statement_approval_path(@other_users_statement)
     assert_template 'approvals/new'
     assert_difference 'Approval.count', 1 do
-      post trip_statement_approvals_path(@other_users_statement)#, params: { approval: "true" }
+      # post trip_statement_approvals_path(@other_users_statement)#, params: { approval: "true" }
+      post trip_statement_approvals_path#, params: { approval: "true" }
     end
     @approval = Approval.last
     assert_equal true, @approval.approval
     assert_equal @user.id, @other_users_statement.user_id
-    # assert_equal true, @other_users_statement#.approved # 実際にはupdateされているので、テストの記述が間違っている可能性大
+    assert_equal true, @other_users_statement.approved
     assert_equal @other_users_statement.id, @approval.trip_statement_id
   end
 
@@ -36,12 +36,12 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     get new_trip_statement_approval_path(@other_users_statement)
     assert_template 'approvals/new'
     assert_difference 'Approval.count', 1 do
-      post deny_approval_path(@other_users_statement, comment: "test comment")
+      post deny_approval_path, params: { approval:{comment: "test comment"}}
     end
     @approval = Approval.last
     assert_equal false, @approval.approval
     assert_equal "test comment", @approval.comment
-    assert_equal false, @other_users_statement.approved # 作成時のfalseがそのまま残っているという不具合（書き換わっていない）の可能性がある。
+    assert_equal false, @other_users_statement.approved
   end
 
 end
