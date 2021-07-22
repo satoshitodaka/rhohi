@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :admin_user?, only: [:index, :destroy ]
+  before_action :admin_user?, only: [ :index, :destroy ]
 
   def show
     @user = User.find(params[:id])
@@ -28,11 +28,12 @@ class UsersController < ApplicationController
       flash[:success] = '招待メールを送信しました。'
     else
       redirect_to root_url
-      flash[:warning] = 'ユーザー情報が無効です。'#再度showページでも良いかも
+      flash[:warning] = 'ユーザー情報が無効です。'
     end
   end
 
   private
+
     def admin_user?
       if !current_user.has_role? :admin
         redirect_to root_url

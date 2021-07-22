@@ -1,15 +1,12 @@
 class ExpencesController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only:[:destroy, :edit, :update]
-  before_action :applied_expence?, only: [:update, :destroy] #editを含めるとエラーが発生する。
+  before_action :correct_user, only: [:destroy, :edit, :update]
+  before_action :applied_expence?, only: [:update, :destroy]
   # before_action :admin_user?, only: :show
 
   def new
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @expence = @trip_statement.expences.new
-  end
-
-  def index
   end
 
   def show
@@ -54,6 +51,7 @@ class ExpencesController < ApplicationController
   end
 
   private
+
     def expence_params
       params.require(:expence).permit(:date, :transportation, :bording, :get_off, :fare, :mileage, :allowance)
     end
@@ -77,12 +75,4 @@ class ExpencesController < ApplicationController
       end
     end
 
-    # def admin_user?
-    #   @expence = current_user.expences.find_by(id: params[:id])
-    #   if @expence.nil?
-    #     if current_user.admin != true
-    #       redirect_to root_url
-    #     end
-    #   end
-    # end
 end

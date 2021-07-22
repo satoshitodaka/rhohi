@@ -16,6 +16,7 @@ AllCops:
     - 'db/**/*'
     - 'tmp/**/*'
     - 'test/***/**/*'
+    - 'config/***/**/*'
     - 'node_modules/**/*'
 
   NewCops: enable

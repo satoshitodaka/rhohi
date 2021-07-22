@@ -8,7 +8,7 @@ class TripStatementsController < ApplicationController
   def show
     @trip_statement = TripStatement.find(params[:id])
     @user = @trip_statement.user
-    @expences = @trip_statement.expences.all #申請書のshow画面にて、経費を全て表示する。
+    @expences = @trip_statement.expences.all # 申請書のshow画面にて、経費を全て表示する。
     @approval = Approval.find_by(trip_statement_id: @trip_statement.id)
   end
 
@@ -59,12 +59,10 @@ class TripStatementsController < ApplicationController
     end
   end
 
-    # 承認依頼（提出）する
+  # 承認依頼（提出）する
   def submit
     @trip_statement = TripStatement.find(params[:id])
     @trip_statement.update(applied: true, applied_at: Time.zone.now)
-    # @trip_statement.applied = true
-    # @trip_statement.applied_at = Time.zone.now
     @trip_statement.save
     redirect_to trip_statements_url
     flash[:success] = '出張を提出しました。'
@@ -77,6 +75,7 @@ class TripStatementsController < ApplicationController
   end
 
   private
+
     def create_trip_statement_params
       params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at).merge(applied: false, approved: false)
     end
@@ -113,10 +112,4 @@ class TripStatementsController < ApplicationController
       end
     end
 
-    # 多分使ってない
-    # def has_approval?
-    #   if @trip_statement = TripStatement.find(params[:id])
-    #     @trip_statement.approval.any?
-    #   end
-    # end
 end

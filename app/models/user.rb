@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   # バリデーション
   validates :name, presence: true
-  validates :email, presence: true #このバリデーションがあってもなくても、テストが通ってしまう？
+  validates :email, presence: true # このバリデーションがあってもなくても、テストが通ってしまう？
 
   # devise
   devise :invitable, :database_authenticatable, :registerable,
@@ -32,7 +32,7 @@ class User < ApplicationRecord
     find_or_create_by(email: "guest@rhohi.com") do |user|
       user.password = "password"
       user.name = "ゲスト 太朗"
-      # user.company_id = 1
+      user.company_id = 1
     end
   end
 
@@ -45,10 +45,5 @@ class User < ApplicationRecord
     end
   end
 
-  # private
-    # おそらく不使用
-    # def admin?
-    #   @user.admin == true
-    # end
       
 end
