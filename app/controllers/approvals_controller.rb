@@ -3,7 +3,7 @@ class ApprovalsController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user?
   before_action :same_company?, only: [:new, :create, :edit, :update]
-  before_action :approve?, only: [:new, :create]
+  before_action :approved?, only: [:new, :create]
   before_action :applied?, only: [:new, :create, :edit, :update]
 
   def index
@@ -29,7 +29,7 @@ class ApprovalsController < ApplicationController
 
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    @approval = current_user.approvals.create(trip_statement_id: @trip_statement.id, approval: true)
+    @approval = current_user.approvals.create(approval: true, trip_statement_id: @trip_statement.id)
     @trip_statement.update(approved: true, approved_at: Time.zone.now)
     redirect_to approvals_index_url
     flash[:success] = '承認しました！'
@@ -48,18 +48,6 @@ class ApprovalsController < ApplicationController
     end
   end
 
-  def edit
-    @approval = Approval.find(params[:id])
-    @trip_statement = @approval.trip_statement
-    @user = @trip_statement.user
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   private
     def admin_user?
       if !current_user.admin
@@ -68,11 +56,15 @@ class ApprovalsController < ApplicationController
       end
     end
 
+    # def approval_params
+    #   params.require(:approval).merge(approval: true, trip_statement_id: @trip_statement.id)
+    # end
+
     def deny_params
       params.require(:approval).permit(:comment).merge(approval: false, trip_statement_id: @trip_statement.id)
     end
 
-    def approve?
+    def approved?
       @trip_statement = TripStatement.find(params[:trip_statement_id])
       if @trip_statement.approved
         redirect_to approvals_index_url
@@ -86,9 +78,6 @@ class ApprovalsController < ApplicationController
         redirect_to approvals_index_url
         flash[:danger] = '未提出の申請です。'
       end
-    end
-
-    def own_statement?
     end
 
     def same_company?
