@@ -29,33 +29,33 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if by_admin_user?(params)	
-      self.resource = resource_class.to_adapter.get!(params[:id])	
-    else	
-      self.resource = resource_class.to_adapter.get!(send(:'current_#{resource_name}').to_key)	
+    if by_admin_user?(params)
+      self.resource = resource_class.to_adapter.get!(params[:id])
+    else
+      self.resource = resource_class.to_adapter.get!(send(:'current_#{resource_name}').to_key)
     end
 
-    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)	
-    if by_admin_user?(params)	
-      resource_updated = update_resource_without_password(resource, account_update_params)	
-    else	
-      resource_updated = update_resource(resource, account_update_params)	
-    end	
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    if by_admin_user?(params)
+      resource_updated = update_resource_without_password(resource, account_update_params)
+    else
+      resource_updated = update_resource(resource, account_update_params)
+    end
 
     yield resource if block_given?
 
-    if resource_updated	
-      if is_flashing_format?	
-        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?	
-        :update_needs_confirmation : :updated	
-        set_flash_message :notice, flash_key	
-      end	
+    if resource_updated
+      if is_flashing_format?
+        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+        :update_needs_confirmation : :updated
+        set_flash_message :notice, flash_key
+      end
       bypass_sign_in resource, scope: resource_name	unless by_admin_user?(params)
       respond_with resource, location: after_update_path_for(resource)
     else	
-      clean_up_passwords resource	
-      set_minimum_password_length	
-      respond_with resource	
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
     end
   end
 
@@ -85,14 +85,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :company_id, :birthday, :admin])
     end
 
-    def by_admin_user?(params)	
+    def by_admin_user?(params)
       params[:id].present? && current_user_is_admin?
     end
 
-    def current_user_is_admin?	
+    def current_user_is_admin?
       user_signed_in? && current_user.has_role?(:admin)
     end
-
 
     # The path used after sign up.
     def after_sign_up_path_for(resource)

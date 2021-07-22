@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index, :destroy] do
     patch 'invite', on: :member
   end
+
   resources :trip_statements, shallow: true do
     patch 'submit', on: :member
     collection do
@@ -36,8 +37,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
   get 'approvals/index' => 'approvals#index'
   get 'approvals/approved' => 'approvals#approved'
   get 'approvals/denied' => 'approvals#denied'
   post 'trip_statements/:trip_statement_id/deny' => 'approvals#deny', as: :deny_approval
+  
 end
