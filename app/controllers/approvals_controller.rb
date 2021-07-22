@@ -52,7 +52,7 @@ class ApprovalsController < ApplicationController
   private
 
     def admin_user?
-      if !current_user.admin
+      unless current_user.admin
         redirect_to root_url
         flash[:danger] = '管理者権限を確認してください。'
       end

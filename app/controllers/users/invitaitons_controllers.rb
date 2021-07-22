@@ -7,8 +7,7 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
-  def new
-  end
+  def new；end
 
   private
 
