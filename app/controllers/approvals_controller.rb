@@ -24,12 +24,13 @@ class ApprovalsController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @user = current_user
     @approval = @user.approvals.build(trip_statement_id: @trip_statement.id)
-    @expences = @trip_statement.expences.all #承認画面にて、紐づく旅費全てを表示する。
+    @expences = @trip_statement.expences.all # 承認画面にて、紐づく旅費全てを表示する。
   end
 
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @approval = current_user.approvals.create(approval: true, trip_statement_id: @trip_statement.id)
+    @approval = current_user.approvals.create(approval_params)
     @trip_statement.update(approved: true, approved_at: Time.zone.now)
     redirect_to approvals_index_url
     flash[:success] = '承認しました！'
@@ -49,6 +50,7 @@ class ApprovalsController < ApplicationController
   end
 
   private
+
     def admin_user?
       if !current_user.admin
         redirect_to root_url
