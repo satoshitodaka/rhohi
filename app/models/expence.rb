@@ -1,5 +1,4 @@
 class Expence < ApplicationRecord
-
   # 関連付
   belongs_to :trip_statement
   has_one :users, through: :trip_statements

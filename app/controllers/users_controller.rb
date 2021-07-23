@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :admin_user?, only: [ :index, :destroy ]
+  before_action :admin_user?, only: [:index, :destroy]
 
   def show
     @user = User.find(params[:id])
@@ -34,10 +34,10 @@ class UsersController < ApplicationController
 
   private
 
-    def admin_user?
-      unless current_user.has_role? :admin
-        redirect_to root_url
-        flash[:info] = '操作権限がありません。'
-      end
+  def admin_user?
+    unless current_user.has_role? :admin
+      redirect_to root_url
+      flash[:info] = '操作権限がありません。'
     end
+  end
 end

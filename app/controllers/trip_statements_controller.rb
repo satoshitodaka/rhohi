@@ -76,36 +76,35 @@ class TripStatementsController < ApplicationController
 
   private
 
-    def create_trip_statement_params
-      params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at).merge(applied: false, approved: false)
-    end
+  def create_trip_statement_params
+    params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at).merge(applied: false, approved: false)
+  end
 
-    def update_trip_statement_params
-      params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at)
-    end
+  def update_trip_statement_params
+    params.require(:trip_statement).permit(:distination, :purpose, :start_at, :finish_at, :work_done_at)
+  end
 
-    def applied?
-      if @trip_statement.applied == true
-        redirect_to trip_statements_url(@trip_statement)
-        flash[:warning] = '提出済みの申請は操作できません'
-      end 
-    end
+  def applied?
+    if @trip_statement.applied == true
+      redirect_to trip_statements_url(@trip_statement)
+      flash[:warning] = '提出済みの申請は操作できません'
+    end 
+  end
 
-    def approved?
-      if @trip_statement.approved == true
-        redirect_to trip_statements_url(@trip_statement)
-        flash[:warning] = '承認済みの申請は操作できません'
-      end 
-    end
+  def approved?
+    if @trip_statement.approved == true
+      redirect_to trip_statements_url(@trip_statement)
+      flash[:warning] = '承認済みの申請は操作できません'
+    end 
+  end
 
-    def currect_user
-      @trip_statement = current_user.trip_statements.find_by(id: params[:id])
-      redirect_to root_url if @trip_statement.nil?
-    end
+  def currect_user
+    @trip_statement = current_user.trip_statements.find_by(id: params[:id])
+    redirect_to root_url if @trip_statement.nil?
+  end
 
-    def admin_user?
-      @trip_statement = current_user.trip_statements.find_by(id: params[:id])
-      redirect_to root_url if @trip_statement.nil? && current_user.admin != true
-    end
-
+  def admin_user?
+    @trip_statement = current_user.trip_statements.find_by(id: params[:id])
+    redirect_to root_url if @trip_statement.nil? && current_user.admin != true
+  end
 end

@@ -75,74 +75,73 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-    # If you have extra params to permit, append them to the sanitizer.
-    def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :company_id, :birthday, :admin])
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :company_id, :birthday, :admin])
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :company_id, :birthday, :admin])
+  end
+
+  def by_admin_user?(params)
+    params[:id].present? && current_user_is_admin?
+  end
+
+  def current_user_is_admin?
+    user_signed_in? && current_user.has_role?(:admin)
+  end
+
+  # The path used after sign up.
+  def after_sign_up_path_for(resource)
+    if current_user_is_admin?
+      new_user = User.last
+      user_path(new_user)
+    else
+      super(resource)
     end
+  end
 
-    # If you have extra params to permit, append them to the sanitizer.
-    def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :company_id, :birthday, :admin])
+  # The path used after update.
+  def after_update_path_for(resource)
+    if current_user_is_admin?
+      users_path
+    else
+      super(resource)
     end
+  end
 
-    def by_admin_user?(params)
-      params[:id].present? && current_user_is_admin?
+  # The path used after sign up for inactive accounts.
+  # def after_inactive_sign_up_path_for(resource)
+  #   super(resource)
+  # end
+
+  def sign_up(resource_name, resource)
+    unless current_user_is_admin?
+      sign_in(resource_name, resource)
     end
+  end
 
-    def current_user_is_admin?
-      user_signed_in? && current_user.has_role?(:admin)
+  def update_resource_without_password(resource, params)
+    resource.update_without_password(params)
+  end
+
+  def creatable?
+    if !user_signed_in?
+      redirect_to root_url
+      flash[:danger] = 'ユーザー作成の権限がありません。管理者に連絡してください。'
+    elsif !current_user_is_admin?
+      redirect_to root_url
+      flash[:danger] = 'ユーザー作成の権限がありません'
     end
+  end
 
-    # The path used after sign up.
-    def after_sign_up_path_for(resource)
-      if current_user_is_admin?
-        new_user = User.last
-        user_path(new_user)
-      else
-        super(resource)
-      end
+  def editable?
+    raise CanCan::AccessDenied unless user_signed_in?
+    if params[:id].present? && !current_user_is_admin?
+      redirect_to root_url
+      flash[:danger] = 'ユーザー編集の権限がありません'
     end
-
-    # The path used after update.
-    def after_update_path_for(resource)
-      if current_user_is_admin?
-        users_path
-      else
-        super(resource)
-      end
-    end
-
-    # The path used after sign up for inactive accounts.
-    # def after_inactive_sign_up_path_for(resource)
-    #   super(resource)
-    # end
-
-    def sign_up(resource_name, resource)
-      unless current_user_is_admin?
-        sign_in(resource_name, resource)
-      end
-    end
-
-    def update_resource_without_password(resource, params)
-      resource.update_without_password(params)
-    end
-
-    def creatable?
-      if !user_signed_in?
-        redirect_to root_url
-        flash[:danger] = 'ユーザー作成の権限がありません。管理者に連絡してください。'
-      elsif !current_user_is_admin?
-        redirect_to root_url
-        flash[:danger] = 'ユーザー作成の権限がありません'
-      end
-    end
-
-    def editable?
-      raise CanCan::AccessDenied unless user_signed_in?
-      if params[:id].present? && !current_user_is_admin?
-        redirect_to root_url
-        flash[:danger] = 'ユーザー編集の権限がありません'
-      end
-    end
-
+  end
 end

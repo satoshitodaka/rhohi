@@ -37,12 +37,11 @@ class User < ApplicationRecord
   end
 
   def self.new_admin_guest
-    User.find_or_create_by(email:'admin_guest@rhohi.com') do |admin_user|
+    User.find_or_create_by(email: 'admin_guest@rhohi.com') do |admin_user|
       admin_user.password = 'password'
       admin_user.name = '管理者 花子'
       admin_user.company_id = 1
       admin_user.admin = true
     end
   end
-
 end
