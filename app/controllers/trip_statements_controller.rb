@@ -28,7 +28,7 @@ class TripStatementsController < ApplicationController
   def denied
     @user = current_user
     @denied_statements = @user.trip_statements.includes(:approvals).where(applied: true, approved: false).where.not(approved_at: nil).page(params[:page])
-  end  
+  end
 
   def new
     @trip_statement = TripStatement.new
@@ -88,14 +88,14 @@ class TripStatementsController < ApplicationController
     if @trip_statement.applied == true
       redirect_to trip_statements_url(@trip_statement)
       flash[:warning] = '提出済みの申請は操作できません'
-    end 
+    end
   end
 
   def approved?
     if @trip_statement.approved == true
       redirect_to trip_statements_url(@trip_statement)
       flash[:warning] = '承認済みの申請は操作できません'
-    end 
+    end
   end
 
   def currect_user
