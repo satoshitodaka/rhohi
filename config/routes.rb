@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'approvals/approved' => 'approvals#approved'
   get 'approvals/denied' => 'approvals#denied'
   post 'trip_statements/:trip_statement_id/deny' => 'approvals#deny', as: :deny_approval
-  
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
