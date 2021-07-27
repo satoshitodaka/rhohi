@@ -84,24 +84,23 @@ MethodLength:
   Max: 30
 
 ClassAndModuleChildren:
-  EnforcedStyle: compact
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+# 日本語のコメントを許可する。
+Style/AsciiComments:
+  Enabled: false
 
 # todoリストの除外一覧
 Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
-Style/AsciiComments:
-  Exclude:
-    - 'Guardfile'
-    - 'app/controllers/approvals_controller.rb'
-    - 'app/controllers/expences_controller.rb'
-    - 'app/controllers/home_controller.rb'
-    - 'app/controllers/trip_statements_controller.rb'
-    - 'app/models/company.rb'
-    - 'app/models/expence.rb'
-    - 'app/models/trip_statement.rb'
-    - 'app/models/user.rb'
-    - 'config/application.rb'
+
+# 複雑度の測定
+Metrics/CyclomaticComplexity:
+  Max: 10
 
 Layout/ArgumentAlignment:
   Exclude:

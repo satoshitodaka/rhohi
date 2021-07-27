@@ -50,13 +50,11 @@ class ExpencesController < ApplicationController
   end
 
   private
-
   def expence_params
     params.require(:expence).permit(:date, :transportation, :bording, :get_off, :fare, :mileage, :allowance)
   end
 
   # 他ユーザーの旅費情報の操作（編集・削除）を制限する。
-  
   def correct_user
     @expence = Expence.find(params[:id])
     @own_statement = current_user.trip_statements.find_by(id: @expence.trip_statement_id)

@@ -1,24 +1,20 @@
 class User < ApplicationRecord
   rolify
-
   # 関連付
   belongs_to :company
   # belongs_to :department
   has_many :trip_statements, dependent: :nullify
   has_many :expences, through: :trip_statements # ユーザーから旅費情報を参照できる。
   has_many :approvals, dependent: :nullify
-
   # バリデーション
   validates :name, presence: true
   validates :email, presence: true # このバリデーションがあってもなくても、テストが通ってしまう？
-
   # devise
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, invite_for: 14.days
-  
+
   def update_without_password(params, *options)
     # current_password = params.delete(:current_password)
-
     if params[:password].blank?
       params.delete(:password)
       params.delete(:password_confirmation) if params[:password_confirmation].blank?
