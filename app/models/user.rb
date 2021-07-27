@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   rolify
-  
+
   # 関連付
   belongs_to :company
   # belongs_to :department
