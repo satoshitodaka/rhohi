@@ -3,7 +3,7 @@ module ApplicationHelper
     if page_title.empty?
       'Rhohi'
     else
-      page_title + ' | Rhohi'
+      "#{page_title} | Rhohi"
     end
   end
 end
