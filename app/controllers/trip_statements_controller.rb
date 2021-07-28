@@ -85,17 +85,18 @@ class TripStatementsController < ApplicationController
   end
 
   def applied?
-    if @trip_statement.applied == true
-      redirect_to trip_statements_url(@trip_statement)
-      flash[:warning] = '提出済みの申請は操作できません'
+    return unless @trip_statement.applied == true
+    
+    redirect_to trip_statements_url(@trip_statement)
+    flash[:warning] = '提出済みの申請は操作できません'
     end
   end
 
   def approved?
-    if @trip_statement.approved == true
-      redirect_to trip_statements_url(@trip_statement)
-      flash[:warning] = '承認済みの申請は操作できません'
-    end
+    retrun unless @trip_statement.approved == true
+    
+    redirect_to trip_statements_url(@trip_statement)
+    flash[:warning] = '承認済みの申請は操作できません'
   end
 
   def currect_user
