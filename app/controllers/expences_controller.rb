@@ -50,6 +50,7 @@ class ExpencesController < ApplicationController
   end
 
   private
+
   def expence_params
     params.require(:expence).permit(:date, :transportation, :bording, :get_off, :fare, :mileage, :allowance)
   end
@@ -62,7 +63,6 @@ class ExpencesController < ApplicationController
 
     redirect_to root_url
     flash[:info] = '他ユーザーの申請は操作できません'
-    end
   end
 
   def applied_expence?
