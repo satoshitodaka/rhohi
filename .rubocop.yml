@@ -93,10 +93,23 @@ Style/SymbolArray:
 Style/AsciiComments:
   Enabled: false
 
+# 意味なく"(ダブルクォート)を使用していないか
+Style/StringLiterals:
+  Exclude:
+    - 'Guardfile'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 # todoリストの除外一覧
 Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'
 
 # 複雑度の測定
 Metrics/CyclomaticComplexity:
@@ -109,3 +122,7 @@ Layout/ArgumentAlignment:
 Layout/MultilineOperationIndentation:
   Exclude:
     - 'Guardfile'
+
+Layout/TrailingEmptyLines:
+  EnforcedStyle: final_newline
+

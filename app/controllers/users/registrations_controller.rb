@@ -18,18 +18,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if by_admin_user?(params)
-      self.resource = resource_class.to_adapter.get!(params[:id])
-    else
-      self.resource = resource_class.to_adapter.get!(send(:'current_#{resource_name}').to_key)
-    end
+    self.resource = if by_admin_user?(params)
+                      resource_class.to_adapter.get!(params[:id])
+                    else
+                      resource_class.to_adapter.get!(send(:'current_#{resource_name}').to_key)
+                    end
 
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    if by_admin_user?(params)
-      resource_updated = update_resource_without_password(resource, account_update_params)
-    else
-      resource_updated = update_resource(resource, account_update_params)
-    end
+    resource_updated = if by_admin_user?(params)
+                         update_resource_without_password(resource, account_update_params)
+                       else
+                         update_resource(resource, account_update_params)
+                       end
 
     yield resource if block_given?
 
@@ -93,9 +93,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def sign_up(resource_name, resource)
-    unless current_user_is_admin?
-      sign_in(resource_name, resource)
-    end
+    sign_in(resource_name, resource) unless current_user_is_admin?
   end
 
   def update_resource_without_password(resource, params)
@@ -114,9 +112,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def editable?
     raise CanCan::AccessDenied unless user_signed_in?
-    if params[:id].present? && !current_user_is_admin?
-      redirect_to root_url
-      flash[:danger] = 'ユーザー編集の権限がありません'
-    end
+    return unless params[:id].present? && !current_user_is_admin?
+
+    redirect_to root_url
+    flash[:danger] = 'ユーザー編集の権限がありません'
   end
 end

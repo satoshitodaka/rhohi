@@ -33,11 +33,10 @@ class UsersController < ApplicationController
   end
 
   private
-
   def admin_user?
-    unless current_user.has_role? :admin
-      redirect_to root_url
-      flash[:info] = '操作権限がありません。'
-    end
+    return unless current_user.has_role? :admin
+    
+    redirect_to root_url
+    flash[:info] = '操作権限がありません。'
   end
 end

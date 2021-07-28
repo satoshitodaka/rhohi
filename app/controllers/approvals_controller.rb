@@ -51,10 +51,10 @@ class ApprovalsController < ApplicationController
   private
 
   def admin_user?
-    unless current_user.admin
-      redirect_to root_url
-      flash[:danger] = '管理者権限を確認してください。'
-    end
+    return unless current_user.admin
+
+    redirect_to root_url
+    flash[:danger] = '管理者権限を確認してください。'
   end
 
   # def approval_params
@@ -67,25 +67,25 @@ class ApprovalsController < ApplicationController
 
   def approved?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    if @trip_statement.approved
-      redirect_to approvals_index_url
-      flash[:danger] = '承認済の申請です。'
-    end
+    return unless @trip_statement.approved
+
+    redirect_to approvals_index_url
+    flash[:danger] = '承認済の申請です。'
   end
 
   def applied?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    if @trip_statement.applied == false
-      redirect_to approvals_index_url
-      flash[:danger] = '未提出の申請です。'
-    end
+    retrun unless @trip_statement.applied == false
+
+    redirect_to approvals_index_url
+    flash[:danger] = '未提出の申請です。'
   end
 
   def same_company?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    if @trip_statement.user.company_id != current_user.company_id
-      redirect_to approvals_index_url
-      flash[:danger] = '他社ユーザーの申請は操作できません'
-    end
+    return unless @trip_statement.user.company_id != current_user.company_id
+
+    redirect_to approvals_index_url
+    flash[:danger] = '他社ユーザーの申請は操作できません'
   end
 end
