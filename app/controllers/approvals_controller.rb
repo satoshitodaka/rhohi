@@ -75,7 +75,7 @@ class ApprovalsController < ApplicationController
 
   def applied?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    retrun @trip_statement.applied == false
+    return @trip_statement.applied == false
 
     redirect_to approvals_index_url
     flash[:danger] = '未提出の申請です。'
