@@ -59,7 +59,7 @@ class ExpencesController < ApplicationController
   def correct_user
     @expence = Expence.find(params[:id])
     @own_statement = current_user.trip_statements.find_by(id: @expence.trip_statement_id)
-    return unless @own_statement.nil?
+    return @own_statement.nil?
 
     redirect_to root_url
     flash[:info] = '他ユーザーの申請は操作できません'
@@ -68,7 +68,7 @@ class ExpencesController < ApplicationController
   def applied_expence?
     @expence = Expence.find(params[:id])
     @trip_statement = @expence.trip_statement
-    return unless @trip_statement.applied == true
+    return @trip_statement.applied == true
 
     redirect_to trip_statement_path(@trip_statement)
     flash[:danger] = '申請済みの旅費情報は操作できません。'
