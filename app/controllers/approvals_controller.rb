@@ -57,7 +57,7 @@ class ApprovalsController < ApplicationController
   private
 
   def admin_user?
-    return current_user.admin
+    return if current_user.admin
 
     redirect_to root_url
     flash[:danger] = '管理者権限を確認してください。'
@@ -89,7 +89,7 @@ class ApprovalsController < ApplicationController
 
   def same_company?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    return @trip_statement.user.company_id != current_user.company_id
+    return if @trip_statement.user.company_id != current_user.company_id
 
     redirect_to approvals_index_url
     flash[:danger] = '他社ユーザーの申請は操作できません'
