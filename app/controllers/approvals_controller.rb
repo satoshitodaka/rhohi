@@ -89,7 +89,7 @@ class ApprovalsController < ApplicationController
 
   def same_company?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    return if @trip_statement.user.company_id != current_user.company_id
+    return @trip_statement.user.company_id != current_user.company_id
 
     redirect_to approvals_index_url
     flash[:danger] = '他社ユーザーの申請は操作できません'
