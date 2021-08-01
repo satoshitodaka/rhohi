@@ -29,10 +29,16 @@ class ApprovalsController < ApplicationController
   def create
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     @approval = current_user.approvals.create(approval: true, trip_statement_id: @trip_statement.id)
-    @approval = current_user.approvals.create(approval_params)
-    @trip_statement.update(approved: true, approved_at: Time.zone.now)
-    redirect_to approvals_index_url
-    flash[:success] = '承認しました！'
+    # @approval = current_user.approvals.create(approval_params) # 機能しない
+    if @approval.save
+      @trip_statement.update(approved: true, approved_at: Time.zone.now)
+      redirect_to approvals_index_url
+      flash[:success] = '承認しました！'
+    else
+      render 'new'
+      flash[:warning] = '承認に失敗しました。再度操作してください。'
+
+    end
   end
 
   def deny
@@ -44,7 +50,7 @@ class ApprovalsController < ApplicationController
       flash[:success] = '否認しました。'
     else
       render 'new'
-      flash[:warning] = '否認に失敗しました。再度確認してください。'
+      flash[:warning] = '否認に失敗しました。再度操作してください。'
     end
   end
 
@@ -58,7 +64,7 @@ class ApprovalsController < ApplicationController
   end
 
   # def approval_params
-  #   params.require(:approval).merge(approval: true, trip_statement_id: @trip_statement.id)
+  #   params.merge(approval: true, trip_statement_id: @trip_statement.id)
   # end
 
   def deny_params
@@ -67,7 +73,7 @@ class ApprovalsController < ApplicationController
 
   def approved?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    return @trip_statement.approved
+    return unless @trip_statement.approved
 
     redirect_to approvals_index_url
     flash[:danger] = '承認済の申請です。'
@@ -75,7 +81,7 @@ class ApprovalsController < ApplicationController
 
   def applied?
     @trip_statement = TripStatement.find(params[:trip_statement_id])
-    return @trip_statement.applied == false
+    return unless @trip_statement.applied == false
 
     redirect_to approvals_index_url
     flash[:danger] = '未提出の申請です。'

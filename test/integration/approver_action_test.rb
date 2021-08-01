@@ -17,8 +17,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     get new_trip_statement_approval_path(@other_users_statement)
     assert_template 'approvals/new'
     assert_difference 'Approval.count', 1 do
-      # post trip_statement_approvals_path(@other_users_statement)#, params: { approval: "true" }
-      post trip_statement_approvals_path#, params: { approval: "true" }
+      post trip_statement_approvals_path
     end
     @approval = Approval.last
     assert_equal true, @approval.approval
