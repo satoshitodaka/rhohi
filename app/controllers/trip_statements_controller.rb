@@ -56,6 +56,7 @@ class TripStatementsController < ApplicationController
       flash[:success] = '出張申請を編集しました。'
     else
       render 'edit'
+      flash[:warning] = '編集に失敗しました。再度操作してください。'
     end
   end
 
@@ -63,9 +64,13 @@ class TripStatementsController < ApplicationController
   def submit
     @trip_statement = TripStatement.find(params[:id])
     @trip_statement.update(applied: true, applied_at: Time.zone.now)
-    @trip_statement.save
-    redirect_to trip_statements_url
-    flash[:success] = '出張を提出しました。'
+    if @trip_statement.save
+      redirect_to trip_statements_url
+      flash[:success] = '出張を提出しました。'
+    else
+      render 'show'
+      flash[:warning] = '提出に失敗しました。再度操作してください。'
+    end
   end
 
   def destroy
@@ -92,7 +97,7 @@ class TripStatementsController < ApplicationController
   end
 
   def approved?
-    retrun unless @trip_statement.approved == true
+    return unless @trip_statement.approved == true
 
     redirect_to trip_statements_url(@trip_statement)
     flash[:warning] = '承認済みの申請は操作できません'
@@ -100,11 +105,17 @@ class TripStatementsController < ApplicationController
 
   def currect_user
     @trip_statement = current_user.trip_statements.find_by(id: params[:id])
-    redirect_to root_url if @trip_statement.nil?
+    return unless @trip_statement.nil?
+
+    redirect_to root_url
+    flash[:warning] = '操作権限がありません。'
   end
 
   def admin_user?
     @trip_statement = current_user.trip_statements.find_by(id: params[:id])
-    redirect_to root_url if @trip_statement.nil? && current_user.admin != true
+    return unless @trip_statement.nil? && current_user.admin != true
+
+    redirect_to root_url
+    flash[:warning] = '管理者権限がありません。'
   end
 end
