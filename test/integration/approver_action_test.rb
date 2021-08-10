@@ -22,7 +22,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     @approval = Approval.last
     assert_equal true, @approval.approval
     assert_equal @user.id, @other_users_statement.user_id
-    assert_equal true, @other_users_statement.approved
+    assert_equal true, @other_users_statement.reload.approved
     assert_equal @other_users_statement.id, @approval.trip_statement_id
   end
 
@@ -40,7 +40,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
     @approval = Approval.last
     assert_equal false, @approval.approval
     assert_equal "test comment", @approval.comment
-    assert_equal false, @other_users_statement.approved
+    assert_equal false, @other_users_statement.reload.approved
   end
 
 end
