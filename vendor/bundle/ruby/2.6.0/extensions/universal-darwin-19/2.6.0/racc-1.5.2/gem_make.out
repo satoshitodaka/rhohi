@@ -1,4 +1,4 @@
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
 /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210417-52791-1ry1vgr.rb extconf.rb
 checking for rb_ary_subseq()... *** extconf.rb failed ***
 Could not create Makefile due to some reason, probably lack of necessary
@@ -37,6 +37,6 @@ You have to install development tools first.
 
 To see why this extension failed to compile, please check the mkmf.log which can be found here:
 
-  /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/extensions/universal-darwin-19/2.6.0/racc-1.5.2/mkmf.log
+  /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/extensions/universal-darwin-19/2.6.0/racc-1.5.2/mkmf.log
 
 extconf failed, exit code 1
