@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_053538) do
+ActiveRecord::Schema.define(version: 2021_08_11_223350) do
 
   create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "trip_statement_id"
-    t.boolean "approval"
+    t.boolean "approval", null: false
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(version: 2021_06_26_053538) do
   end
 
   create_table "expences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.date "date"
-    t.string "transportation"
-    t.string "bording"
-    t.string "get_off"
-    t.integer "fare"
+    t.date "date", null: false
+    t.string "transportation", null: false
+    t.string "bording", null: false
+    t.string "get_off", null: false
+    t.integer "fare", null: false
     t.integer "mileage"
     t.integer "allowance"
     t.bigint "trip_statement_id"
@@ -63,11 +63,11 @@ ActiveRecord::Schema.define(version: 2021_06_26_053538) do
   end
 
   create_table "trip_statements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "distination"
-    t.string "purpose"
-    t.datetime "start_at"
-    t.datetime "finish_at"
-    t.datetime "work_done_at"
+    t.string "distination", null: false
+    t.string "purpose", null: false
+    t.datetime "start_at", null: false
+    t.datetime "finish_at", null: false
+    t.datetime "work_done_at", null: false
     t.boolean "applied"
     t.datetime "applied_at"
     t.boolean "approved"
