@@ -1,4 +1,4 @@
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
 /Users/satoshitodaka/.rbenv/versions/2.6.6/bin/ruby -I /Users/satoshitodaka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210417-54319-upbhic.rb extconf.rb
 checking for unistd.h... yes
 checking for linux/aio_abi.h... no
@@ -12,10 +12,10 @@ checking for port_event_t in port.h... no
 checking for sys/resource.h... yes
 creating Makefile
 
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
 make DESTDIR\= clean
 
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
 make DESTDIR\=
 compiling bytebuffer.c
 compiling monitor.c
@@ -91,6 +91,6 @@ In file included from nio4r_ext.c:6:
 compiling selector.c
 linking shared-object nio4r_ext.bundle
 
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.7/ext/nio4r
 make DESTDIR\= install
 /usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20210417-54319-1gr9ovg

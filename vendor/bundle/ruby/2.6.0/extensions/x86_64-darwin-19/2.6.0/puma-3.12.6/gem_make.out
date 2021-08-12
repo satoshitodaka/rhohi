@@ -1,14 +1,14 @@
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
 /Users/satoshitodaka/.rbenv/versions/2.6.6/bin/ruby -I /Users/satoshitodaka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210417-57882-1p2g54g.rb extconf.rb
 checking for BIO_read() in -lcrypto... yes
 checking for SSL_CTX_new() in -lssl... yes
 checking for openssl/bio.h... yes
 creating Makefile
 
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
 make DESTDIR\= clean
 
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
 make DESTDIR\=
 compiling http11_parser.c
 ext/puma_http11/http11_parser.c:44:18: warning: unused variable 'puma_parser_en_main' [-Wunused-const-variable]
@@ -36,6 +36,6 @@ void raise_error(SSL* ssl, int result) {
 compiling puma_http11.c
 linking shared-object puma/puma_http11.bundle
 
-current directory: /Users/satoshitodaka/my_app/rhohi2/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+current directory: /Users/satoshitodaka/my_app/rhohi/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
 make DESTDIR\= install
 /usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20210417-57882-wqn2m3/puma
