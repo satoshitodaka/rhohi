@@ -12,7 +12,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
   test "admin_user can approve other statement" do
     login_as(@approver)
     @other_users_statement = trip_statements(:my_applied_statement)
-    get approvals_index_path
+    get approvals_path
     assert_template 'approvals/index'
     get new_trip_statement_approval_path(@other_users_statement)
     assert_template 'approvals/new'
@@ -30,7 +30,7 @@ class ApproverActionTest < ActionDispatch::IntegrationTest
   test "admin_user can deny other statement" do
     login_as(@approver)
     @other_users_statement = trip_statements(:my_applied_statement)
-    get approvals_index_path
+    get approvals_path
     assert_template 'approvals/index'
     get new_trip_statement_approval_path(@other_users_statement)
     assert_template 'approvals/new'
