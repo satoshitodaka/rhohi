@@ -12,10 +12,10 @@ RSpec.describe TripStatement, type: :model do
       )
     end
 
-    # 有効なファクトリを持つこと
-    it 'has a valid factory' do
-      expect(FactoryBot.build(:trip_statement, user: @user)).to be_valid
-    end
+    # # 有効なファクトリを持つこと
+    # it 'has a valid factory' do
+    #   expect(FactoryBot.build(:trip_statement)).to be_valid
+    # end
 
     # 出張先、目的地、出発日時、帰着日時、作業終了日時、ユーザーがあれば有効な状態であること
     it 'is valid with a distination, purpose, start_at, finish_at, work_done_at, user' do
