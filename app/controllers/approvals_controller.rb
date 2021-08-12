@@ -32,7 +32,7 @@ class ApprovalsController < ApplicationController
     # @approval = current_user.approvals.create(approval_params) # 機能しない
     if @approval.save
       @trip_statement.update(approved: true, approved_at: Time.zone.now)
-      redirect_to approvals_index_url
+      redirect_to approvals_url
       flash[:success] = '承認しました！'
     else
       render 'new'
@@ -46,7 +46,7 @@ class ApprovalsController < ApplicationController
     @approval = current_user.approvals.create(deny_params)
     @trip_statement.update(approved: false, approved_at: Time.zone.now, applied: false)
     if @approval.save
-      redirect_to approvals_index_url
+      redirect_to approvals_url
       flash[:success] = '否認しました。'
     else
       render 'new'
@@ -75,7 +75,7 @@ class ApprovalsController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     return unless @trip_statement.approved
 
-    redirect_to approvals_index_url
+    redirect_to approvals_url
     flash[:danger] = '承認済の申請です。'
   end
 
@@ -83,7 +83,7 @@ class ApprovalsController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     return unless @trip_statement.applied == false
 
-    redirect_to approvals_index_url
+    redirect_to approvals_url
     flash[:danger] = '未提出の申請です。'
   end
 
@@ -91,7 +91,7 @@ class ApprovalsController < ApplicationController
     @trip_statement = TripStatement.find(params[:trip_statement_id])
     return @trip_statement.user.company_id != current_user.company_id
 
-    redirect_to approvals_index_url
+    redirect_to approvals_url
     flash[:danger] = '他社ユーザーの申請は操作できません'
   end
 end

@@ -14,7 +14,7 @@ class ApprovalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     login_as(@approver_user)
-    get approvals_index_url
+    get approvals_url
     assert_response :success
   end
 
@@ -30,7 +30,7 @@ class ApprovalsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Approval.count' do
       post trip_statement_approvals_path(@not_applied_statement), params: { approval: "true" } 
     end
-    assert_redirected_to approvals_index_url
+    assert_redirected_to approvals_url
     assert_not flash.empty?
   end
 
@@ -40,7 +40,7 @@ class ApprovalsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Approval.count' do
       post trip_statement_approvals_path(@approved_statement), params: { approval: "true" } 
     end
-    assert_redirected_to approvals_index_url
+    assert_redirected_to approvals_url
     assert_not flash.empty?
   end
 
@@ -50,7 +50,7 @@ class ApprovalsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Approval.count' do
       post trip_statement_approvals_path(@other_company_user_trip_statement), params: { approval: "true" }
     end
-    assert_redirected_to approvals_index_url
+    assert_redirected_to approvals_url
     assert_not flash.empty?
   end
 
