@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_223350) do
+ActiveRecord::Schema.define(version: 2021_08_12_041859) do
 
   create_table "approvals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "trip_statement_id"
     t.boolean "approval", null: false
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "trip_statement_id"
+    t.index ["trip_statement_id"], name: "index_approvals_on_trip_statement_id"
     t.index ["user_id"], name: "index_approvals_on_user_id"
   end
 
@@ -129,6 +130,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_223350) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "approvals", "trip_statements"
   add_foreign_key "approvals", "users"
   add_foreign_key "departments", "companies"
   add_foreign_key "expences", "trip_statements"
